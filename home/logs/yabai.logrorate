@@ -1,0 +1,7 @@
+/Users/zac/logs/yabai.log {
+    size 1M
+    copytruncate
+    rotate 5
+    missingok
+    notifempty
+}
