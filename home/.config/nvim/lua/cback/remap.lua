@@ -2,21 +2,11 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Remap left and right keys
--- For normal mode
-vim.api.nvim_set_keymap('n', 'l', 'h', { noremap = true })
-vim.api.nvim_set_keymap('n', ';', 'l', { noremap = true })
-vim.api.nvim_set_keymap('n', 'h', ';', { noremap = true })
--- For selection mode
-vim.api.nvim_set_keymap('x', 'l', 'h', { noremap = true })
-vim.api.nvim_set_keymap('x', ';', 'l', { noremap = true })
-vim.api.nvim_set_keymap('x', 'h', ';', { noremap = true })
--- For visual mode
-vim.api.nvim_set_keymap('v', 'l', 'h', { noremap = true })
-vim.api.nvim_set_keymap('v', ';', 'l', { noremap = true })
-vim.api.nvim_set_keymap('v', 'h', ';', { noremap = true })
+vim.keymap.set({ 'n', 'v', 'x' }, 'l', 'h', { noremap = true })
+vim.keymap.set({ 'n', 'v', 'x' }, ';', 'l', { noremap = true })
+vim.keymap.set({ 'n', 'v', 'x' }, 'h', ';', { noremap = true })
 
 -- Keymaps for better default experience
--- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Remap for dealing with word wrap
