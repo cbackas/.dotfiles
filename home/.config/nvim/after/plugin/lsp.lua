@@ -1,6 +1,6 @@
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
@@ -41,6 +41,11 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
+
+  if client.name == 'eslint' then
+    client.server_capabilities.documentFormattingProvider = true
+    vim.api.nvim_create_autocmd("BufWritePre", { callback = function() vim.lsp.buf.format() end })
+  end
 end
 
 -- Enable the following language servers
@@ -54,9 +59,14 @@ end
 local servers = {
   -- clangd = {},
   -- gopls = {},
-  -- pyright = {},
+  pyright = {},
   rust_analyzer = {},
   tsserver = {},
+  eslint = {
+    filetypes = {
+      "javascript", "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx",
+    }
+  },
   html = { filetypes = { 'html', 'twig', 'hbs' } },
   dockerls = {},
   prismals = {},
@@ -65,38 +75,7 @@ local servers = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
     },
-  },
-  efm = {
-    init_options = { documentFormatting = true },
-    settings = {
-      rootMarkers = { ".git/" },
-      languages = {
-        python = {
-          { formatCommand = "black --quiet -", formatStdin = true },
-          {
-            lintCommand = "flake8 --stdin-display-name ${INPUT} -",
-            lintStdin = true,
-            lintFormats = { "%f:%l:%c: %m" }
-          },
-        },
-        javascript = {
-          { formatCommand = "eslint_d --fix --stdin-filepath ${INPUT}", formatStdin = true },
-          {
-            lintCommand = "eslint_d --stdin --stdin-filename ${INPUT}",
-            lintStdin = true,
-            lintIgnoreExitCode = true,
-            lintFormats = {
-              "%f:%l:%c: %m" }
-          },
-        },
-        -- Other languages...
-      }
-    },
-    filetypes = {
-      "javascript", "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx",
-      "python"
-    }, -- Add other filetypes as needed
-  },
+  }
 }
 
 -- Setup neovim lua configuration
