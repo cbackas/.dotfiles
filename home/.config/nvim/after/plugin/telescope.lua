@@ -1,28 +1,68 @@
--- [[ Configure Telescope ]]
+local actions = require "telescope.actions"
+
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
-    mappings = {
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
-    },
+    prompt_prefix = "> ",
+    selection_caret = "> ",
+    entry_prefix = "  ",
+    multi_icon = "<>",
+
+    winblend = 0,
+
+    layout_strategy = "horizontal",
     layout_config = {
+      width = 0.95,
+      height = 0.85,
+      -- preview_cutoff = 120,
+      prompt_position = "bottom",
+
       horizontal = {
-        width = 0.9,
-        height = 0.9,
+        preview_width = function(_, cols, _)
+          if cols > 200 then
+            return math.floor(cols * 0.4)
+          else
+            return math.floor(cols * 0.6)
+          end
+        end,
       },
+
       vertical = {
         width = 0.9,
-        height = 0.9,
-      }
+        height = 0.95,
+        preview_height = 0.5,
+      },
+
+      flex = {
+        horizontal = {
+          preview_width = 0.9,
+        },
+      },
     },
+
+    selection_strategy = "reset",
+    sorting_strategy = "descending",
+    scroll_strategy = "cycle",
+    color_devicons = true,
     file_ignore_patterns = {
       'node_modules', 'dist', 'package-lock.json',
       '.git',
       '.DS_Store'
-    }
+    },
+
+    mappings = {
+      i = {
+        ['<C-u>'] = false,
+        ['<C-d>'] = false,
+
+        ["<RightMouse>"] = actions.close,
+        ["<LeftMouse>"] = actions.select_default,
+        ["<ScrollWheelDown>"] = actions.move_selection_next,
+        ["<ScrollWheelUp>"] = actions.move_selection_previous,
+        ["<ScrollWheelLeft>"] = function() end,
+        ["<ScrollWheelRight>"] = function() end,
+      },
+    },
   },
   pickers = {
     find_files = {
@@ -50,12 +90,7 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>sf', function()
-  require('telescope.builtin').find_files(require('telescope.themes').get_dropdown {
-    winblend = 5,
-    previewer = true,
-  })
-end, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 
 -- Open telescope find_files if no arguments are passed to nvim
 vim.cmd([[
