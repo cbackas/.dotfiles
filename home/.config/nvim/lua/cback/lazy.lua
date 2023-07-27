@@ -79,11 +79,15 @@ require('lazy').setup({
   },
 
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "rockyzhang24/arctic.nvim",
+    dependencies = {
+      "rktjmp/lush.nvim",
+    },
+    lazy = false,
     priority = 1000,
+    opts = {},
     config = function()
-      vim.cmd.colorscheme "catppuccin"
+      vim.cmd("colorscheme my-arctic")
     end,
   },
 
