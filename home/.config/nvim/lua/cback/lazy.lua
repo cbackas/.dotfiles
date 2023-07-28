@@ -155,5 +155,9 @@ require('lazy').setup({
 
   "nvim-tree/nvim-web-devicons",
 
+  'rcarriga/nvim-notify',
+
+  'ThePrimeagen/vim-be-good',
+
   require 'kickstart.plugins.autoformat',
 }, {})
