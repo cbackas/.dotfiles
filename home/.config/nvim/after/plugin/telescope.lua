@@ -93,6 +93,10 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 
 -- Open telescope find_files if no arguments are passed to nvim
-vim.cmd([[
-  autocmd VimEnter * if argc() == 0 | silent! call timer_start(100, {-> luaeval("require('telescope.builtin').find_files()")}) | endif
-]])
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    if vim.fn.argv(0) == "" then
+      require("telescope.builtin").find_files()
+    end
+  end,
+})
