@@ -159,5 +159,7 @@ require('lazy').setup({
 
   'ThePrimeagen/vim-be-good',
 
+  "petertriho/nvim-scrollbar",
+
   require 'kickstart.plugins.autoformat',
 }, {})
