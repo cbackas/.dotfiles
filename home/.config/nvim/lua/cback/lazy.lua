@@ -121,6 +121,7 @@ require('lazy').setup({
   },
 
   "ThePrimeagen/harpoon",
+  'ThePrimeagen/git-worktree.nvim',
 
   {
     -- Highlight, edit, and navigate code
