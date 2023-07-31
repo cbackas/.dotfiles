@@ -1,17 +1,41 @@
-local devicons = require('nvim-web-devicons')
 local lualine = require('lualine')
 
+vim.cmd [[highlight SLCopilot guifg=#6CC644 guibg=None]]
+
 local function lsp_status()
+  local filetype = vim.bo.filetype
   local clients = vim.lsp.get_active_clients()
-  if next(clients) == nil then return '' end
-  local client_names = ""
+
+  local client_names = {}
+  local copilot = false
   for _, client in pairs(clients) do
-    if client_names ~= "" then
-      client_names = client_names .. ", "
+    if client.name == "null-ls" then
+      local sources = require("null-ls").get_sources()
+      for _, source in pairs(sources) do
+        if source.filetypes and source.filetypes[filetype] then
+          client_names[source.name] = true
+        end
+      end
+    elseif client.name == 'copilot' then
+      copilot = true
+    else
+      client_names[client.name] = true
     end
-    client_names = client_names .. client.name
   end
-  return "[" .. client_names .. "]"
+
+  local client_list = vim.tbl_keys(client_names)
+
+  if #client_list == 0 then
+    return "LSP Inactive"
+  end
+
+  local message = "[" .. table.concat(client_list, ", ") .. "]"
+
+  if copilot then
+    message = message .. "%#SLCopilot#" .. " %*"
+  end
+
+  return message
 end
 
 local function env_cleanup(venv)
