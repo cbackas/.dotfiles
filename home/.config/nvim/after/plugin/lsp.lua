@@ -41,11 +41,6 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
-
-  if client.name == 'eslint' then
-    client.server_capabilities.documentFormattingProvider = true
-    vim.api.nvim_create_autocmd("BufWritePre", { callback = function() vim.lsp.buf.format() end })
-  end
 end
 
 -- Enable the following language servers
@@ -62,13 +57,8 @@ local servers = {
   pyright = {},
   rust_analyzer = {},
   tsserver = {},
-  eslint = {
-    filetypes = {
-      "javascript", "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx",
-    }
-  },
   html = { filetypes = { 'html', 'twig', 'hbs' } },
-  dockerls = {},
+  dockerls = { filetypes = { 'Dockerfile', 'dockerfile' } },
   prismals = {},
   lua_ls = {
     Lua = {
@@ -132,6 +122,22 @@ mason_lspconfig.setup_handlers {
     }
   end
 }
+
+local null_ls = require('null-ls')
+
+-- Builtins: https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#code-actions
+null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.eslint_d,
+    null_ls.builtins.code_actions.eslint_d,
+    null_ls.builtins.diagnostics.eslint_d,
+    null_ls.builtins.diagnostics.actionlint,
+    null_ls.builtins.formatting.yamlfmt
+  }
+})
+
+-- Autoformat on save
+vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
 
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`

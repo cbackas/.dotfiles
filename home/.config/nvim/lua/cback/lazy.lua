@@ -55,6 +55,8 @@ require('lazy').setup({
     },
   },
 
+  "jose-elias-alvarez/null-ls.nvim",
+
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',     opts = {} },
   {
@@ -160,6 +162,4 @@ require('lazy').setup({
   'ThePrimeagen/vim-be-good',
 
   "petertriho/nvim-scrollbar",
-
-  require 'kickstart.plugins.autoformat',
 }, {})
