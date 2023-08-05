@@ -55,6 +55,8 @@ require('lazy').setup({
     },
   },
 
+  'gelguy/wilder.nvim',
+
   "jose-elias-alvarez/null-ls.nvim",
 
   -- Useful plugin to show you pending keybinds.
@@ -79,6 +81,7 @@ require('lazy').setup({
       end,
     },
   },
+  'ruanyl/coverage.vim',
 
   {
     "rockyzhang24/arctic.nvim",
