@@ -9,8 +9,12 @@ vim.keymap.set({ 'n', 'v', 'x' }, 'h', ';', { noremap = true })
 -- Keymaps for better default experience
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
--- Map to format the current buffer
-vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format)
+-- Format and save
+vim.keymap.set("n", "<leader>ff", function()
+  vim.lsp.buf.format()
+  vim.cmd('write')
+end, { noremap = true, silent = true })
+
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
