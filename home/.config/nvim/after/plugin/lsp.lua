@@ -57,7 +57,7 @@ local servers = {
   pyright = {},
   rust_analyzer = {},
   tsserver = {},
-  html = { filetypes = { 'html', 'twig', 'hbs' } },
+  html = { filetypes = { 'html' } },
   dockerls = { filetypes = { 'Dockerfile', 'dockerfile' } },
   prismals = {},
   lua_ls = {
@@ -137,7 +137,13 @@ null_ls.setup({
     null_ls.builtins.diagnostics.eslint_d,
     null_ls.builtins.diagnostics.actionlint,
     null_ls.builtins.formatting.yamlfmt,
-    null_ls.builtins.diagnostics.cfn_lint
+    null_ls.builtins.diagnostics.cfn_lint,
+    null_ls.builtins.diagnostics.djlint.with({
+      filetypes = { 'html', 'jinja.html', 'htmldjango' }
+    }),
+    null_ls.builtins.formatting.djlint.with({
+      filetypes = { 'html', 'jinja.html', 'htmldjango' }
+    }),
   }
 })
 
