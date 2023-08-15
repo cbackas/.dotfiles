@@ -26,8 +26,8 @@ vim.o.smartcase = true
 vim.wo.signcolumn = 'yes'
 
 -- Decrease update time
-vim.o.updatetime = 400
-vim.o.timeoutlen = 300
+vim.o.updatetime = 300
+vim.o.timeoutlen = 250
 
 -- expand tabs to spaces
 vim.o.tabstop = 4
