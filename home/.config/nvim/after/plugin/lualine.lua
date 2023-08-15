@@ -25,11 +25,11 @@ local function lsp_status()
 
   local client_list = vim.tbl_keys(client_names)
 
-  if #client_list == 0 then
-    return "LSP Inactive"
-  end
+  local message = "LSP Inactive"
 
-  local message = "[" .. table.concat(client_list, ", ") .. "]"
+  if #client_list > 0 then
+    message = "[" .. table.concat(client_list, ", ") .. "]"
+  end
 
   if copilot then
     message = message .. "%#SLCopilot#" .. " %*"
