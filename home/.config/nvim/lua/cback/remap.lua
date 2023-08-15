@@ -15,6 +15,8 @@ vim.keymap.set("n", "<leader>ff", function()
   vim.cmd('write')
 end, { noremap = true, silent = true })
 
+-- i want to be able to press tab in insert mode
+vim.keymap.set('i', '<Tab>', '<C-V><Tab>', { noremap = true })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
