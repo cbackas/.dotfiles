@@ -2405,6 +2405,6 @@ sync_to_monitor yes
 
 
 # BEGIN_KITTY_THEME
-# Alabaster Dark
+# Default
 include current-theme.conf
 # END_KITTY_THEME
