@@ -41,6 +41,11 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
+
+  -- Enable inlay hints if possible
+  if client.server_capabilities.inlayHintProvider then
+    vim.lsp.inlay_hint(bufnr, true)
+  end
 end
 
 -- Enable the following language servers
@@ -56,7 +61,31 @@ local servers = {
   -- gopls = {},
   pyright = {},
   rust_analyzer = {},
-  tsserver = {},
+  tsserver = {
+    -- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
+    javascript = {
+      inlayHints = {
+        includeInlayEnumMemberValueHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayParameterNameHints = 'all',
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayVariableTypeHints = true,
+      },
+    },
+    typescript = {
+      inlayHints = {
+        includeInlayEnumMemberValueHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayParameterNameHints = 'all',
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayVariableTypeHints = true,
+      },
+    },
+  },
   html = { filetypes = { 'html' } },
   dockerls = { filetypes = { 'Dockerfile', 'dockerfile' } },
   prismals = {},
@@ -64,6 +93,7 @@ local servers = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
+      hint = { enable = true },
     },
   },
   yamlls = {
@@ -131,9 +161,7 @@ local null_ls = require('null-ls')
 
 -- Builtins: https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#code-actions
 null_ls.setup({
-  sources = {
-    null_ls.builtins.formatting.eslint_d,
-    null_ls.builtins.code_actions.eslint_d,
+  sources = { null_ls.builtins.formatting.eslint_d, null_ls.builtins.code_actions.eslint_d,
     null_ls.builtins.diagnostics.eslint_d,
     null_ls.builtins.diagnostics.actionlint,
     null_ls.builtins.formatting.yamlfmt,
