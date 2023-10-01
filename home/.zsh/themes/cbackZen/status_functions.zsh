@@ -36,5 +36,5 @@ function get_path() {
   if [ "$1" = "0" ] || [ "$1" = "false" ]; then
       path_var="%1~"
   fi
-  echo "%F{10}${path_var}%f"
+  echo "%F{green}${path_var}%f"
 }
