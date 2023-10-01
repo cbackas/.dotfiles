@@ -1,12 +1,3 @@
-[submodule "home/.zsh/themes/aphrodite"]
-	path = home/.zsh/themes/aphrodite
-	url = https://github.com/win0err/aphrodite-terminal-theme
-[submodule "home/.zsh/themes/via"]
-	path = home/.zsh/themes/via
-	url = https://github.com/badouralix/oh-my-via.git
-[submodule "home/.zsh/themes/powerlevel10k"]
-	path = home/.zsh/themes/powerlevel10k
-	url = https://github.com/romkatv/powerlevel10k.git
 [submodule "home/.zsh/plugins/zsh-async"]
 	path = home/.zsh/plugins/zsh-async
 	url = https://github.com/mafredri/zsh-async.git
