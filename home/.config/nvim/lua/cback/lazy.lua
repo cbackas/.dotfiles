@@ -83,30 +83,27 @@ require('lazy').setup({
   },
   'ruanyl/coverage.vim',
 
-  {
-    "rockyzhang24/arctic.nvim",
-    dependencies = {
-      "rktjmp/lush.nvim",
-    },
-    lazy = false,
-    priority = 1000,
-    opts = {},
-    config = function()
-      vim.cmd("colorscheme my-arctic")
-    end,
-  },
-
   { 'nvim-lualine/lualine.nvim' },
 
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
+    main = "ibl",
     opts = {
-      char = '┊',
-      show_trailing_blankline_indent = true,
+      -- char = '┊',
+      -- show_trailing_blankline_indent = true,
     },
+  },
+
+  {
+    "rockyzhang24/arctic.nvim",
+    dependencies = { "rktjmp/lush.nvim" },
+    name = "arctic",
+    branch = "main",
+    priority = 1000,
+    config = function()
+      vim.cmd("colorscheme my-arctic")
+    end
   },
 
   -- "gc" to comment visual regions/lines
