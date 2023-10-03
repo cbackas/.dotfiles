@@ -152,4 +152,9 @@ require('lazy').setup({
   'ThePrimeagen/vim-be-good',
 
   "petertriho/nvim-scrollbar",
+
+  {
+    'mrjones2014/smart-splits.nvim',
+    lazy = false
+  }
 }, {})
