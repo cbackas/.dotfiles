@@ -31,11 +31,13 @@ end
 -- keys
 Wez_Conf.leader = { key = ' ', mods = 'CTRL', timeout_milliseconds = 1000 }
 Wez_Conf.keys = {
+  -- vertical split
   {
     key = '\\',
     mods = 'LEADER',
     action = actions.SplitHorizontal { domain = 'CurrentPaneDomain' },
   },
+  -- horizontal split (50%)
   {
     key = '-',
     mods = 'LEADER',
@@ -44,6 +46,7 @@ Wez_Conf.keys = {
       size = { Percent = 50 },
     },
   },
+  -- horizontal split (30%) (for lil terminals under my main window)
   {
     key = '_',
     mods = 'LEADER|SHIFT',
