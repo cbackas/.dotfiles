@@ -55,6 +55,19 @@ Wez_Conf.keys = {
       size = { Percent = 30 },
     },
   },
+  -- rename active tab
+  {
+    key = 'E',
+    mods = 'CTRL|SHIFT',
+    action = actions.PromptInputLine {
+      description = 'Enter new name for tab',
+      action = wezterm.action_callback(function(window, pane, line)
+        if line then
+          window:active_tab():set_title(line)
+        end
+      end),
+    },
+  },
   -- move between split panes
   split_nav('move', 'k', 'Up'),
   split_nav('move', 'j', 'Down'),
