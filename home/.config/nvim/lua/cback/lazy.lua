@@ -142,6 +142,8 @@ require('lazy').setup({
 
   { "mbbill/undotree" },
 
+  { 'ibhagwan/smartyank.nvim' },
+
   "nvim-tree/nvim-web-devicons",
 
   'rcarriga/nvim-notify',
