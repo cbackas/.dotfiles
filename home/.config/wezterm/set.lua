@@ -15,4 +15,4 @@ Wez_Conf.unix_domains = {
   },
 }
 -- enable unix domain socket by default
-Wez_Conf.default_gui_startup_args = { 'connect', 'unix' }
+-- Wez_Conf.default_gui_startup_args = { 'connect', 'unix' }
