@@ -148,8 +148,7 @@ table.insert(Wez_Conf.keys, {
         end),
         title = 'Which project would you like to open?',
         choices = choices,
-        fuzzy = true,
-        alphabet = '123456789'
+        fuzzy = true
       },
       pane
     )
