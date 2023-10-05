@@ -31,6 +31,7 @@ end
 -- keys
 Wez_Conf.leader = { key = ' ', mods = 'CTRL', timeout_milliseconds = 1000 }
 Wez_Conf.keys = {
+  { key = 'L', mods = 'CTRL', action = actions.ShowDebugOverlay },
   -- vertical split
   {
     key = '\\',
