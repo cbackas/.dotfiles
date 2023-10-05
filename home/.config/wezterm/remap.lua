@@ -88,3 +88,67 @@ for i = 1, 9 do
     action = actions.ActivateTab(i - 1),
   })
 end
+
+--
+-- Mux tab creation
+--
+
+-- given a path, builds a list of choices for the input selector
+local function get_directory_choices(path, label_prefix)
+  local prefix = (label_prefix and label_prefix .. ':') or ''
+  local cmd = "ls -d " .. path .. "/*/ 2>/dev/null"
+  local dirs = {}
+  local pfile = io.popen(cmd)
+  if not pfile then
+    return dirs
+  end
+
+  for dir in pfile:lines() do
+    local dir_name = dir:match("([^/]+)/?$") -- Extract the last part of the path
+    table.insert(dirs, { label = prefix .. dir_name, id = path .. "/" .. dir_name })
+  end
+
+  pfile:close()
+  return dirs
+end
+
+-- keybind to open project fuzzy selector
+-- when you select an option it will switch to that project's tab if it exists or spawn a new one
+table.insert(Wez_Conf.keys, {
+  key = 'P',
+  mods = 'SUPER|SHIFT',
+  action = wezterm.action_callback(function(window, pane)
+    local choices = get_directory_choices(os.getenv('HOME') .. '/Projects')
+    ConcatTables(choices, get_directory_choices(os.getenv('HOME') .. '/.dotfiles/home/.config', 'conf'))
+
+    window:perform_action(
+      wezterm.action.InputSelector {
+        action = wezterm.action_callback(function(window2, _pane, id, label)
+          if not id and not label then
+            wezterm.log_error 'cancelled'
+            return
+          end
+
+          local mux_window = window2:mux_window()
+          for _, tab in pairs(mux_window:tabs()) do
+            local tab_title = tab:get_title()
+            if tab_title == label then
+              wezterm.log_info('switching to tab: ' .. label)
+              tab:activate()
+              return
+            end
+          end
+
+          wezterm.log_info('spawning new tab: ' .. label)
+          local tab, _pane, _window = mux_window:spawn_tab { cwd = id }
+          tab:set_title(label)
+        end),
+        title = 'Which project would you like to open?',
+        choices = choices,
+        fuzzy = true,
+        alphabet = '123456789'
+      },
+      pane
+    )
+  end),
+})
