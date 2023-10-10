@@ -1,3 +1,8 @@
+-- if 'DISABLE_COPILOT' env var is set, don't load copilot
+if os.getenv('DISABLE_COPILOT') then
+  return
+end
+
 require("copilot").setup({
   panel = {
     enabled = false
