@@ -139,5 +139,11 @@ require('lazy').setup({
   {
     'mrjones2014/smart-splits.nvim',
     lazy = false
-  }
+  },
+
+  {
+    "saimo/peek.nvim",
+    event = { "BufRead", "BufNewFile" },
+    build = "deno task --quiet build:fast",
+  },
 }, {})
