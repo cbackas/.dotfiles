@@ -24,9 +24,8 @@ vim.o.smartcase = true
 
 -- status culumn is to the right of the line numbers
 -- sign column is to the left of the line numbers
--- this makes it use that instead of the signcolumn
--- vim.wo.signcolumn = 'yes'
-vim.opt.statuscolumn = "%=%{v:relnum?v:relnum:v:lnum} %s"
+vim.wo.signcolumn = 'yes'
+-- vim.opt.statuscolumn = "%=%{v:relnum?v:relnum:v:lnum} %s"
 
 -- Decrease update time
 vim.o.updatetime = 300
