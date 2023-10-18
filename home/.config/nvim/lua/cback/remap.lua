@@ -13,6 +13,10 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set("n", "<leader>ff", function()
   vim.lsp.buf.format()
   vim.cmd('write')
+
+  -- Re-enable diagnostics, following this:
+  -- https://www.reddit.com/r/neovim/comments/15dfx4g/help_lsp_diagnostics_are_not_being_displayed/?utm_source=share&utm_medium=web2x&context=3
+  vim.diagnostic.enable(0)
 end, { noremap = true, silent = true })
 
 -- i want to be able to press tab in insert mode

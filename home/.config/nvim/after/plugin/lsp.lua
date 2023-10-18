@@ -39,6 +39,9 @@ local on_attach = function(client, bufnr)
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
+    -- Re-enable diagnostics, following this:
+    -- https://www.reddit.com/r/neovim/comments/15dfx4g/help_lsp_diagnostics_are_not_being_displayed/?utm_source=share&utm_medium=web2x&context=3
+    vim.diagnostic.enable(0)
   end, { desc = 'Format current buffer with LSP' })
 
   -- Enable inlay hints if possible
