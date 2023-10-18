@@ -83,8 +83,20 @@ lualine.setup {
       },
     },
     lualine_b = { 'branch', 'diff' },
-    lualine_c = { 'filename' },
-    lualine_x = { 'searchcount', py_env, 'filetype', lsp_status },
+    lualine_c = {
+      {
+        'filename',
+        file_status = false,
+        path = 1,
+        shorting_target = 100,
+      },
+    },
+    lualine_x = { {
+      'diagnostics',
+      sources = {
+        'nvim_diagnostic',
+      },
+    }, py_env, 'filetype', lsp_status },
     lualine_y = { 'progress' },
     lualine_z = { 'location' },
   },
