@@ -22,8 +22,11 @@ vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
--- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
+-- status culumn is to the right of the line numbers
+-- sign column is to the left of the line numbers
+-- this makes it use that instead of the signcolumn
+-- vim.wo.signcolumn = 'yes'
+vim.opt.statuscolumn = "%=%{v:relnum?v:relnum:v:lnum} %s"
 
 -- Decrease update time
 vim.o.updatetime = 300
