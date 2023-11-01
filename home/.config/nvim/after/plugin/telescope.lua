@@ -15,7 +15,7 @@ require('telescope').setup {
       width = 0.95,
       height = 0.85,
       -- preview_cutoff = 120,
-      prompt_position = "bottom",
+      prompt_position = "top",
 
       horizontal = {
         preview_width = function(_, cols, _)
@@ -25,6 +25,7 @@ require('telescope').setup {
             return math.floor(cols * 0.6)
           end
         end,
+        preview_height = 0.5,
       },
 
       vertical = {
@@ -41,7 +42,7 @@ require('telescope').setup {
     },
 
     selection_strategy = "reset",
-    sorting_strategy = "descending",
+    sorting_strategy = "ascending",
     scroll_strategy = "cycle",
     color_devicons = true,
     file_ignore_patterns = {
@@ -81,7 +82,7 @@ vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc =
 vim.keymap.set('n', '<leader>/', function()
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
     winblend = 10,
-    previewer = false,
+    previewer = true,
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
 
