@@ -37,12 +37,12 @@ local on_attach = function(client, bufnr)
   -- end, '[W]orkspace [L]ist Folders')
 
   -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-    -- Re-enable diagnostics, following this:
-    -- https://www.reddit.com/r/neovim/comments/15dfx4g/help_lsp_diagnostics_are_not_being_displayed/?utm_source=share&utm_medium=web2x&context=3
-    vim.diagnostic.enable(0)
-  end, { desc = 'Format current buffer with LSP' })
+  -- vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+  --   vim.lsp.buf.format()
+  --   -- Re-enable diagnostics, following this:
+  --   -- https://www.reddit.com/r/neovim/comments/15dfx4g/help_lsp_diagnostics_are_not_being_displayed/?utm_source=share&utm_medium=web2x&context=3
+  --   vim.diagnostic.enable(0)
+  -- end, { desc = 'Format current buffer with LSP' })
 
   -- Enable inlay hints if possible
   if client.server_capabilities.inlayHintProvider then
@@ -99,13 +99,13 @@ local servers = {
     },
   },
   yamlls = {
+    filetypes = { 'yaml', 'cfn-yaml' },
     yaml = {
       format = {
-        enable = true,
+        enable = false,
       },
       hover = true,
       completion = true,
-
       customTags = {
         "!fn",
         "!And",
@@ -123,6 +123,7 @@ local servers = {
         "!GetAZs",
         "!ImportValue",
         "!Select",
+        "!Select sequence",
         "!Split",
         "!Join sequence"
       },
@@ -159,28 +160,55 @@ mason_lspconfig.setup_handlers {
   end
 }
 
-require('lspconfig').jdtls.setup {}
+require('lspconfig').jdtls.setup {
+  on_attach = on_attach
+}
 
-local null_ls = require('null-ls')
+require('lspconfig.configs').cfn_lsp = {
+  default_config = {
+    cmd = { os.getenv("HOME") .. '/.local/bin/cfn-lsp-extra' },
+    filetypes = { 'cfn-yaml' },
+    root_dir = function(fname)
+      return require('lspconfig').util.find_git_ancestor(fname) or vim.fn.getcwd()
+    end,
+    settings = {
+      documentFormatting = false,
+    },
+  },
+}
+require('lspconfig').cfn_lsp.setup {
+  on_attach = on_attach
+}
 
--- Builtins: https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#code-actions
-null_ls.setup({
-  sources = { null_ls.builtins.formatting.eslint_d, null_ls.builtins.code_actions.eslint_d,
-    null_ls.builtins.diagnostics.eslint_d,
-    null_ls.builtins.diagnostics.actionlint,
-    null_ls.builtins.formatting.yamlfmt,
-    null_ls.builtins.diagnostics.cfn_lint,
-    null_ls.builtins.diagnostics.djlint.with({
-      filetypes = { 'html', 'jinja.html', 'htmldjango' }
-    }),
-    null_ls.builtins.formatting.djlint.with({
-      filetypes = { 'html', 'jinja.html', 'htmldjango' }
-    }),
-  }
+require('lint').linters_by_ft = {
+  javascript = { 'eslint_d' },
+  typescript = { 'eslint_d' },
+  html = { 'djlint' },
+  ['jinja.html'] = { 'djlint' },
+  htmldjango = { 'djlint' },
+  yaml = { 'actionlint' },
+}
+
+vim.api.nvim_create_autocmd({ "BufWritePost", "BufRead" }, {
+  callback = function()
+    require("lint").try_lint()
+  end,
 })
 
--- Autoformat on save
-vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
+require('conform').setup({
+  formatters_by_ft = {
+    javascript = { 'eslint_d' },
+    typescript = { 'eslint_d' },
+    html = { 'djlint' },
+    ['jinja.html'] = { 'djlint' },
+    htmldjango = { 'djlint' },
+    ['cfn-yaml'] = { 'yamlfmt' },
+  },
+  format_on_save = {
+    timeout_ms = 500,
+    lsp_fallback = true,
+  },
+})
 
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`

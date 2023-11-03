@@ -20,10 +20,8 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
-  -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
-    -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
@@ -36,6 +34,9 @@ require('lazy').setup({
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
+
+      -- the null-ls replacement linter
+      'mfussenegger/nvim-lint',
     },
   },
 
@@ -50,7 +51,10 @@ require('lazy').setup({
 
   'gelguy/wilder.nvim',
 
-  "nvimtools/none-ls.nvim",
+  {
+    'stevearc/conform.nvim',
+    opts = {},
+  },
 
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',     opts = {} },
