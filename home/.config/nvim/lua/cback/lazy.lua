@@ -50,7 +50,7 @@ require('lazy').setup({
 
   'gelguy/wilder.nvim',
 
-  "jose-elias-alvarez/null-ls.nvim",
+  "nvimtools/none-ls.nvim",
 
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',     opts = {} },
