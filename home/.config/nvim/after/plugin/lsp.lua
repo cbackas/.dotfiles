@@ -99,7 +99,7 @@ local servers = {
     },
   },
   yamlls = {
-    filetypes = { 'yaml', 'cfn-yaml' },
+    filetypes = { 'yaml', 'cfn-yaml', 'group_vars' },
     yaml = {
       format = {
         enable = false,

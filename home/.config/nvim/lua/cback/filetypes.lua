@@ -6,15 +6,6 @@ vim.filetype.add({
         return 'Jenkinsfile'
       end,
     },
-  },
-  filename = {
-    ['Jenkinsfile'] = 'Jenkinsfile'
-  },
-})
-
-
-vim.filetype.add({
-  pattern = {
     ['.*.ya?ml'] = {
       priority = math.huge,
       function(_, bufnr)
@@ -25,5 +16,9 @@ vim.filetype.add({
         end
       end,
     },
+  },
+  filename = {
+    ['Jenkinsfile'] = 'Jenkinsfile',
+    common = 'group_vars'
   },
 })
