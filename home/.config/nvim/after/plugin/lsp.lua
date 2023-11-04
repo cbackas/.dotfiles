@@ -132,7 +132,8 @@ local servers = {
   },
   groovyls = {
     filetypes = { 'groovy', 'Jenkinsfile' }
-  }
+  },
+  jdtls = {}
 }
 
 -- Setup neovim lua configuration
@@ -162,10 +163,6 @@ mason_lspconfig.setup_handlers {
       filetypes = servers[server_name].filetypes,
     }
   end
-}
-
-require('lspconfig').jdtls.setup {
-  on_attach = on_attach
 }
 
 require('lspconfig.configs').cfn_lsp = {
