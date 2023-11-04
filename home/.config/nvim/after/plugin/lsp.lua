@@ -129,6 +129,9 @@ local servers = {
         "!Ref scalar",
       },
     },
+  },
+  groovyls = {
+    filetypes = { 'groovy', 'Jenkinsfile' }
   }
 }
 
