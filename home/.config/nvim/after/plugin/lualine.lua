@@ -3,20 +3,15 @@ local lualine = require('lualine')
 vim.cmd [[highlight SLCopilot guifg=#6CC644 guibg=None]]
 
 local function lsp_status()
-  local filetype = vim.bo.filetype
-  local clients = vim.lsp.get_active_clients()
+  local current_buffer = vim.api.nvim_get_current_buf()
+  local clients = vim.lsp.get_clients({
+    bufnr = current_buffer
+  })
 
   local client_names = {}
   local copilot = false
   for _, client in pairs(clients) do
-    if client.name == "null-ls" then
-      local sources = require("null-ls").get_sources()
-      for _, source in pairs(sources) do
-        if source.filetypes and source.filetypes[filetype] then
-          client_names[source.name] = true
-        end
-      end
-    elseif client.name == 'copilot' then
+    if client.name == 'copilot' then
       copilot = true
     else
       client_names[client.name] = true
