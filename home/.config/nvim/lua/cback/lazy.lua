@@ -51,10 +51,15 @@ require('lazy').setup({
       'hrsh7th/cmp-nvim-lsp',
       -- Adds path completion
       'hrsh7th/cmp-path',
+      -- Adds buffer completion
+      'hrsh7th/cmp-buffer',
+
+      -- command line completion
+      'hrsh7th/cmp-cmdline',
     },
   },
 
-  'gelguy/wilder.nvim',
+  -- 'gelguy/wilder.nvim',
 
   {
     'stevearc/conform.nvim',
