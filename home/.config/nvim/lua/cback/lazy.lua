@@ -47,8 +47,10 @@ require('lazy').setup({
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
 
-      -- Adds LSP completion capabilities
+      -- Adds LSP completion
       'hrsh7th/cmp-nvim-lsp',
+      -- Adds path completion
+      'hrsh7th/cmp-path',
     },
   },
 
