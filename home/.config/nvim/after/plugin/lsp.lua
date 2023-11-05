@@ -1,12 +1,6 @@
--- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(client, bufnr)
-  -- NOTE: Remember that lua is a real programming language, and as such it is possible
-  -- to define small helper and utility functions so you don't have to repeat yourself
-  -- many times.
-  --
-  -- In this case, we create a function that lets us more easily define mappings specific
-  -- for LSP related items. It sets the mode, buffer and description for us each time.
+  -- normal mode keymap helper func
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
@@ -30,19 +24,6 @@ local on_attach = function(client, bufnr)
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-  -- nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-  -- nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-  -- nmap('<leader>wl', function()
-  --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  -- end, '[W]orkspace [L]ist Folders')
-
-  -- Create a command `:Format` local to the LSP buffer
-  -- vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-  --   vim.lsp.buf.format()
-  --   -- Re-enable diagnostics, following this:
-  --   -- https://www.reddit.com/r/neovim/comments/15dfx4g/help_lsp_diagnostics_are_not_being_displayed/?utm_source=share&utm_medium=web2x&context=3
-  --   vim.diagnostic.enable(0)
-  -- end, { desc = 'Format current buffer with LSP' })
 
   -- Enable inlay hints if possible
   if client.server_capabilities.inlayHintProvider then
@@ -51,16 +32,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- Enable the following language servers
---  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
---
---  Add any additional override configuration in the following tables. They will be passed to
---  the `settings` field of the server config. You must look up that documentation yourself.
---
---  If you want to override the default filetypes that your language server will attach to you can
---  define the property 'filetypes' to the map in question.
 local servers = {
-  -- clangd = {},
-  -- gopls = {},
   pyright = {},
   rust_analyzer = {},
   tsserver = {
@@ -165,6 +137,7 @@ mason_lspconfig.setup_handlers {
   end
 }
 
+-- custom setup for cloudformation lsp since its so special
 require('lspconfig.configs').cfn_lsp = {
   default_config = {
     cmd = { os.getenv("HOME") .. '/.local/bin/cfn-lsp-extra' },
@@ -181,6 +154,7 @@ require('lspconfig').cfn_lsp.setup {
   on_attach = on_attach
 }
 
+-- nvim-lint adds more linters to the built in LSP
 require('lint').linters_by_ft = {
   javascript = { 'eslint_d' },
   typescript = { 'eslint_d' },
@@ -190,12 +164,14 @@ require('lint').linters_by_ft = {
   yaml = { 'actionlint' },
 }
 
+-- auto lint on read/write of buffers so diagnostics are always up to date
 vim.api.nvim_create_autocmd({ "BufWritePost", "BufRead" }, {
   callback = function()
     require("lint").try_lint()
   end,
 })
 
+-- conform is for formaters that aren't built into an LSP
 require('conform').setup({
   formatters_by_ft = {
     javascript = { 'eslint_d' },
