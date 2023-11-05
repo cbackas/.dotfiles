@@ -69,4 +69,5 @@ require('nvim-treesitter.configs').setup {
 
 -- alias custom filetypes to existing parsers
 vim.treesitter.language.register('yaml', 'cfn-yaml')
+vim.treesitter.language.register('yaml', 'group_vars')
 vim.treesitter.language.register('groovy', 'Jenkinsfile')
