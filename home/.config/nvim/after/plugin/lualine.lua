@@ -18,6 +18,13 @@ local function lsp_status()
     end
   end
 
+  local nvim_lsp_linters = require('lint')._resolve_linter_by_ft(vim.bo.filetype)
+  if nvim_lsp_linters then
+    for _, linter in pairs(nvim_lsp_linters) do
+      client_names[linter] = true
+    end
+  end
+
   local client_list = vim.tbl_keys(client_names)
 
   local message = "LSP Inactive"
