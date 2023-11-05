@@ -46,6 +46,14 @@ Wez_Conf.keys = {
 
 -- F key tab navigation
 for i = 1, 9 do
+  -- disable the default CMD+number tab nav
+  table.insert(Wez_Conf.keys, {
+    key = tostring(i),
+    mods = 'SUPER',
+    action = wezterm.action.DisableDefaultAssignment,
+  })
+
+  -- add function key tab nav
   table.insert(Wez_Conf.keys, {
     key = 'F' .. tostring(i),
     action = actions.ActivateTab(i - 1),

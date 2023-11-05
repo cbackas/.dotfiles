@@ -16,3 +16,7 @@ Wez_Conf.unix_domains = {
 }
 -- enable unix domain socket by default
 -- Wez_Conf.default_gui_startup_args = { 'connect', 'unix' }
+
+Wez_Conf.enable_kitty_keyboard = true
+Wez_Conf.enable_csi_u_key_encoding = false
+Wez_Conf.debug_key_events = false
