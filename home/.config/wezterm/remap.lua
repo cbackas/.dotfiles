@@ -46,16 +46,38 @@ Wez_Conf.keys = {
 
 -- F key tab navigation
 for i = 1, 9 do
-  -- disable the default CMD+number tab nav
+  local key = tostring(i)
+
+  -- this is dumb but since wezterm cant successfully pass SUPER to nvim,
+  -- convert SUPER to META for nvim only
+  -- then nvim can watch the META key and i guess i have 2 keybinds for the same thng but whatever
   table.insert(Wez_Conf.keys, {
-    key = tostring(i),
+    key = key,
     mods = 'SUPER',
-    action = wezterm.action.DisableDefaultAssignment,
+    action = wezterm.action_callback(function(win, pane)
+      if pane:get_user_vars().IS_NVIM == 'true' then
+        -- convert it to META key for nvim only
+        win:perform_action({
+          SendKey = {
+            key = key,
+            mods = 'META'
+          }
+        }, pane)
+      else
+        -- pass through the normal SUPER key any other time
+        win:perform_action({
+          SendKey = {
+            key = key,
+            mods = 'SUPER'
+          }
+        }, pane)
+      end
+    end),
   })
 
   -- add function key tab nav
   table.insert(Wez_Conf.keys, {
-    key = 'F' .. tostring(i),
+    key = 'F' .. key,
     action = actions.ActivateTab(i - 1),
   })
 end
