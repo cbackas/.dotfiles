@@ -5,7 +5,7 @@ require('trouble').setup {
   auto_preview = true,
 }
 
-vim.keymap.set('n', '<leader>dd', function() require("trouble").toggle("document_diagnostics") end,
+vim.keymap.set('n', '<leader>td', function() require("trouble").toggle("document_diagnostics") end,
   { desc = 'Open diagnostics list' })
-vim.keymap.set('n', '<leader>dq', function() require("trouble").toggle("quickfix") end,
+vim.keymap.set('n', '<leader>tq', function() require("trouble").toggle("quickfix") end,
   { desc = 'Open quickfix list' })
