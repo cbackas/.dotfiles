@@ -140,6 +140,12 @@ require('lazy').setup({
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
+    cond = function()
+      -- if 'DISABLE_COPILOT' env var is set, don't load copilot
+      local disable_copilot = os.getenv('DISABLE_COPILOT')
+      local is_copilot_disabled = disable_copilot == '1' or disable_copilot == 'yes' or disable_copilot == 'true'
+      return not is_copilot_disabled
+    end
   },
 
   { "mbbill/undotree" },

@@ -1,5 +1,7 @@
 -- if 'DISABLE_COPILOT' env var is set, don't load copilot
-if os.getenv('DISABLE_COPILOT') then
+local disable_copilot = os.getenv('DISABLE_COPILOT')
+local is_copilot_disabled = disable_copilot == '1' or disable_copilot == 'yes' or disable_copilot == 'true'
+if is_copilot_disabled then
   return
 end
 
