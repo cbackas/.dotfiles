@@ -139,8 +139,6 @@ require('lazy').setup({
 
   "nvim-tree/nvim-web-devicons",
 
-  'rcarriga/nvim-notify',
-
   'ThePrimeagen/vim-be-good',
 
   "petertriho/nvim-scrollbar",
@@ -155,4 +153,9 @@ require('lazy').setup({
     event = { "BufRead", "BufNewFile" },
     build = "deno task --quiet build:fast",
   },
+  -- {
+  --   "saimo/peek.nvim",
+  --   event = { "BufRead", "BufNewFile" },
+  --   build = "deno task --quiet build:fast",
+  -- },
 }, {})
