@@ -1,5 +1,7 @@
 local cmp = require 'cmp'
 
+local lspkind = require('lspkind')
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -20,6 +22,19 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'path' },
+  },
+  formatting = {
+    format = lspkind.cmp_format {
+      with_text = true,
+      menu = {
+        buffer = "[buf]",
+        nvim_lsp = "[LSP]",
+        path = "[path]",
+        luasnip = "[snip]",
+        gh_issues = "[issues]",
+        cody = "[cody]",
+      },
+    },
   },
 }
 

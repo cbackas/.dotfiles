@@ -61,6 +61,9 @@ require('lazy').setup({
 
       -- command line completion
       'hrsh7th/cmp-cmdline',
+
+      -- formatting for the cmp menu
+      'onsails/lspkind.nvim',
     },
   },
 
