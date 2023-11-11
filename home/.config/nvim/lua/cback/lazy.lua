@@ -152,6 +152,8 @@ require('lazy').setup({
 
   "petertriho/nvim-scrollbar",
 
+  'rcarriga/nvim-notify',
+
   {
     'mrjones2014/smart-splits.nvim',
     lazy = false
