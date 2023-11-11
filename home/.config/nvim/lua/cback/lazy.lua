@@ -15,7 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- Git related plugins
   'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
+  -- 'tpope/vim-rhubarb',
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
@@ -60,6 +60,7 @@ require('lazy').setup({
 
   {
     'stevearc/conform.nvim',
+    event = { 'BufRead', 'BufNewFile' },
     opts = {},
   },
 
@@ -76,7 +77,10 @@ require('lazy').setup({
   -- Adds git releated signs to the gutter, as well as utilities for managing changes
   'lewis6991/gitsigns.nvim',
 
-  'ruanyl/coverage.vim',
+  {
+    'ruanyl/coverage.vim',
+    event = { 'BufRead', 'BufNewFile' }
+  },
 
   { 'nvim-lualine/lualine.nvim' },
 
