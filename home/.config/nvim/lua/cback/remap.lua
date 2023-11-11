@@ -21,5 +21,3 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 
 vim.api.nvim_set_keymap('n', '<leader>bd', ':bd<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>be', ":lua vim.cmd('bd | Explore ' .. vim.fn.expand('%:p:h'))<CR>",
-  { noremap = true, silent = true })
