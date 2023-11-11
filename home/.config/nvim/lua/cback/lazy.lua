@@ -12,15 +12,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- vimwiki stuff has to be set before its loaded, this is dumb
-vim.api.nvim_set_var('vimwiki_list', { {
-  path = '~/projects/notes',
-  syntax = 'markdown',
-  ext = '.md',
-} })
-vim.api.nvim_set_var('vimwiki_global_ext', 0)
-
-
 require('lazy').setup({
   -- Git related plugins
   'tpope/vim-fugitive',
@@ -173,6 +164,15 @@ require('lazy').setup({
 
   {
     'vimwiki/vimwiki',
+    init = function()
+      vim.api.nvim_set_var('vimwiki_list', { {
+        path = '~/projects/notes',
+        syntax = 'markdown',
+        ext = '.md',
+      } })
+      vim.api.nvim_set_var('vimwiki_global_ext', 0)
+    end,
+    keys = '<leader>ww',
   },
 
   -- {
