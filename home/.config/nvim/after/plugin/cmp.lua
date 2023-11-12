@@ -20,8 +20,8 @@ cmp.setup {
     },
   },
   sources = {
-    { name = 'nvim_lsp' },
-    { name = 'path' },
+    { name = 'nvim_lsp', keyword_length = 2 },
+    { name = 'path',     keyword_length = 2 },
   },
   formatting = {
     format = lspkind.cmp_format {
