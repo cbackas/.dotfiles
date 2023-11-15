@@ -162,6 +162,7 @@ require('lint').linters_by_ft = {
   ['jinja.html'] = { 'djlint' },
   htmldjango = { 'djlint' },
   yaml = { 'actionlint' },
+  sh = { 'shellcheck' },
 }
 
 -- auto lint on read/write of buffers so diagnostics are always up to date
@@ -180,6 +181,7 @@ require('conform').setup({
     ['jinja.html'] = { 'djlint' },
     htmldjango = { 'djlint' },
     ['cfn-yaml'] = { 'yamlfmt' },
+    sh = { 'shellcheck', 'shfmt' },
   },
   format_on_save = {
     timeout_ms = 500,
