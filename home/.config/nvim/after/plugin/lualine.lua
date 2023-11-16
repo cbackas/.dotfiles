@@ -71,13 +71,30 @@ lualine.setup {
     icons_enabled = true,
     theme = 'auto',
     component_separators = { '|', '|' },
-    section_separators = { left = '', right = '' },
+    section_separators = { left = '', right = '' },
   },
   sections = {
     lualine_a = {
       {
         function()
-          return " " .. "" .. " "
+          local mode = vim.api.nvim_get_mode().mode
+
+          local mode_map = {
+            n = "󰋜",
+            i = "󰈸",
+            c = "",
+            v = "",
+            V = "",
+            [""] = "󰳂",
+            R = "󰑖",
+            s = "󰸱",
+            S = "󰸱",
+            [""] = "󰸱",
+            t = "",
+          }
+
+          local icon = mode_map[mode] or mode
+          return " " .. icon .. "  "
         end,
         padding = { left = 0, right = 0 },
         color = {},
@@ -106,7 +123,7 @@ lualine.setup {
     lualine_a = {},
     lualine_b = {},
     lualine_c = { 'filename' },
-    lualine_x = { 'location' },
+    lualine_x = { 'filetype' },
     lualine_y = {},
     lualine_z = {},
   },
