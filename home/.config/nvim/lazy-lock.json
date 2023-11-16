@@ -33,12 +33,12 @@
   "smart-splits.nvim": { "branch": "master", "commit": "c8a9173d70cbbd1f6e4a414e49e31df2b32a1362" },
   "smartyank.nvim": { "branch": "master", "commit": "7e3905578f646503525b2f7018b8afd17861018c" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "6c921ca12321edaa773e324ef64ea301a1d0da62" },
+  "telescope-symbols.nvim": { "branch": "master", "commit": "f2060117d965df4a626f068a4ebbd8ee051aa076" },
   "telescope.nvim": { "branch": "0.1.x", "commit": "7011eaae0ac1afe036e30c95cf80200b8dc3f21a" },
   "trouble.nvim": { "branch": "main", "commit": "f1168feada93c0154ede4d1fe9183bf69bac54ea" },
   "undotree": { "branch": "master", "commit": "170aa9e516b6926e6bddfe21bbf01f2283a00e7d" },
   "vim-be-good": { "branch": "master", "commit": "c290810728a4f75e334b07dc0f3a4cdea908d351" },
   "vim-fugitive": { "branch": "master", "commit": "46eaf8918b347906789df296143117774e827616" },
-  "vim-rhubarb": { "branch": "master", "commit": "ee69335de176d9325267b0fd2597a22901d927b1" },
   "vim-sleuth": { "branch": "master", "commit": "1cc4557420f215d02c4d2645a748a816c220e99b" },
   "vimwiki": { "branch": "dev", "commit": "0bb1b4945bb205a076a35b66174e5d66be8eaafe" },
   "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" }
