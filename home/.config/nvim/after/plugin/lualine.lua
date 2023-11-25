@@ -80,7 +80,7 @@ lualine.setup {
           local mode = vim.api.nvim_get_mode().mode
 
           local mode_map = {
-            n = "󰋜",
+            n = "",
             i = "󰈸",
             c = "",
             v = "",
