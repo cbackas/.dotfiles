@@ -94,7 +94,7 @@ lualine.setup {
           }
 
           local icon = mode_map[mode] or mode
-          return " " .. icon .. "  "
+          return " " .. icon .. " "
         end,
         padding = { left = 0, right = 0 },
         color = {},
