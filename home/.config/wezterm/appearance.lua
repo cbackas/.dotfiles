@@ -1,8 +1,12 @@
 local wezterm = require 'wezterm'
 
 -- fonts
-Wez_Conf.font = wezterm.font "Berkeley Mono"
-Wez_Conf.font_size = 14.5
+Wez_Conf.font = wezterm.font_with_fallback({
+  "Berkeley Mono",
+  "Monaspace Neon",
+  "Hack Nerd Font Mono"
+})
+Wez_Conf.font_size = 14.7
 
 -- colors
 Wez_Conf.color_scheme = 'WildCherry'
