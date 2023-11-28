@@ -60,6 +60,7 @@ local servers = {
       },
     },
   },
+  astro = {},
   html = { filetypes = { 'html' } },
   dockerls = { filetypes = { 'Dockerfile', 'dockerfile' } },
   prismals = {},
