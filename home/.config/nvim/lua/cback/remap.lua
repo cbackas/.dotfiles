@@ -20,4 +20,10 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 
-vim.api.nvim_set_keymap('n', '<leader>bd', ':bd<CR>', { noremap = true, silent = true })
+-- Go back to previous buffer
+vim.keymap.set('n', '<leader>bd', ':bd<CR>', { noremap = true, silent = true })
+
+-- easily execute the q macro on the current line
+vim.keymap.set('n', 'Q', '@qj')
+-- easily execute the q macro on the current visual selection
+vim.keymap.set('x', 'Q', ':norm @q<CR>')
