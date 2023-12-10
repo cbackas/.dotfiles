@@ -57,3 +57,14 @@ vim.g.netrw_banner = 0
 
 -- the coverage plugin needs this to find the coverage files
 vim.g.coverage_json_report_path = 'coverage/coverage-final.json'
+
+-- add some usefull abbreviations for the command line
+vim.cmd("cnoreabbrev W! w!")
+vim.cmd("cnoreabbrev Q! q!")
+vim.cmd("cnoreabbrev Qall! qall!")
+vim.cmd("cnoreabbrev Wq wq")
+vim.cmd("cnoreabbrev Wa wa")
+vim.cmd("cnoreabbrev wQ wq")
+vim.cmd("cnoreabbrev WQ wq")
+vim.cmd("cnoreabbrev W w")
+vim.cmd("cnoreabbrev Q q")
