@@ -16,6 +16,10 @@ require("copilot").setup({
       accept = "<tab>",
     }
   },
+  filetypes = {
+    gitcommit = true,
+    gitrebase = true,
+  }
 })
 
 local copilot_suggestion = require("copilot.suggestion")
