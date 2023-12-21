@@ -130,7 +130,10 @@ require('lazy').setup({
   },
 
 
-  "ThePrimeagen/harpoon",
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2"
+  },
   'ThePrimeagen/git-worktree.nvim',
 
   {

@@ -1,9 +1,7 @@
 local harpoon = require('harpoon')
 
 -- initialize harpoon
-harpoon.setup {
-  tabline = true
-}
+harpoon:setup()
 
 -- define visual settings for harpoon
 local number_color = "#DCDCAA"
@@ -17,26 +15,26 @@ vim.cmd('highlight! TabLineFill guibg=' .. background_color .. ' guifg=white')
 -- define keybindings
 vim.keymap.set("n", "<leader>hm",
   function()
-    require("harpoon.mark").add_file()
+    harpoon:list():append()
     -- update the tabline to show new mark
     -- idk why this is needed, harpoon bad i guess
     vim.cmd("redrawt")
   end,
   { desc = "Harpoon Mark File" })
-vim.keymap.set("n", "<leader>hl", require("harpoon.ui").toggle_quick_menu, { desc = "Harpoon List" })
+vim.keymap.set("n", "<leader>hl", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon List" })
 
 -- define keybindings for navigation
 for i = 1, 8 do
   vim.keymap.set("n", string.format("<M-%s>", i),
     function()
-      require("harpoon.ui").nav_file(i)
+      harpoon:list():select(i)
     end,
     { silent = true, noremap = true }
   )
 
   vim.keymap.set("n", string.format("<leader>%s", i),
     function()
-      require("harpoon.ui").nav_file(i)
+      harpoon:list():select(i)
     end,
     { silent = true, noremap = true }
   )

@@ -66,6 +66,43 @@ local py_env = {
   color = { fg = "#98be65" },
 }
 
+local harpoon = require('harpoon')
+
+function Harpoon_files()
+  local contents = {}
+
+  local marks_length = harpoon:list():length()
+
+  for idx = 1, marks_length do
+    -- local file_path = hp_marks.get_marked_file_name(idx)
+    local file_path = harpoon:list():get(idx).value
+    local file_name
+    if file_path == "" then
+      file_name = "(empty)"
+    else
+      file_name = vim.fn.fnamemodify(file_path, ':t')
+    end
+    local current_file_path = vim.fn.expand("%:f")
+
+    local prev = ""
+    if idx ~= 1 then
+      prev = " "
+    end
+    local next = ""
+    if idx < marks_length then
+      next = " "
+    end
+    if file_path == current_file_path then
+      contents[idx] = string.format("%%#HarpoonNumberActive#%s%s. %%#HarpoonActive#%s%s", prev, idx, file_name,
+        next)
+    else
+      contents[idx] = string.format("%%#HarpoonNumberInactive#%s%s. %%#HarpoonInactive#%s%s", prev, idx, file_name, next)
+    end
+  end
+
+  return table.concat(contents)
+end
+
 lualine.setup {
   options = {
     icons_enabled = true,
@@ -127,6 +164,8 @@ lualine.setup {
     lualine_y = {},
     lualine_z = {},
   },
-  tabline = {},
+  tabline = {
+    lualine_a = { { Harpoon_files } },
+  },
   extensions = {},
 }
