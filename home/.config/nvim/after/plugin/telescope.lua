@@ -48,7 +48,8 @@ require('telescope').setup {
     file_ignore_patterns = {
       'node_modules', 'dist', 'package-lock.json',
       '.git',
-      '.DS_Store'
+      '.DS_Store',
+      'lazy-lock.json'
     },
 
     mappings = {
@@ -67,7 +68,14 @@ require('telescope').setup {
   },
   pickers = {
     find_files = {
-      hidden = true,
+      hidden = false,
+    }
+  },
+  extensions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+        -- even more opts
+      }
     }
   }
 }
@@ -75,6 +83,7 @@ require('telescope').setup {
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 pcall(require('telescope').load_extension, 'git_worktree')
+pcall(require('telescope').load_extension, 'ui-select')
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })

@@ -124,6 +124,7 @@ require('lazy').setup({
         end,
       },
 
+      'nvim-telescope/telescope-ui-select.nvim',
 
       'nvim-telescope/telescope-symbols.nvim'
     }
