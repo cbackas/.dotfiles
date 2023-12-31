@@ -3,15 +3,6 @@ local harpoon = require('harpoon')
 -- initialize harpoon
 harpoon:setup()
 
--- define visual settings for harpoon
-local number_color = "#DCDCAA"
-local background_color = "#282829"
-vim.cmd('highlight! HarpoonInactive guibg=' .. background_color .. ' guifg=#797C91')
-vim.cmd('highlight! HarpoonActive guibg=' .. background_color .. ' guifg=#9CDCFE')
-vim.cmd('highlight! HarpoonNumberActive guibg=' .. background_color .. ' guifg=' .. number_color)
-vim.cmd('highlight! HarpoonNumberInactive guibg=' .. background_color .. ' guifg=' .. number_color)
-vim.cmd('highlight! TabLineFill guibg=' .. background_color .. ' guifg=white')
-
 -- define keybindings
 vim.keymap.set("n", "<leader>hm",
   function()

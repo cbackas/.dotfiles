@@ -66,6 +66,18 @@ local py_env = {
   color = { fg = "#98be65" },
 }
 
+-- define visual settings for harpoon tabline
+local yellow = '#DCDCAA'
+local yellow_orange = '#D7BA7D'
+local background_color = "#282829"
+local grey = "#797C91"
+local light_blue = "#9CDCFE"
+vim.api.nvim_set_hl(0, "HarpoonInactive", { fg = grey, bg = background_color })
+vim.api.nvim_set_hl(0, "HarpoonActive", { fg = light_blue, bg = background_color })
+vim.api.nvim_set_hl(0, "HarpoonNumberActive", { fg = yellow, bg = background_color })
+vim.api.nvim_set_hl(0, "HarpoonNumberInactive", { fg = yellow_orange, bg = background_color })
+vim.api.nvim_set_hl(0, "TabLineFill", { fg = "white", bg = background_color })
+
 local harpoon = require('harpoon')
 
 function Harpoon_files()
