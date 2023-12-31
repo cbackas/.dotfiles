@@ -70,33 +70,16 @@ local harpoon = require('harpoon')
 
 function Harpoon_files()
   local contents = {}
-
   local marks_length = harpoon:list():length()
+  local current_file_path = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":.")
+  for index = 1, marks_length do
+    local harpoon_file_path = harpoon:list():get(index).value
+    local file_name = harpoon_file_path == "" and "(empty)" or vim.fn.fnamemodify(harpoon_file_path, ':t')
 
-  for idx = 1, marks_length do
-    -- local file_path = hp_marks.get_marked_file_name(idx)
-    local file_path = harpoon:list():get(idx).value
-    local file_name
-    if file_path == "" then
-      file_name = "(empty)"
+    if current_file_path == harpoon_file_path then
+      contents[index] = string.format("%%#HarpoonNumberActive# %s. %%#HarpoonActive#%s ", index, file_name)
     else
-      file_name = vim.fn.fnamemodify(file_path, ':t')
-    end
-    local current_file_path = vim.fn.expand("%:f")
-
-    local prev = ""
-    if idx ~= 1 then
-      prev = " "
-    end
-    local next = ""
-    if idx < marks_length then
-      next = " "
-    end
-    if file_path == current_file_path then
-      contents[idx] = string.format("%%#HarpoonNumberActive#%s%s. %%#HarpoonActive#%s%s", prev, idx, file_name,
-        next)
-    else
-      contents[idx] = string.format("%%#HarpoonNumberInactive#%s%s. %%#HarpoonInactive#%s%s", prev, idx, file_name, next)
+      contents[index] = string.format("%%#HarpoonNumberInactive# %s. %%#HarpoonInactive#%s ", index, file_name)
     end
   end
 
