@@ -82,6 +82,15 @@ for i = 1, 9 do
   })
 end
 
+for i = 1, 8 do
+  -- CTRL+ALT + number to move to that position
+  table.insert(Wez_Conf.keys, {
+    key = tostring(i),
+    mods = 'CTRL|ALT',
+    action = wezterm.action.MoveTab(i - 1),
+  })
+end
+
 --
 -- Mux pane navigation
 --

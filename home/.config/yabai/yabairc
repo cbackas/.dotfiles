@@ -2,11 +2,11 @@ yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
 # disable specific apps
-yabai -m rule --add app="^System Settings$" manage=off border=off layer=above
+yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Karabiner-Elements$" manage=off
 yabai -m rule --add app="^BetterTouchTool$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off layer=above
-yabai -m rule --add app="iStat Menus.*" manage=off mouse_follows_focus=off
+yabai -m rule --add app="iStat Menus.*" manage=off
 yabai -m rule --add app="^QuickTime Player$" manage=off
 yabai -m rule --add app="^Plex$" manage=off layer=above
 yabai -m rule --add app="^MultiViewer for F1$" manage=off
