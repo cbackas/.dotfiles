@@ -159,6 +159,10 @@ require('lazy').setup({
       return not is_copilot_disabled
     end
   },
+  -- {
+  --   "sourcegraph/sg.nvim",
+  --   dependencies = { "nvim-lua/plenary.nvim" },
+  -- },
 
   { "mbbill/undotree" },
 

@@ -164,6 +164,8 @@ require('lint').linters_by_ft = {
   htmldjango = { 'djlint' },
   yaml = { 'actionlint' },
   sh = { 'shellcheck' },
+  json = { 'jsonlint' },
+  jsonc = { 'jsonlint' },
 }
 
 -- auto lint on read/write of buffers so diagnostics are always up to date
@@ -183,6 +185,8 @@ require('conform').setup({
     htmldjango = { 'djlint' },
     ['cfn-yaml'] = { 'yamlfmt' },
     sh = { 'shellcheck', 'shfmt' },
+    json = { 'jsonlint' },
+    jsonc = { 'jsonlint' },
   },
   format_on_save = {
     timeout_ms = 500,
