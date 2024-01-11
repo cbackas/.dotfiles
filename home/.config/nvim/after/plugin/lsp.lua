@@ -106,7 +106,8 @@ local servers = {
   groovyls = {
     filetypes = { 'groovy', 'Jenkinsfile' }
   },
-  jdtls = {}
+  jdtls = {},
+  gopls = {}
 }
 
 -- Setup neovim lua configuration
