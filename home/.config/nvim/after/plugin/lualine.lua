@@ -162,5 +162,9 @@ lualine.setup {
   tabline = {
     lualine_a = { { Harpoon_files } },
   },
-  extensions = {},
+  extensions = {
+    'oil',
+    'fugitive',
+    'trouble'
+  },
 }
