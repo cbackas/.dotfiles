@@ -1,6 +1,7 @@
 -- general settings
 
 Wez_Conf.front_end = "WebGpu"
+Wez_Conf.webgpu_power_preference = "HighPerformance"
 Wez_Conf.freetype_load_target = "HorizontalLcd"
 Wez_Conf.animation_fps = 60
 Wez_Conf.max_fps = 120

@@ -198,13 +198,13 @@ table.insert(Wez_Conf.keys, {
 })
 
 
--- OMG
--- THEMES
+-- -- OMG
+-- -- THEMES
 -- wezterm.GLOBAL.currentSchemeIndex = (wezterm.GLOBAL.currentSchemeIndex or 0) + 1
 --
 --
--- warning this sets config overrides on the window
--- so like dont be surprised when your config is overridden on the window for like its whole life
+-- -- warning this sets config overrides on the window
+-- -- so like dont be surprised when your config is overridden on the window for like its whole life
 -- local function themeCycler(window, _)
 --   local allSchemes = wezterm.color.get_builtin_schemes()
 --

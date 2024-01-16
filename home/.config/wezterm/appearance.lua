@@ -9,7 +9,8 @@ Wez_Conf.font = wezterm.font_with_fallback({
 Wez_Conf.font_size = 14.7
 
 -- colors
-Wez_Conf.color_scheme = 'WildCherry'
+-- Wez_Conf.color_scheme = 'WildCherry'
+Wez_Conf.color_scheme = 'Modus-Vivendi-Tinted'
 
 -- tab bar
 Wez_Conf.enable_tab_bar = true
