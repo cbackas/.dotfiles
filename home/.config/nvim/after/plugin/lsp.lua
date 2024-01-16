@@ -160,7 +160,7 @@ require('lspconfig').cfn_lsp.setup {
 require('lint').linters_by_ft = {
   javascript = { 'eslint_d' },
   typescript = { 'eslint_d' },
-  html = { 'djlint' },
+  html = { 'eslint_d' },
   ['jinja.html'] = { 'djlint' },
   htmldjango = { 'djlint' },
   yaml = { 'actionlint' },
@@ -181,7 +181,7 @@ require('conform').setup({
   formatters_by_ft = {
     javascript = { 'eslint_d' },
     typescript = { 'eslint_d' },
-    html = { 'djlint' },
+    html = { 'eslint_d' },
     ['jinja.html'] = { 'djlint' },
     htmldjango = { 'djlint' },
     ['cfn-yaml'] = { 'yamlfmt' },
