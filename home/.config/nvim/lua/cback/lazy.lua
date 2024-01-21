@@ -107,7 +107,7 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim',          opts = {} },
+  { 'numToStr/Comment.nvim',     opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
@@ -146,7 +146,8 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
-  { "HiPhish/rainbow-delimiters.nvim" },
+  -- { "HiPhish/rainbow-delimiters.nvim" },
+  { 'rasulomaroff/reactive.nvim' },
 
   {
     "zbirenbaum/copilot.lua",
