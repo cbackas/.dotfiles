@@ -111,6 +111,9 @@ local on_attach = function(client, bufnr)
 end
 
 local init = function()
+  -- Setup neovim lua configuration
+  require('neodev').setup()
+
   -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -196,10 +199,14 @@ end
 
 local M = {
   'neovim/nvim-lspconfig',
+  init = init,
   dependencies = {
     -- Automatically install LSPs to stdpath for neovim
     { 'williamboman/mason.nvim', config = true },
     'williamboman/mason-lspconfig.nvim',
+
+    -- neovim lsp stuff, keep it here so it mostly always works even if lsp.lua is busted
+    { "folke/neodev.nvim" },
 
     -- Useful status updates for LSP
     { 'j-hui/fidget.nvim',       opts = {} },
@@ -210,8 +217,7 @@ local M = {
       event = { 'BufRead', 'BufNewFile' },
       opts = {},
     },
-  },
-  init = init
+  }
 }
 
 
