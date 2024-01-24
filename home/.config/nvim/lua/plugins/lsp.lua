@@ -154,34 +154,8 @@ local init = function()
     on_attach = on_attach
   }
 
-<<<<<<< HEAD:home/.config/nvim/after/plugin/lsp.lua
--- nvim-lint adds more linters to the built in LSP
-require('lint').linters_by_ft = {
-  javascript = { 'eslint_d' },
-  typescript = { 'eslint_d' },
-  html = { 'eslint_d' },
-  ['jinja.html'] = { 'djlint' },
-  htmldjango = { 'djlint' },
-  yaml = { 'actionlint' },
-  sh = { 'shellcheck' },
-  json = { 'jsonlint' },
-  jsonc = { 'jsonlint' },
-}
-
--- auto lint on read/write of buffers so diagnostics are always up to date
-vim.api.nvim_create_autocmd({ "BufWritePost", "BufRead" }, {
-  callback = function()
-    require("lint").try_lint()
-  end,
-})
-
--- conform is for formaters that aren't built into an LSP
-require('conform').setup({
-  formatters_by_ft = {
-=======
   -- nvim-lint adds more linters to the built in LSP
   require('lint').linters_by_ft = {
->>>>>>> 217565d (restructure plugin definitions):home/.config/nvim/lua/plugins/lsp.lua
     javascript = { 'eslint_d' },
     typescript = { 'eslint_d' },
     html = { 'eslint_d' },
@@ -205,7 +179,7 @@ require('conform').setup({
     formatters_by_ft = {
       javascript = { 'eslint_d' },
       typescript = { 'eslint_d' },
-      html = { 'djlint' },
+      html = { 'eslint_d' },
       ['jinja.html'] = { 'djlint' },
       htmldjango = { 'djlint' },
       ['cfn-yaml'] = { 'yamlfmt' },
