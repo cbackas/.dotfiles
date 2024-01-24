@@ -205,7 +205,7 @@ local M = {
     { 'williamboman/mason.nvim', config = true },
     'williamboman/mason-lspconfig.nvim',
 
-    -- neovim lsp stuff, keep it here so it mostly always works even if lsp.lua is busted
+    -- neovim lsp stuff
     { "folke/neodev.nvim" },
 
     -- Useful status updates for LSP
