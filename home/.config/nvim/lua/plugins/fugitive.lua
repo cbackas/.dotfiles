@@ -30,7 +30,7 @@ local init = function()
   })
 end
 
-local M = {
+return {
   "tpope/vim-fugitive",
   init = init,
   dependencies = {
@@ -38,5 +38,3 @@ local M = {
     "tpope/vim-rhubarb",
   }
 }
-
-return { M }

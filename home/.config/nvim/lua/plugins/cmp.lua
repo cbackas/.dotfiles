@@ -63,7 +63,7 @@ local config = function()
   })
 end
 
-local M = {
+return {
   -- Autocompletion
   'hrsh7th/nvim-cmp',
   dependencies = {
@@ -92,5 +92,3 @@ local M = {
     end)
   end,
 }
-
-return { M }

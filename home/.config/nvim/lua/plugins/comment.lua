@@ -1,6 +1,4 @@
-local M = {
+return {
   'numToStr/Comment.nvim',
   opts = {}
 }
-
-return { M }

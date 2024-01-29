@@ -1,4 +1,4 @@
-local M = {
+return {
   "petertriho/nvim-scrollbar",
   opts = {
     show = true,
@@ -10,5 +10,3 @@ local M = {
     }
   }
 }
-
-return { M }

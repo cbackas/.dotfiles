@@ -12,11 +12,9 @@ local init = function()
   vim.keymap.set('n', '<C-B>', require('smart-splits').move_cursor_right, { noremap = true })
 end
 
-local M = {
+return {
   'mrjones2014/smart-splits.nvim',
   lazy = false,
   opts = {},
   init = init
 }
-
-return { M }

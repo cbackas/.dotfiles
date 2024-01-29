@@ -33,7 +33,7 @@ local config = function()
   end, { noremap = true })
 end
 
-local M = {
+return {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
   event = "InsertEnter",
@@ -45,5 +45,3 @@ local M = {
     return not is_copilot_disabled
   end
 }
-
-return { M }

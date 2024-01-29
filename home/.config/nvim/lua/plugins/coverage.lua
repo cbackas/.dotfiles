@@ -1,6 +1,4 @@
-local M = {
+return {
   'ruanyl/coverage.vim',
   event = { 'BufRead', 'BufNewFile' }
 }
-
-return { M }

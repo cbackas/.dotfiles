@@ -5,7 +5,7 @@ local init = function()
     { desc = 'Open quickfix list' })
 end
 
-local M = {
+return {
   'folke/trouble.nvim',
   opts = {
     mode = 'document_diagnostics',
@@ -18,5 +18,3 @@ local M = {
     "nvim-tree/nvim-web-devicons",
   }
 }
-
-return { M }

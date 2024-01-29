@@ -1,4 +1,4 @@
-local M = {
+return {
   "jiaoshijie/undotree",
   dependencies = "nvim-lua/plenary.nvim",
   config = true,
@@ -6,5 +6,3 @@ local M = {
     { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
   },
 }
-
-return { M }

@@ -1,4 +1,4 @@
-local M = {
+return {
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
@@ -82,5 +82,3 @@ local M = {
     vim.treesitter.language.register('groovy', 'Jenkinsfile')
   end,
 }
-
-return { M }

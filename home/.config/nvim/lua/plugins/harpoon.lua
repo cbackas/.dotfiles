@@ -31,7 +31,7 @@ local init = function()
   end
 end
 
-local M = {
+return {
   "ThePrimeagen/harpoon",
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -42,5 +42,3 @@ local M = {
   end,
   init = init
 }
-
-return { M }

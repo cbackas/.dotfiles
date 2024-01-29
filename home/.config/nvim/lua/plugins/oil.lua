@@ -1,4 +1,4 @@
-local M = {
+return {
   'stevearc/oil.nvim',
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
@@ -15,5 +15,3 @@ local M = {
     vim.api.nvim_set_keymap('n', '<leader>be', ':Oil<CR>', { noremap = true, silent = true })
   end,
 }
-
-return { M }

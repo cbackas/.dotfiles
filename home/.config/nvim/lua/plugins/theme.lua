@@ -1,4 +1,4 @@
-local M = {
+return {
   "rockyzhang24/arctic.nvim",
   dependencies = { "rktjmp/lush.nvim" },
   name = "arctic",
@@ -8,5 +8,3 @@ local M = {
     vim.cmd("colorscheme my-arctic")
   end
 }
-
-return { M }

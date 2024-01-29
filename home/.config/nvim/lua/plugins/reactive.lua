@@ -1,4 +1,4 @@
-local M = {
+return {
   -- dynamic highlights based on vim mode
   "rasulomaroff/reactive.nvim",
   opts = {
@@ -9,5 +9,3 @@ local M = {
     }
   }
 }
-
-return { M }

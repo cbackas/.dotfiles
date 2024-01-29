@@ -197,7 +197,7 @@ local init = function()
   })
 end
 
-local M = {
+return {
   'neovim/nvim-lspconfig',
   init = init,
   dependencies = {
@@ -219,6 +219,3 @@ local M = {
     },
   }
 }
-
-
-return { M }

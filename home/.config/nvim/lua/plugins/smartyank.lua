@@ -1,4 +1,4 @@
-local M = {
+return {
   'ibhagwan/smartyank.nvim',
   opts = {
     osc52 = {
@@ -9,5 +9,3 @@ local M = {
     }
   }
 }
-
-return { M }
