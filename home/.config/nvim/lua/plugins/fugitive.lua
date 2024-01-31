@@ -1,5 +1,5 @@
 local init = function()
-  vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+  vim.keymap.set("n", "<leader>G", vim.cmd.Git, { desc = "Open Fugitive" })
 
   local augroup = vim.api.nvim_create_augroup("FugitiveAugroup", {})
 

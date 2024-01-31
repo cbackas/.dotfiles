@@ -19,14 +19,7 @@ local init = function()
       function()
         harpoon:list():select(i)
       end,
-      { silent = true, noremap = true }
-    )
-
-    vim.keymap.set("n", string.format("<leader>%s", i),
-      function()
-        harpoon:list():select(i)
-      end,
-      { silent = true, noremap = true }
+      { silent = true, noremap = true, desc = "Harpoon mark " .. i }
     )
   end
 end

@@ -21,7 +21,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set('n', 'L', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 
 -- Go back to previous buffer
-vim.keymap.set('n', '<leader>bd', ':bd<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>bd', ':bd<CR>', { noremap = true, silent = true, desc = 'Close buffer' })
 
 -- easily execute the q macro on the current line
 vim.keymap.set('n', 'Q', '@qj')

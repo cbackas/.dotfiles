@@ -12,6 +12,6 @@ return {
     }
   },
   init = function()
-    vim.api.nvim_set_keymap('n', '<leader>be', ':Oil<CR>', { noremap = true, silent = true })
+    vim.api.nvim_set_keymap('n', '<leader>be', ':Oil<CR>', { noremap = true, silent = true, desc = 'Open file explorer' })
   end,
 }
