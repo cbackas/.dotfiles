@@ -164,8 +164,6 @@ local init = function()
     htmldjango = { 'djlint' },
     yaml = { 'actionlint' },
     sh = { 'shellcheck' },
-    json = { 'jsonlint' },
-    jsonc = { 'jsonlint' },
   }
 
   -- auto lint on read/write of buffers so diagnostics are always up to date
@@ -185,8 +183,6 @@ local init = function()
       htmldjango = { 'djlint' },
       ['cfn-yaml'] = { 'yamlfmt' },
       sh = { 'shellcheck', 'shfmt' },
-      json = { 'jsonlint' },
-      jsonc = { 'jsonlint' },
     },
     format_on_save = {
       timeout_ms = 500,
