@@ -16,9 +16,11 @@ vim.filetype.add({
         end
       end,
     },
+    ['.env*'] = 'dotenv'
   },
   filename = {
     ['Jenkinsfile'] = 'Jenkinsfile',
+    ['.env'] = 'dotenv',
     common = 'group_vars'
   },
 })
