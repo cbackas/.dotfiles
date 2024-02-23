@@ -7,7 +7,7 @@ local config = function()
       enabled = true,
       auto_trigger = true,
       keymap = {
-        accept = "<tab>",
+        accept = "<C-y>",
       }
     },
     filetypes = {
@@ -25,7 +25,7 @@ local config = function()
   })
 
   local copilot_suggestion = require("copilot.suggestion")
-  vim.keymap.set('i', '<Tab>', function()
+  vim.keymap.set('i', '<C-y>', function()
     if copilot_suggestion.is_visible() then
       copilot_suggestion.accept_line()
     else
