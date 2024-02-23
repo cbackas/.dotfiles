@@ -33,7 +33,11 @@ local servers = {
   prismals = {},
   lua_ls = {
     Lua = {
-      workspace = { checkThirdParty = false },
+      runtime = { version = 'LuaJIT' },
+      workspace = {
+        checkThirdParty = false,
+        library = vim.api.nvim_get_runtime_file('', true)
+      },
       telemetry = { enable = false },
       hint = { enable = true },
     },
@@ -109,9 +113,6 @@ local on_attach = function(client, bufnr)
 end
 
 local init = function()
-  -- Setup neovim lua configuration
-  require('neodev').setup()
-
   -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -198,9 +199,6 @@ return {
     -- Automatically install LSPs to stdpath for neovim
     { 'williamboman/mason.nvim', config = true },
     'williamboman/mason-lspconfig.nvim',
-
-    -- neovim lsp stuff
-    { "folke/neodev.nvim" },
 
     -- Useful status updates for LSP
     { 'j-hui/fidget.nvim',       opts = {} },
