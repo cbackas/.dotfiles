@@ -27,3 +27,5 @@ vim.keymap.set('n', '<leader>bd', ':bd<CR>', { noremap = true, silent = true, de
 vim.keymap.set('n', 'Q', '@qj')
 -- easily execute the q macro on the current visual selection
 vim.keymap.set('x', 'Q', ':norm @q<CR>')
+
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
