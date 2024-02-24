@@ -25,13 +25,7 @@ local config = function()
   })
 
   local copilot_suggestion = require("copilot.suggestion")
-  vim.keymap.set('i', '<C-y>', function()
-    if copilot_suggestion.is_visible() then
-      copilot_suggestion.accept_line()
-    else
-      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, true, true), 'n', false)
-    end
-  end, { noremap = true })
+  vim.keymap.set('i', '<C-y>', function() copilot_suggestion.accept_line() end, { noremap = true })
 end
 
 return {
