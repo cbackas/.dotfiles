@@ -48,7 +48,7 @@ local config = function()
       color_devicons = true,
       file_ignore_patterns = {
         'node_modules', 'dist', 'package-lock.json',
-        '.git',
+        '.git/',
         '.DS_Store',
         'lazy-lock.json'
       },
