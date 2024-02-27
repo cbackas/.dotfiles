@@ -1,4 +1,9 @@
 function parse_git_dirty() {
+  if [[ -n $(git rev-parse --is-bare-repository 2> /dev/null) ]]; then
+    echo "%F{12}bare%f"
+    return
+  fi
+
   local branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
   if [[ -n $(git status -s --ignore-submodules 2> /dev/null) ]]; then
     echo "%F{11}${branch}%f"
@@ -8,8 +13,9 @@ function parse_git_dirty() {
 }
 
 function git_prompt_info() {
-  local ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "%F{blue}(%f$(parse_git_dirty)%F{blue})%f "
+  if [[ -n $(git symbolic-ref HEAD 2> /dev/null) ]]; then
+  	echo "%F{blue}(%f$(parse_git_dirty)%F{blue})%f "
+  fi
 }
 
 function check_virtual_env() {
@@ -27,8 +33,5 @@ function check_virtual_env() {
 
 function get_path() {
   local path_var="%~"
-  if [ "$1" = "0" ] || [ "$1" = "false" ]; then
-      path_var="%1~"
-  fi
   echo "%F{green}${path_var}%f"
 }
