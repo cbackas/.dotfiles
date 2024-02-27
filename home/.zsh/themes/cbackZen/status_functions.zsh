@@ -1,9 +1,3 @@
-function check_tmux() {
-  if [[ -z $TMUX ]]; then
-    echo '¤'
-  fi
-}
-
 function parse_git_dirty() {
   local branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
   if [[ -n $(git status -s --ignore-submodules 2> /dev/null) ]]; then
@@ -14,7 +8,7 @@ function parse_git_dirty() {
 }
 
 function git_prompt_info() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  local ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo "%F{blue}(%f$(parse_git_dirty)%F{blue})%f "
 }
 
