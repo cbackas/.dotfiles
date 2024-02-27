@@ -1,5 +1,5 @@
 function parse_git_dirty() {
-  if [[ -n $(git rev-parse --is-bare-repository 2> /dev/null) ]]; then
+  if [[ $(git rev-parse --is-bare-repository 2> /dev/null) == "true" ]]; then
     echo "%F{12}bare%f"
     return
   fi
