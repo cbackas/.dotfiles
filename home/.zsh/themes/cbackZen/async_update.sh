@@ -1,3 +1,5 @@
+cd "$1" # change to the directory provided from theme.zsh
+
 source "/Users/zac/.zsh/themes/cbackZen/status_functions.zsh"
 
 local ret_status="%(?:%F{green}»:%F{red}»%s)%f"

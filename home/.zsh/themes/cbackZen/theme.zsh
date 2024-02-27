@@ -22,5 +22,5 @@ function update_prompt() {
 
 # called before the prompt is drawn
 function precmd() {
-  async_job prompt_worker zsh $CBACKZEN_INSTALLATION_PATH/async_update.sh
+  async_job prompt_worker zsh $CBACKZEN_INSTALLATION_PATH/async_update.sh "$(pwd)"
 }
