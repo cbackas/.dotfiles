@@ -105,6 +105,9 @@ local init = function()
   vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
   vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
   vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+  vim.keymap.set('n', '<leader>so', function()
+    require('telescope.builtin').find_files({ default_text = vim.fn.expand("%:t:r") })
+  end, { desc = '[S]earch [O]ther]' })
 
   -- Open telescope find_files if no arguments are passed to nvim
   vim.api.nvim_create_autocmd("VimEnter", {
