@@ -84,11 +84,11 @@ return {
   init = function()
     local cmp = require('cmp')
     -- hide copilot suggestions while cmp menu is open
-    cmp.event:on("menu_opened", function()
-      vim.b.copilot_suggestion_hidden = true
-    end)
-    cmp.event:on("menu_closed", function()
-      vim.b.copilot_suggestion_hidden = false
-    end)
+    -- cmp.event:on("menu_opened", function()
+    --   vim.b.copilot_suggestion_hidden = true
+    -- end)
+    -- cmp.event:on("menu_closed", function()
+    --   vim.b.copilot_suggestion_hidden = false
+    -- end)
   end,
 }
