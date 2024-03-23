@@ -13,14 +13,14 @@ setSpacePadding() {
     local space=$1
     local x=$2
     local y=$3
-    
+
     local currentXPadding=$(executeCommand "config --space $space right_padding")
     local currentYPadding=$(executeCommand "config --space $space bottom_padding")
     if [[ $currentXPadding -eq $x && $currentYPadding -eq $y ]]; then
         echo "[Padding] Space $space | x: $x, y: $y | No change"
         return
     fi
-    
+
     executeCommand "space $space --padding abs:$y:$y:$x:$x"
     echo "[Padding] Space $space | x: $x, y: $y"
 }
@@ -29,10 +29,10 @@ setSpacePadding() {
 setGlobalPadding() {
     local x=$1
     local y=$2
-    
+
     local currentXPadding=$(executeCommand "config right_padding")
     local currentYPadding=$(executeCommand "config bottom_padding")
-    
+
     # if neither are equal, change them both
     if [[ $currentXPadding -ne $x && $currentYPadding -ne $y ]]; then
         executeCommand "config left_padding $x"
@@ -60,13 +60,13 @@ setGlobalPadding() {
 # Function to set top padding
 setTopPadding() {
     local padding=$1
-    
+
     local currentTopPadding=$(executeCommand "config external_bar")
     if [[ $currentTopPadding == "main:$padding:0" ]]; then
         echo "[Padding] Top | $padding | No change"
         return
     fi
-    
+
     executeCommand "config external_bar main:$padding:0"
     echo "[Padding] Top | $padding"
 }
@@ -76,67 +76,67 @@ DOCKED_DISPLAY_UUIDS=("8FF27EAB-3516-48F7-9A01-863B497FE55D" "75BAF4D4-694E-48EB
 
 # Get the UUID of the main display
 mainDisplay=$(executeCommand "query --displays" | jq -r '.[0] | {uuid: .uuid, index: .index}')
-mainDisplayUUID=$(echo $mainDisplay | jq -r '.uuid')
-mainDisplayIndex=$(echo $mainDisplay | jq -r '.index')
+mainDisplayUUID=$(echo "$mainDisplay" | jq -r '.uuid')
+mainDisplayIndex=$(echo "$mainDisplay" | jq -r '.index')
 
 # Check if the main display is docked
 if [[ " ${DOCKED_DISPLAY_UUIDS[@]} " =~ " ${mainDisplayUUID} " ]]; then
     setTopPadding 550
-    
+
     # Get the list of spaces
     spaces=$(executeCommand "query --spaces" | jq -c '.[] | {index: .index, display: .display, isVisible: .["is-visible"], isNativeFullscreen: .["is-native-fullscreen"]}')
-    
+
     for spaceData in $spaces; do
         # Extract the attributes for the space
-        space=$(echo $spaceData | jq -r '.index')
-        display=$(echo $spaceData | jq -r '.display')
-        isVisible=$(echo $spaceData | jq -r '.isVisible')
-        isNativeFullscreen=$(echo $spaceData | jq -r '.isNativeFullscreen')
-        
+        space=$(echo "$spaceData" | jq -r '.index')
+        display=$(echo "$spaceData" | jq -r '.display')
+        isVisible=$(echo "$spaceData" | jq -r '.isVisible')
+        isNativeFullscreen=$(echo "$spaceData" | jq -r '.isNativeFullscreen')
+
         # Skip the space if it's not visible or is in native fullscreen mode
         if [[ $isVisible == "false" || $isNativeFullscreen == "true" ]]; then
             continue
         fi
-        
+
         if [[ $display -ne $mainDisplayIndex ]]; then
-            setSpacePadding $space 5 5
+            setSpacePadding "$space" 5 5
             continue
         fi
-        
+
         # Get the number of visible windows in the space
         numVisibleWindows=$(
         executeCommand "query --windows --space $space" | \
-        jq -r '[.[] | 
-            select(."is-hidden" == false and 
-                ."is-minimized" == false and 
-                ."is-floating" == false and 
-                ."stack-index" <= 1) | 
-            select(."app" != "Arc" or 
-                ."title" != "" or 
+        jq -r '[.[] |
+            select(."is-hidden" == false and
+                ."is-minimized" == false and
+                ."is-floating" == false and
+                ."stack-index" <= 1) |
+            select(."app" != "Arc" or
+                ."title" != "" or
                 ."subrole" != "AXSystemDialog")
         ] | length'
         )
 
         # Set the padding based on the number of visible windows
         if [[ $numVisibleWindows -eq 0 || $numVisibleWindows -eq 1 ]]; then
-            setSpacePadding $space 500 40
+            setSpacePadding "$space" 500 40
         elif [[ $numVisibleWindows -eq 2 ]]; then
-            setSpacePadding $space 200 30
+            setSpacePadding "$space" 200 30
         elif [[ $numVisibleWindows -eq 3 ]]; then
-            setSpacePadding $space 50 15
+            setSpacePadding "$space" 50 15
         else
-            setSpacePadding $space 5 5
+            setSpacePadding "$space" 5 5
         fi
     done
 else
     setTopPadding 0
-    
+
     # Get the list of spaces
     spaces=$(executeCommand "query --spaces" | jq -c '.[] | {index: .index}')
-    
+
     for spaceData in $spaces; do
-        space=$(echo $spaceData | jq -r '.index')
-        setSpacePadding $space 5 5
+        space=$(echo "$spaceData" | jq -r '.index')
+        setSpacePadding "$space" 5 5
     done
 fi
 
