@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ~/.config/yabai/scripts/.custom_variables
+
 # logs:
 # tail -f /tmp/yabai_$USER.out.log
 
@@ -81,7 +83,11 @@ mainDisplayIndex=$(echo "$mainDisplay" | jq -r '.index')
 
 # Check if the main display is docked
 if [[ " ${DOCKED_DISPLAY_UUIDS[@]} " =~ " ${mainDisplayUUID} " ]]; then
-    setTopPadding 550
+    if [[ $YABAI_DISP_MODE == "vstack" ]]; then
+        setTopPadding 0
+    else
+        setTopPadding 550
+    fi
 
     # Get the list of spaces
     spaces=$(executeCommand "query --spaces" | jq -c '.[] | {index: .index, display: .display, isVisible: .["is-visible"], isNativeFullscreen: .["is-native-fullscreen"]}')
@@ -121,7 +127,11 @@ if [[ " ${DOCKED_DISPLAY_UUIDS[@]} " =~ " ${mainDisplayUUID} " ]]; then
         if [[ $numVisibleWindows -eq 0 || $numVisibleWindows -eq 1 ]]; then
             setSpacePadding "$space" 500 40
         elif [[ $numVisibleWindows -eq 2 ]]; then
-            setSpacePadding "$space" 200 30
+            if [[ $YABAI_DISP_MODE == "vstack" ]]; then
+                setSpacePadding "$space" 800 5
+            else
+                setSpacePadding "$space" 200 30
+            fi
         elif [[ $numVisibleWindows -eq 3 ]]; then
             setSpacePadding "$space" 50 15
         else

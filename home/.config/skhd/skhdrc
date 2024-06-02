@@ -30,7 +30,9 @@ hyper - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
 hyper - c : ~/.config/yabai/scripts/traverse_stack.sh prev
 hyper - v : ~/.config/yabai/scripts/traverse_stack.sh next
 
-hyper - q : ~/.config/yabai/scripts/stack.sh
+hyper - p : ~/.config/yabai/scripts/flip_mode.sh
+
+# hyper - q : ~/.config/yabai/scripts/stack.sh
 
 # toggle window float
 hyper - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
