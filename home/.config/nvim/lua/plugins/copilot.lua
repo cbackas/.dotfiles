@@ -11,6 +11,7 @@ local config = function()
       }
     },
     filetypes = {
+      markdown = true,
       gitcommit = true,
       gitrebase = true,
       dotenv = false,
