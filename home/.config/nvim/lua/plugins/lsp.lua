@@ -1,7 +1,13 @@
 -- Enable the following language servers
 local servers = {
   pyright = {},
-  rust_analyzer = {},
+  rust_analyzer = {
+    ["rust-analyzer"] = {
+      check = {
+        command = "clippy",
+      },
+    },
+  },
   tsserver = {
     -- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
     javascript = {
