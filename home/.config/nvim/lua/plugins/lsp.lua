@@ -8,6 +8,18 @@ local servers = {
       },
     },
   },
+  vtsls = {
+    typescript = {
+      inlayHints = {
+        parameterNames = { enabled = "literals" },
+        parameterTypes = { enabled = true },
+        variableTypes = { enabled = true },
+        propertyDeclarationTypes = { enabled = true },
+        functionLikeReturnTypes = { enabled = true },
+        enumMemberValues = { enabled = true },
+      }
+    },
+  },
   -- tsserver = {
   --   -- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
   --   javascript = {
@@ -115,7 +127,7 @@ local on_attach = function(client, bufnr)
 
   -- Enable inlay hints if possible
   if client.server_capabilities.inlayHintProvider then
-    vim.lsp.inlay_hint.enable(bufnr, true)
+    vim.lsp.inlay_hint.enable(true)
   end
 end
 
@@ -146,23 +158,6 @@ local init = function()
         filetypes = servers[server_name].filetypes,
       }
     end
-  }
-
-  require("typescript-tools").setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-      tsserver_file_preferences = {
-        includeInlayParameterNameHints = "all",
-        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayVariableTypeHints = true,
-        includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-        includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
-        includeInlayEnumMemberValueHints = true
-      }
-    }
   }
 
   -- custom setup for cloudformation lsp since its so special
@@ -235,7 +230,5 @@ return {
       event = { 'BufRead', 'BufNewFile' },
       opts = {},
     },
-
-    "pmizio/typescript-tools.nvim",
   }
 }
