@@ -8,31 +8,31 @@ local servers = {
       },
     },
   },
-  tsserver = {
-    -- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
-    javascript = {
-      inlayHints = {
-        includeInlayEnumMemberValueHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayParameterNameHints = 'all',
-        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-        includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayVariableTypeHints = true,
-      },
-    },
-    typescript = {
-      inlayHints = {
-        includeInlayEnumMemberValueHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayParameterNameHints = 'all',
-        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-        includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayVariableTypeHints = true,
-      },
-    },
-  },
+  -- tsserver = {
+  --   -- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
+  --   javascript = {
+  --     inlayHints = {
+  --       includeInlayEnumMemberValueHints = true,
+  --       includeInlayFunctionLikeReturnTypeHints = true,
+  --       includeInlayFunctionParameterTypeHints = true,
+  --       includeInlayParameterNameHints = 'all',
+  --       includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+  --       includeInlayPropertyDeclarationTypeHints = true,
+  --       includeInlayVariableTypeHints = true,
+  --     },
+  --   },
+  --   typescript = {
+  --     inlayHints = {
+  --       includeInlayEnumMemberValueHints = true,
+  --       includeInlayFunctionLikeReturnTypeHints = true,
+  --       includeInlayFunctionParameterTypeHints = true,
+  --       includeInlayParameterNameHints = 'all',
+  --       includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+  --       includeInlayPropertyDeclarationTypeHints = true,
+  --       includeInlayVariableTypeHints = true,
+  --     },
+  --   },
+  -- },
   -- eslint = {},
   astro = {},
   html = { filetypes = { 'html' } },
@@ -148,22 +148,22 @@ local init = function()
     end
   }
 
-  -- require("typescript-tools").setup {
-  --   on_attach = on_attach,
-  --   capabilities = capabilities,
-  --   settings = {
-  --     tsserver_file_preferences = {
-  --       includeInlayParameterNameHints = "all",
-  --       includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-  --       includeInlayFunctionParameterTypeHints = true,
-  --       includeInlayVariableTypeHints = true,
-  --       includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-  --       includeInlayPropertyDeclarationTypeHints = true,
-  --       includeInlayFunctionLikeReturnTypeHints = true,
-  --       includeInlayEnumMemberValueHints = true
-  --     }
-  --   }
-  -- }
+  require("typescript-tools").setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+      tsserver_file_preferences = {
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true
+      }
+    }
+  }
 
   -- custom setup for cloudformation lsp since its so special
   require('lspconfig.configs').cfn_lsp = {
@@ -236,6 +236,6 @@ return {
       opts = {},
     },
 
-    -- "pmizio/typescript-tools.nvim",
+    "pmizio/typescript-tools.nvim",
   }
 }
