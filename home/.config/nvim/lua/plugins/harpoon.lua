@@ -4,7 +4,7 @@ local init = function()
   -- define keybindings
   vim.keymap.set("n", "<leader>hm",
     function()
-      harpoon:list():append()
+      harpoon:list():add()
       -- update the tabline to show new mark
       -- idk why this is needed, harpoon bad i guess
       vim.cmd("redrawt")
