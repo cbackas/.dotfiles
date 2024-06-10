@@ -77,7 +77,7 @@ cmd-ctrl-alt-shift-5 = 'move-node-to-workspace 5'
 
 # plex workspace
 ctrl-alt-shift-6 = 'workspace plex'
-cmd-ctrl-alt-shift-6 = 'move-node-to-workspace 6'
+cmd-ctrl-alt-shift-6 = 'move-node-to-workspace plex'
 
 # f1 workspaces
 ctrl-alt-shift-r = ['workspace f1Main', 'workspace f1Secondary']
