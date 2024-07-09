@@ -47,7 +47,9 @@ local config = function()
       scroll_strategy = "cycle",
       color_devicons = true,
       file_ignore_patterns = {
-        'node_modules', 'dist', 'package-lock.json',
+        'node_modules',
+        'dist',
+        'package-lock.json',
         '.git/',
         '.DS_Store',
         'lazy-lock.json'
@@ -58,8 +60,8 @@ local config = function()
           ['<C-u>'] = false,
           ['<C-d>'] = false,
 
-          ["<RightMouse>"] = actions.close,
-          ["<LeftMouse>"] = actions.select_default,
+          ["<RightMouse>"] = false,
+          ["<LeftMouse>"] = false,
           ["<ScrollWheelDown>"] = actions.move_selection_next,
           ["<ScrollWheelUp>"] = actions.move_selection_previous,
           ["<ScrollWheelLeft>"] = function() end,
@@ -69,7 +71,7 @@ local config = function()
     },
     pickers = {
       find_files = {
-        hidden = false,
+        hidden = true,
       }
     },
     extensions = {
