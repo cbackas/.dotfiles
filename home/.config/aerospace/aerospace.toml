@@ -56,8 +56,8 @@ alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
 # comms workspace
-ctrl-alt-shift-1 = 'workspace comms'
-ctrl-alt-shift-a = 'workspace comms'
+ctrl-alt-shift-1 = ['workspace comms', 'layout accordion']
+ctrl-alt-shift-a = ['workspace comms', 'layout accordion']
 cmd-ctrl-alt-shift-1 = 'move-node-to-workspace comms'
 # browser workspace
 ctrl-alt-shift-2 = 'workspace browser'
@@ -76,8 +76,8 @@ ctrl-alt-shift-g = 'workspace 5'
 cmd-ctrl-alt-shift-5 = 'move-node-to-workspace 5'
 
 # plex workspace
-ctrl-alt-shift-6 = 'workspace plex'
-cmd-ctrl-alt-shift-6 = 'move-node-to-workspace plex'
+ctrl-alt-shift-v = 'workspace plex'
+cmd-ctrl-alt-shift-v = 'move-node-to-workspace plex'
 
 # f1 workspaces
 ctrl-alt-shift-r = ['workspace f1Main', 'workspace f1Secondary']
@@ -119,17 +119,20 @@ run = ['move-node-to-workspace comms']
 [[on-window-detected]]
 if.app-id = "com.tinyspeck.slackmacgap"
 run = ['move-node-to-workspace comms']
+[[on-window-detected]]
+if.app-id = "com.apple.mail"
+run = ['move-node-to-workspace comms']
 
 # plex
 [[on-window-detected]]
-if.app-id = "com.plex.Plex"
+if.app-id = "tv.plex.desktop"
 run = ['move-node-to-workspace plex']
 
 # f1
-[[on-window-detected]]
-if.app-id = 'com.electron.multiviewer-for-f1'
-if.window-title-regex-substring = "tracker"
-run = 'move-node-to-workspace f1Secondary'
+# [[on-window-detected]]
+# if.app-id = 'com.electron.multiviewer-for-f1'
+# if.window-title-regex-substring = "tracker"
+# run = 'move-node-to-workspace f1Secondary'
 # [[on-window-detected]]
 # if.app-id = 'com.electron.multiviewer-for-f1'
 # if.window-title-regex-substring = "(Driver Tracker|Live Timing) — MultiViewer"
@@ -137,10 +140,10 @@ run = 'move-node-to-workspace f1Secondary'
 # [[on-window-detected]]
 # if.app-id = 'com.electron.multiviewer-for-f1'
 # run = ['move-node-to-workspace f1Main']
-# [[on-window-detected]]
-# if.app-id = 'com.electron.multiviewer-for-f1'
-# check-further-callbacks = true
-# run = ['layout floating']
+[[on-window-detected]]
+if.app-id = 'com.electron.multiviewer-for-f1'
+check-further-callbacks = true
+run = ['layout floating']
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
