@@ -629,22 +629,7 @@
                     "mouse_flip_y": false,
                     "mouse_swap_wheels": false,
                     "mouse_swap_xy": false,
-<<<<<<< HEAD
                     "simple_modifications": [],
-=======
-                    "simple_modifications": [
-                        {
-                            "from": {
-                                "key_code": "caps_lock"
-                            },
-                            "to": [
-                                {
-                                    "key_code": "escape"
-                                }
-                            ]
-                        }
-                    ],
->>>>>>> e1d24d8 (yabai changes to add flip mode)
                     "treat_as_built_in_keyboard": false
                 },
                 {
