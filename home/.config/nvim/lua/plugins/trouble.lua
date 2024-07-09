@@ -18,7 +18,7 @@ local init = function()
     })
 
     -- Open the quickfix list to show the results
-    require("trouble").open("quickfix")
+    require("trouble").open({ mode = "quickfix" })
   end, { nargs = '?', complete = "file" })
 end
 
