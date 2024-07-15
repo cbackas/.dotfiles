@@ -93,9 +93,6 @@ local servers = {
       },
     },
   },
-  groovyls = {
-    filetypes = { 'groovy', 'Jenkinsfile' }
-  },
   jdtls = {},
   gopls = {}
 }
@@ -181,6 +178,8 @@ local init = function()
   require('lint').linters_by_ft = {
     javascript = { 'eslint_d' },
     typescript = { 'eslint_d' },
+    groovy = { 'npm-groovy-lint' },
+    Jenkinsfile = { 'npm-groovy-lint' },
     html = { 'eslint_d' },
     ['jinja.html'] = { 'djlint' },
     htmldjango = { 'djlint' },
