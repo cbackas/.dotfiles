@@ -74,8 +74,11 @@ return {
     context_commentstring = {
       enable = true,
     },
-
   },
+  config = function(_, opts)
+    require('nvim-treesitter.configs').setup(opts)
+    vim.cmd('TSDisable indent Jenkinsfile')
+  end,
   init = function()
     vim.treesitter.language.register('yaml', 'cfn-yaml')
     vim.treesitter.language.register('yaml', 'group_vars')

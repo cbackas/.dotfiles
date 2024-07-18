@@ -32,7 +32,7 @@ vim.o.timeoutlen = 250
 
 -- expand tabs to spaces
 vim.o.tabstop = 4
-vim.o.shiftwidth = 4
+vim.o.shiftwidth = 0
 vim.o.expandtab = true
 
 -- Set completeopt to have a better completion experience
