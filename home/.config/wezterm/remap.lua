@@ -157,46 +157,88 @@ local function get_directory_choices(path, label_prefix)
   return dirs
 end
 
--- keybind to open project fuzzy selector
--- when you select an option it will switch to that project's tab if it exists or spawn a new one
-table.insert(Wez_Conf.keys, {
-  key = 'P',
-  mods = 'SUPER|SHIFT',
-  action = wezterm.action_callback(function(window, pane)
+local function active_tab(mux_win)
+  for _, item in ipairs(mux_win:tabs_with_info()) do
+    -- wezterm.log_info('idx: ', idx, 'tab:', item)
+    if item.is_active then
+      return item
+    end
+  end
+end
+
+---wrapper function for project picking keybinds
+---@param callback _.wezterm.ActionCallback
+---@return _.wezterm._CallbackAction
+local function project_picker(callback)
+  return wezterm.action_callback(function(window, pane)
     local choices = get_directory_choices(os.getenv('HOME') .. '/Projects')
     ConcatTables(choices, get_directory_choices(os.getenv('HOME') .. '/.dotfiles/home/.config', 'conf'))
 
     window:perform_action(
-      wezterm.action.InputSelector {
-        action = wezterm.action_callback(function(window2, _pane, id, label)
-          if not id and not label then
-            wezterm.log_error 'cancelled'
-            return
-          end
-
-          local mux_window = window2:mux_window()
-          for _, tab in pairs(mux_window:tabs()) do
-            local tab_title = tab:get_title()
-            if tab_title == label then
-              wezterm.log_info('switching to tab: ' .. label)
-              tab:activate()
-              return
-            end
-          end
-
-          wezterm.log_info('spawning new tab: ' .. label)
-          local tab, _pane, _window = mux_window:spawn_tab { cwd = id }
-          tab:set_title(label)
-        end),
+      actions.InputSelector {
+        action = wezterm.action_callback(callback),
         title = 'Which project would you like to open?',
         choices = choices,
         fuzzy = true
       },
       pane
     )
+  end)
+end
+
+-- Project Picker fuzzy finder: NEW TAB
+-- when you select an option it will switch to that project's tab if it exists or spawn a new one
+table.insert(Wez_Conf.keys, {
+  key = 'p',
+  mods = 'SUPER',
+  action = project_picker(function(window2, _, id, label)
+    if not id and not label then
+      wezterm.log_error 'cancelled'
+      return
+    end
+
+    local mux_window = window2:mux_window()
+    for _, tab in pairs(mux_window:tabs()) do
+      local tab_title = tab:get_title()
+      if tab_title == label then
+        wezterm.log_info('switching to tab: ' .. label)
+        tab:activate()
+        return
+      end
+    end
+
+    wezterm.log_info('spawning new tab: ' .. label)
+    local tab, _, _ = mux_window:spawn_tab { cwd = id }
+    tab:set_title(label)
   end),
 })
 
+-- Project Picker fuzzy finder: REPLACE TAB
+-- when you select an option it will replace the current tab with a tab for that project
+table.insert(Wez_Conf.keys, {
+  key = 'P',
+  mods = 'SUPER|SHIFT',
+  action = project_picker(function(window, pane2, id, label)
+    if not id and not label then
+      wezterm.log_error 'cancelled'
+      return
+    end
+
+    local current_tab_index = active_tab(window:mux_window()).index
+
+    -- create new tab
+    local new_tab, new_pane, _ = window:mux_window():spawn_tab { cwd = id }
+    new_tab:set_title(label)
+    window:perform_action(actions.MoveTab(current_tab_index), new_pane)
+
+    -- close old tab
+    window:perform_action(actions.ActivateTab(current_tab_index + 1), pane2)
+    window:perform_action(actions.CloseCurrentTab { confirm = false }, pane2)
+
+    -- ensure we're on the new tab again
+    window:perform_action(actions.ActivateTab(current_tab_index), new_pane)
+  end),
+})
 
 -- -- OMG
 -- -- THEMES
