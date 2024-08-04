@@ -131,6 +131,10 @@ run = ['move-node-to-workspace comms']
 if.app-id = "tv.plex.desktop"
 run = ['move-node-to-workspace plex']
 
+[[on-window-detected]]
+if.window-title-regex-substring = "wezterm Configuration Error"
+run = ['layout floating']
+
 # f1
 # [[on-window-detected]]
 # if.app-id = 'com.electron.multiviewer-for-f1'
