@@ -45,7 +45,7 @@ local servers = {
   --     },
   --   },
   -- },
-  -- eslint = {},
+  eslint = {},
   astro = {},
   html = { filetypes = { 'html' } },
   dockerls = { filetypes = { 'Dockerfile', 'dockerfile' } },
@@ -176,11 +176,11 @@ local init = function()
 
   -- nvim-lint adds more linters to the built in LSP
   require('lint').linters_by_ft = {
-    javascript = { 'eslint_d' },
-    typescript = { 'eslint_d' },
+    -- javascript = { 'eslint_d' },
+    -- typescript = { 'eslint_d' },
+    -- html = { 'eslint_d' },
     groovy = { 'npm-groovy-lint' },
     Jenkinsfile = { 'npm-groovy-lint' },
-    html = { 'eslint_d' },
     ['jinja.html'] = { 'djlint' },
     htmldjango = { 'djlint' },
     yaml = { 'actionlint' },
@@ -197,9 +197,9 @@ local init = function()
   -- conform is for formaters that aren't built into an LSP
   require('conform').setup({
     formatters_by_ft = {
-      javascript = { 'eslint_d' },
-      typescript = { 'eslint_d' },
-      html = { 'eslint_d' },
+      -- javascript = { 'eslint_d' },
+      -- typescript = { 'eslint_d' },
+      -- html = { 'eslint_d' },
       ['jinja.html'] = { 'djlint' },
       htmldjango = { 'djlint' },
       ['cfn-yaml'] = { 'yamlfmt' },
