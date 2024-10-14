@@ -208,7 +208,7 @@ local init = function()
       -- html = { 'eslint_d' },
       ['jinja.html'] = { 'djlint' },
       htmldjango = { 'djlint' },
-      ['cfn-yaml'] = { 'yamlfmt' },
+      -- ['cfn-yaml'] = { 'yamlfmt' },
       sh = { 'shellcheck', 'shfmt' },
     },
     format_on_save = {
