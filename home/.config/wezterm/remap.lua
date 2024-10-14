@@ -5,6 +5,11 @@ local actions = wezterm.action
 Wez_Conf.leader = { key = ' ', mods = 'CTRL', timeout_milliseconds = 1000 }
 Wez_Conf.keys = {
   { key = 'L', mods = 'CTRL', action = actions.ShowDebugOverlay },
+  {
+    key = 'w',
+    mods = 'CMD',
+    action = wezterm.action.CloseCurrentPane { confirm = true },
+  },
   -- vertical split
   {
     key = '\\',
