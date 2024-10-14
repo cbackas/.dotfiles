@@ -25,7 +25,7 @@ end
 return {
   'folke/trouble.nvim',
   opts = {
-    mode = 'document_diagnostics',
+    mode = 'diagnostics',
     auto_open = false,
     auto_close = true,
     auto_preview = true,
