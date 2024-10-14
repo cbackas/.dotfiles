@@ -129,6 +129,8 @@ local on_attach = function(client, bufnr)
   -- Enable inlay hints if possible
   if client.server_capabilities.inlayHintProvider then
     vim.lsp.inlay_hint.enable(true)
+    nmap('<leader>tih', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({})) end,
+      '[T]oggle [I]nlay [H]int')
   end
 end
 
