@@ -97,7 +97,8 @@ local servers = {
     },
   },
   jdtls = {},
-  gopls = {}
+  gopls = {},
+  csharp_ls = {}
 }
 
 --  This function gets run when an LSP connects to a particular buffer.
