@@ -65,7 +65,7 @@ local servers = {
     },
   },
   yamlls = {
-    filetypes = { 'yaml', 'cfn-yaml', 'group_vars' },
+    filetypes = { 'yaml', 'cfn-yaml', 'group_vars', 'workflow' },
     yaml = {
       format = {
         enable = false,
@@ -96,6 +96,7 @@ local servers = {
       },
     },
   },
+  ansiblels = {},
   jdtls = {},
   gopls = {},
   csharp_ls = {}
@@ -189,7 +190,7 @@ local init = function()
     Jenkinsfile = { 'npm-groovy-lint' },
     ['jinja.html'] = { 'djlint' },
     htmldjango = { 'djlint' },
-    yaml = { 'actionlint' },
+    workflow = { 'actionlint' },
     sh = { 'shellcheck' },
   }
 
