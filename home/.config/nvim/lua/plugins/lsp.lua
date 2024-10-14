@@ -10,6 +10,9 @@ local servers = {
   },
   vtsls = {
     typescript = {
+      format = {
+        enable = false
+      },
       inlayHints = {
         parameterNames = { enabled = "literals" },
         parameterTypes = { enabled = true },
