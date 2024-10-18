@@ -145,8 +145,14 @@ local init = function()
   -- Ensure the servers above are installed
   local mason_lspconfig = require 'mason-lspconfig'
 
+  local ensure_installed = vim.tbl_keys(servers)
+  -- don't try to install csharp_ls if dotnet isn't installed
+  if not vim.fn.executable('dotnet') then
+    ensure_installed['csharp_ls'] = nil
+  end
+
   mason_lspconfig.setup {
-    ensure_installed = vim.tbl_keys(servers),
+    ensure_installed
   }
 
   mason_lspconfig.setup_handlers {
