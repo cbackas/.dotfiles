@@ -21,3 +21,5 @@ Wez_Conf.unix_domains = {
 Wez_Conf.enable_kitty_keyboard = true
 Wez_Conf.enable_csi_u_key_encoding = false
 Wez_Conf.debug_key_events = false
+
+Wez_Conf.unzoom_on_switch_pane = true
