@@ -498,7 +498,7 @@ function Pane:send_paste(text) end
 ---@param text string
 function Pane:send_text(text) end
 
----@param opts { args: string[], cwd: string; set_environment_variables: table<string, string>, domain: 'DefaultDomain' | { DomainName: string }, direction: 'Right' | 'Left' | 'Up' | 'Down', top_level: boolean, size: number }
+---@param opts { args: string[], cwd: string; set_environment_variables: table<string, string>, domain: 'DefaultDomain' | { DomainName: string }, direction: 'Right' | 'Left' | 'Top' | 'Bottom', top_level: boolean, size: number }
 ---@return _.wezterm.Pane
 function Pane:split(opts) end
 
@@ -512,6 +512,7 @@ function Pane:window() end
 local MuxDomain = {}
 
 function MuxDomain:attach() end
+
 function MuxDomain:detach() end
 
 ---@return number
@@ -634,6 +635,7 @@ function MuxTab:panes() end
 function MuxTab:panes_with_info() end
 
 function MuxTab:rotate_clockwise() end
+
 function MuxTab:rotate_counter_clockwise() end
 
 ---@param TITLE string
@@ -758,10 +760,10 @@ function Window:set_right_status(status) end
 ---@param url? string | nil
 ---@param timeout_milliseconds? number
 function Window:toast_notification(
-  title,
-  message,
-  url,
-  timeout_milliseconds
+    title,
+    message,
+    url,
+    timeout_milliseconds
 )
 end
 
