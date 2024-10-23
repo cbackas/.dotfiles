@@ -85,6 +85,7 @@ local servers = {
         "!GetAtt scalar",
         "!GetAtt sequence",
         "!GetAZs scalar",
+        "!GetAZs sequence",
         "!ImportValue scalar",
         "!Join sequence",
         "!Select sequence",
