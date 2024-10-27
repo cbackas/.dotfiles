@@ -1,7 +1,7 @@
 local init = function()
-  vim.keymap.set('n', '<leader>td', function() require("trouble").toggle("document_diagnostics") end,
+  vim.keymap.set('n', '<leader>td', function() require("trouble").toggle("diagnostics") end,
     { desc = 'Open diagnostics list' })
-  vim.keymap.set('n', '<leader>tq', function() require("trouble").toggle("quickfix") end,
+  vim.keymap.set('n', '<leader>tq', function() require("trouble").toggle("qflist") end,
     { desc = 'Open quickfix list' })
 
   vim.api.nvim_create_user_command('Rg', function(input)
@@ -18,7 +18,7 @@ local init = function()
     })
 
     -- Open the quickfix list to show the results
-    require("trouble").open({ mode = "quickfix" })
+    require("trouble").open({ mode = "qflist" })
   end, { nargs = '?', complete = "file" })
 end
 
