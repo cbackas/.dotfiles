@@ -8,6 +8,7 @@ local servers = {
       },
     },
   },
+  denols = {},
   vtsls = {
     typescript = {
       format = {
@@ -105,6 +106,16 @@ local servers = {
 
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(client, bufnr)
+  if require("lspconfig").util.root_pattern("deno.json", "deno.jsonc")(vim.fn.getcwd()) then
+    -- check if client name is in a list
+    local clients_to_stop = { "tsserver", "vtsls", "eslint", "eslint_d" }
+    if vim.tbl_contains(clients_to_stop, client.name) then
+      -- stop the client
+      client.stop()
+      return
+    end
+  end
+
   -- normal mode keymap helper func
   local nmap = function(keys, func, desc)
     if desc then
