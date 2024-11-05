@@ -101,7 +101,8 @@ local servers = {
   ansiblels = {},
   jdtls = {},
   gopls = {},
-  csharp_ls = {}
+  csharp_ls = {},
+  bicep = {},
 }
 
 --  This function gets run when an LSP connects to a particular buffer.
