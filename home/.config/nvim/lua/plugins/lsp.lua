@@ -50,6 +50,7 @@ local servers = {
   --   },
   -- },
   eslint = {},
+  biome = {},
   astro = {},
   html = { filetypes = { 'html' } },
   dockerls = { filetypes = { 'Dockerfile', 'dockerfile' } },
