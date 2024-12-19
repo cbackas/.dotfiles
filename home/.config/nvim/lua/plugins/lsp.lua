@@ -69,10 +69,6 @@ local servers = {
   lua_ls = {
     Lua = {
       runtime = { version = 'LuaJIT' },
-      workspace = {
-        checkThirdParty = false,
-        library = vim.api.nvim_get_runtime_file('', true)
-      },
       telemetry = { enable = false },
       hint = { enable = true },
     },
@@ -253,6 +249,14 @@ return {
   'neovim/nvim-lspconfig',
   init = init,
   dependencies = {
+    {
+      "folke/lazydev.nvim",
+      opts = {
+        library = {
+          { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        },
+      },
+    },
     -- Automatically install LSPs to stdpath for neovim
     { 'williamboman/mason.nvim', config = true },
     'williamboman/mason-lspconfig.nvim',
