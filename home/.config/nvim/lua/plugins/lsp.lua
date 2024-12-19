@@ -196,7 +196,7 @@ local init = function()
       cmd = { os.getenv("HOME") .. '/.local/bin/cfn-lsp-extra' },
       filetypes = { 'cfn-yaml' },
       root_dir = function(fname)
-        return require('lspconfig').util.find_git_ancestor(fname) or vim.fn.getcwd()
+        return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1]) or vim.fn.getcwd()
       end,
       settings = {
         documentFormatting = false,
