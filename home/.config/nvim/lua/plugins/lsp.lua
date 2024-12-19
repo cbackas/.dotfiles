@@ -163,8 +163,7 @@ end
 local init = function()
   local capabilities = vim.tbl_deep_extend("force",
     vim.lsp.protocol.make_client_capabilities(),
-    -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-    require('cmp_nvim_lsp').default_capabilities()
+    require('blink.cmp').get_lsp_capabilities()
   )
 
   -- Ensure the servers above are installed
@@ -267,5 +266,6 @@ return {
       event = { 'BufRead', 'BufNewFile' },
       opts = {},
     },
+    'saghen/blink.cmp',
   }
 }
