@@ -12,12 +12,12 @@ local function init()
   vim.keymap.set('n', '<leader>sh', fzf.help_tags, { desc = '[S]earch [H]elp' })
   vim.keymap.set('n', '<leader>sw', fzf.grep_cword, { desc = '[S]earch current [W]ord' })
   vim.keymap.set('n', '<leader>sb', fzf.buffers, { desc = '[S] Find existing [B]uffers' })
-  vim.keymap.set('n', '<leader>sg', fzf.live_grep, { desc = '[S]earch by [G]rep' })
+  vim.keymap.set('n', '<leader>sg', fzf.grep_project, { desc = '[S]earch by [G]rep' })
   vim.keymap.set('n', '<leader>sf', fzf.files, { desc = '[S]earch [F]iles' })
 
   -- TODO how do you shove a search term into fzf.files?
   -- vim.keymap.set('n', '<leader>so', function()
-  --   fzf.files({ vim.fn.expand("%:t:r") })
+  --   fzf.files({ search = vim.fn.expand("%:t:r") })
   -- end, { desc = '[S]earch [O]ther' })
 
   -- INFO use fzf as the default ui selector
@@ -37,5 +37,25 @@ return {
   "ibhagwan/fzf-lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   init = init,
-  opts = {},
+  opts = {
+    keymap = {
+      fzf = {
+        -- use cltr-q to select all items and convert to quickfix list
+        ["ctrl-q"] = "select-all+accept",
+      },
+    },
+    winopts = {
+      height = 0.85,
+      width  = 0.90,
+      row    = 0.35,
+      col    = 0.55,
+    },
+    files = {
+      cwd_prompt = false,
+      prompt = 'fzf❯ '
+    },
+    grep = {
+      file_ignore_patterns = { ".-package%-lock%.json$", "Cargo%.lock$", ".-node_modules/.-", ".-LICENSE$" }
+    }
+  },
 }
