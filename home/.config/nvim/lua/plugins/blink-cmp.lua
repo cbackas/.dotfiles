@@ -1,10 +1,9 @@
 return {
   'saghen/blink.cmp',
   dependencies = 'rafamadriz/friendly-snippets',
-  -- TODO switch back to a tag after its stable-ish
-  -- version = 'v0.*.*',
-  branch = 'main',
-  build = 'cargo build --release',
+  version = 'v0.*.*',
+  -- branch = 'main',
+  -- build = 'cargo build --release',
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
