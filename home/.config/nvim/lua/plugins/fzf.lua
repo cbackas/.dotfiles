@@ -1,6 +1,15 @@
 local function init()
   local fzf = require('fzf-lua')
 
+  -- Open telescope find_files if no arguments are passed to nvim
+  vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function()
+      if vim.fn.argv(0) == "" then
+        fzf.files()
+      end
+    end,
+  })
+
   vim.keymap.set('n', '<leader>?', function()
     fzf.oldfiles({
       cwd_only = true,
