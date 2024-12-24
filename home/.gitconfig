@@ -1,0 +1,13 @@
+[user]
+	name = cbackas
+	email = git@zac.gg
+	signingkey = B0CB0665047745BF
+[init]
+	defaultBranch = main
+[core]
+	excludesfile = /Users/zac/.gitignore_global
+	editor = nvim
+[push]
+	autoSetupRemote = true
+[commit]
+	gpgsign = true
