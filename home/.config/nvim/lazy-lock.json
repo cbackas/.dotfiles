@@ -31,6 +31,7 @@
   "render-markdown": { "branch": "main", "commit": "0022a579ac7355966be5ade77699b88c76b6a549" },
   "smart-splits.nvim": { "branch": "master", "commit": "49c397120944ebb89fbb11126b7edce36be8bdad" },
   "smartyank.nvim": { "branch": "master", "commit": "0a4554a4ea4cad73dab0a15e559f2128ca03c7b2" },
+  "tiny-inline-diagnostic.nvim": { "branch": "main", "commit": "6b40143750d7db53ae0fb2ef8a0bec8be009291b" },
   "todo-comments.nvim": { "branch": "main", "commit": "ae0a2afb47cf7395dc400e5dc4e05274bf4fb9e0" },
   "trouble.nvim": { "branch": "main", "commit": "46cf952fc115f4c2b98d4e208ed1e2dce08c9bf6" },
   "undotree": { "branch": "main", "commit": "eab459ab87dd249617b5f7187bb69e614a083047" },
