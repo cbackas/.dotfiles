@@ -277,7 +277,8 @@ table.insert(Wez_Conf.keys, {
     end
 
     wezterm.log_info('spawning new tab: ' .. title)
-    mux_window:spawn_tab({ cwd = id }).tab:set_title(title)
+    local tab, _, _ = mux_window:spawn_tab({ cwd = id })
+    tab:set_title(title)
   end),
 })
 
@@ -295,8 +296,7 @@ table.insert(Wez_Conf.keys, {
     local current_tab_index = active_tab(window:mux_window()).index
 
     -- create new tab
-    local result = window:mux_window():spawn_tab { cwd = id }
-    local new_tab, new_pane = result.tab, result.pane
+    local new_tab, new_pane, _ = window:mux_window():spawn_tab { cwd = id }
     new_tab:set_title(label)
     window:perform_action(actions.MoveTab(current_tab_index), new_pane)
 
