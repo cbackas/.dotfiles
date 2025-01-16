@@ -1,17 +1,17 @@
-local wezterm = require 'wezterm'
+local wezterm = require 'wezterm' --[[@as Wezterm]]
 local actions = wezterm.action
 
----@param pane _.wezterm.Pane
+---@param pane Pane
 ---@return boolean
 local function is_vim(pane)
   local process_info = pane:get_foreground_process_info()
   local process_name = process_info and process_info.name
 
-  return process_name == "nvim" or process_name == "vim" or process_name == "nvim.exe" or process_name == "vim.exe"
+  return process_name == 'nvim' or process_name == 'vim' or process_name == 'nvim.exe' or process_name == 'vim.exe'
 end
 
----@param tab _.wezterm.MuxTab
----@return _.wezterm.PaneWithInfo | nil
+---@param tab MuxTabObj
+---@return Pane | nil
 local function find_vim_pane(tab)
   for _, pane in ipairs(tab:panes_with_info()) do
     if is_vim(pane.pane) then
@@ -67,7 +67,7 @@ Wez_Conf.keys = {
     mods = 'CTRL|SHIFT',
     action = actions.PromptInputLine {
       description = 'Enter new name for tab',
-      action = wezterm.action_callback(function(window, pane, line)
+      action = wezterm.action_callback(function(window, _, line)
         if line then
           window:active_tab():set_title(line)
         end
@@ -81,8 +81,8 @@ Wez_Conf.keys = {
     action = actions.RotatePanes 'Clockwise',
   },
   {
-    key = "j",
-    mods = "CMD",
+    key = 'j',
+    mods = 'CMD',
     action = wezterm.action_callback(function(window, pane)
       local tab = window:active_tab()
       local vim_pane = find_vim_pane(tab)
@@ -93,15 +93,15 @@ Wez_Conf.keys = {
           -- Open pane below if when there is only one pane and it is vim
           tab:set_zoomed(false)
           pane:split {
-            direction = "Bottom",
-            size = 0.333
+            direction = 'Bottom',
+            size = 0.333,
           }
         else -- if there are multiple panes, toggle zooming/switching between them
           local is_zoomed = tab:panes_with_info()[1].is_zoomed
           if is_zoomed then
             tab:set_zoomed(false)
             -- activate the non-vim pane
-            tab:get_pane_direction("Down"):activate()
+            tab:get_pane_direction('Down'):activate()
           else
             tab:set_zoomed(true)
           end
@@ -111,7 +111,7 @@ Wez_Conf.keys = {
 
       -- Zoom to vim pane if it exists
       if vim_pane then
-        vim_pane.pane:activate()
+        vim_pane:activate()
         tab:set_zoomed(true)
       end
     end),
@@ -129,23 +129,16 @@ for i = 1, 9 do
     key = key,
     mods = 'SUPER',
     action = wezterm.action_callback(function(win, pane)
+      local mods = ''
       if pane:get_user_vars().IS_NVIM == 'true' then
         -- convert it to META key for nvim only
-        win:perform_action({
-          SendKey = {
-            key = key,
-            mods = 'META'
-          }
-        }, pane)
+        mods = 'META'
       else
         -- pass through the normal SUPER key any other time
-        win:perform_action({
-          SendKey = {
-            key = key,
-            mods = 'SUPER'
-          }
-        }, pane)
+        mods = 'SUPER'
       end
+
+      win:perform_action(actions.SendKey({ key = key, mods = mods }), pane)
     end),
   })
 
@@ -167,8 +160,9 @@ end
 
 --
 -- Mux pane navigation
---
-
+---@param resize_or_move "resize" | "move"
+---@param key "k" | "j" | "l" | ";" | "B" // tbh i forget what the B is for
+---@param direction "Up" | "Down" | "Left" | "Right"
 local function split_nav(resize_or_move, key, direction)
   return {
     key = key,
@@ -179,14 +173,12 @@ local function split_nav(resize_or_move, key, direction)
         if (key == ';') then
           key = 'B'
         end
-        win:perform_action({
-          SendKey = { key = key, mods = resize_or_move == 'resize' and 'META' or 'CTRL' },
-        }, pane)
+        win:perform_action(actions.SendKey({ key = key, mods = resize_or_move == 'resize' and 'META' or 'CTRL' }), pane)
       else
         if resize_or_move == 'resize' then
-          win:perform_action({ AdjustPaneSize = { direction, 3 } }, pane)
+          win:perform_action(actions.AdjustPaneSize({ direction, 3 }), pane)
         else
-          win:perform_action({ ActivatePaneDirection = direction }, pane)
+          win:perform_action(actions.ActivatePaneDirection(direction), pane)
         end
       end
     end),
@@ -215,7 +207,7 @@ ConcatTables(Wez_Conf.keys, pane_maps)
 -- given a path, builds a list of choices for the input selector
 local function get_directory_choices(path, label_prefix)
   local prefix = (label_prefix and label_prefix .. ':') or ''
-  local cmd = "ls -d " .. path .. "/*/ 2>/dev/null"
+  local cmd = 'ls -d ' .. path .. '/*/ 2>/dev/null'
   local dirs = {}
   local pfile = io.popen(cmd)
   if not pfile then
@@ -223,8 +215,8 @@ local function get_directory_choices(path, label_prefix)
   end
 
   for dir in pfile:lines() do
-    local dir_name = dir:match("([^/]+)/?$") -- Extract the last part of the path
-    table.insert(dirs, { label = prefix .. dir_name, id = path .. "/" .. dir_name })
+    local dir_name = dir:match('([^/]+)/?$') -- Extract the last part of the path
+    table.insert(dirs, CreateDirectoryEntry(prefix .. dir_name, path .. '/' .. dir_name))
   end
 
   pfile:close()
@@ -241,19 +233,20 @@ local function active_tab(mux_win)
 end
 
 ---wrapper function for project picking keybinds
----@param callback _.wezterm.ActionCallback
----@return _.wezterm._CallbackAction
+---@param callback fun(win: Window, pane: Pane, id: string, label: string)
+---@return Action
 local function project_picker(callback)
   return wezterm.action_callback(function(window, pane)
     local choices = get_directory_choices(os.getenv('HOME') .. '/Projects')
     ConcatTables(choices, get_directory_choices(os.getenv('HOME') .. '/.dotfiles/home/.config', 'conf'))
+    ConcatTables(choices, { CreateDirectoryEntry('.dotfiles', os.getenv('HOME') .. '/.dotfiles') })
 
     window:perform_action(
       actions.InputSelector {
         action = wezterm.action_callback(callback),
         title = 'Which project would you like to open?',
         choices = choices,
-        fuzzy = true
+        fuzzy = true,
       },
       pane
     )
@@ -271,19 +264,20 @@ table.insert(Wez_Conf.keys, {
       return
     end
 
+    local title = label:gsub('%s%s%s.*', '')
+
     local mux_window = window2:mux_window()
     for _, tab in pairs(mux_window:tabs()) do
       local tab_title = tab:get_title()
-      if tab_title == label then
-        wezterm.log_info('switching to tab: ' .. label)
+      if tab_title == title then
+        wezterm.log_info('switching to tab: ' .. title)
         tab:activate()
         return
       end
     end
 
-    wezterm.log_info('spawning new tab: ' .. label)
-    local tab, _, _ = mux_window:spawn_tab { cwd = id }
-    tab:set_title(label)
+    wezterm.log_info('spawning new tab: ' .. title)
+    mux_window:spawn_tab({ cwd = id }).tab:set_title(title)
   end),
 })
 
@@ -301,7 +295,8 @@ table.insert(Wez_Conf.keys, {
     local current_tab_index = active_tab(window:mux_window()).index
 
     -- create new tab
-    local new_tab, new_pane, _ = window:mux_window():spawn_tab { cwd = id }
+    local result = window:mux_window():spawn_tab { cwd = id }
+    local new_tab, new_pane = result.tab, result.pane
     new_tab:set_title(label)
     window:perform_action(actions.MoveTab(current_tab_index), new_pane)
 
