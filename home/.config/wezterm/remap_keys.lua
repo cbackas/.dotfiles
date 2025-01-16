@@ -293,11 +293,12 @@ table.insert(Wez_Conf.keys, {
       return
     end
 
+    local title = label:gsub('%s%s%s.*', '')
     local current_tab_index = active_tab(window:mux_window()).index
 
     -- create new tab
     local new_tab, new_pane, _ = window:mux_window():spawn_tab { cwd = id }
-    new_tab:set_title(label)
+    new_tab:set_title(title)
     window:perform_action(actions.MoveTab(current_tab_index), new_pane)
 
     -- close old tab
