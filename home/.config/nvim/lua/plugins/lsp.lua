@@ -9,6 +9,7 @@ local servers = {
     },
   },
   denols = {
+    root_dir = function(fname) require("lspconfig").util.root_pattern("deno.json", "deno.jsonc")(fname) end,
     deno = {
       inlayHints = {
         parameterNames = { enabled = "literals" },
@@ -185,6 +186,7 @@ local init = function()
         on_attach = on_attach,
         settings = servers[server_name],
         filetypes = servers[server_name].filetypes,
+        root_dir = servers[server_name].root_dir,
       }
     end
   }
