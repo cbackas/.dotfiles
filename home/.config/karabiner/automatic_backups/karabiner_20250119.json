@@ -8,125 +8,6 @@
                 },
                 "rules": [
                     {
-                        "description": "F10-F12: Mute, Volume Down, Volume Up but F10-F12 if FN is pressed",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "identifiers": [{ "is_built_in_keyboard": true }],
-                                        "type": "device_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "f10",
-                                    "modifiers": { "optional": [] }
-                                },
-                                "to": [
-                                    {
-                                        "consumer_key_code": "mute",
-                                        "modifiers": []
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "identifiers": [{ "is_built_in_keyboard": true }],
-                                        "type": "device_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "f10",
-                                    "modifiers": { "mandatory": ["fn"] }
-                                },
-                                "to": [
-                                    {
-                                        "consumer_key_code": "f10",
-                                        "modifiers": []
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "identifiers": [{ "is_built_in_keyboard": true }],
-                                        "type": "device_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "f11",
-                                    "modifiers": { "optional": [] }
-                                },
-                                "to": [
-                                    {
-                                        "consumer_key_code": "volume_decrement",
-                                        "modifiers": []
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "identifiers": [{ "is_built_in_keyboard": true }],
-                                        "type": "device_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "f11",
-                                    "modifiers": { "mandatory": ["fn"] }
-                                },
-                                "to": [
-                                    {
-                                        "consumer_key_code": "f11",
-                                        "modifiers": []
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "identifiers": [{ "is_built_in_keyboard": true }],
-                                        "type": "device_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "f12",
-                                    "modifiers": { "optional": [] }
-                                },
-                                "to": [
-                                    {
-                                        "consumer_key_code": "volume_increment",
-                                        "modifiers": []
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "identifiers": [{ "is_built_in_keyboard": true }],
-                                        "type": "device_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "f12",
-                                    "modifiers": { "mandatory": ["fn"] }
-                                },
-                                "to": [
-                                    {
-                                        "consumer_key_code": "f12",
-                                        "modifiers": []
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "CAPS_LOCK : (HYPER) SHIFT+OPTION+CONTROL or ESCAPE (If Alone)",
                         "manipulators": [
                             {
@@ -249,25 +130,25 @@
             },
             "devices": [
                 {
-                    "fn_function_keys": [
-                        {
-                            "from": { "key_code": "f10" },
-                            "to": [{ "key_code": "f10" }]
-                        },
-                        {
-                            "from": { "key_code": "f11" },
-                            "to": [{ "key_code": "f11" }]
-                        },
-                        {
-                            "from": { "key_code": "f12" },
-                            "to": [{ "key_code": "f12" }]
-                        }
-                    ],
                     "identifiers": {
                         "is_keyboard": true,
                         "product_id": 835,
                         "vendor_id": 1452
-                    }
+                    },
+                    "simple_modifications": [
+                        {
+                            "from": { "key_code": "f10" },
+                            "to": [{ "consumer_key_code": "mute" }]
+                        },
+                        {
+                            "from": { "key_code": "f11" },
+                            "to": [{ "consumer_key_code": "volume_decrement" }]
+                        },
+                        {
+                            "from": { "key_code": "f12" },
+                            "to": [{ "consumer_key_code": "volume_increment" }]
+                        }
+                    ]
                 },
                 {
                     "identifiers": {
