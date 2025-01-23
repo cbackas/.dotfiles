@@ -256,7 +256,7 @@ local sonarlint_config = function()
   end
 
   return {
-    "https://gitlab.com/schrieveslaach/sonarlint.nvim.git",
+    "https://gitlab.com/cbackas/sonarlint.nvim.git",
     opts = {
       server = {
         cmd = {
