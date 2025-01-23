@@ -171,6 +171,10 @@ local init = function()
     ensure_installed['csharp_ls'] = nil
   end
 
+  if os.getenv("USE_SONARLINT") == "true" then
+    vim.tbl_extend('keep', ensure_installed, { 'sonarlint-language-server' })
+  end
+
   mason_lspconfig.setup {
     ensure_installed
   }
@@ -246,6 +250,30 @@ local init = function()
   })
 end
 
+local sonarlint_config = function()
+  if os.getenv("USE_SONARLINT") ~= "true" then
+    return
+  end
+
+  return {
+    "https://gitlab.com/schrieveslaach/sonarlint.nvim.git",
+    opts = {
+      server = {
+        cmd = {
+          vim.fn.expand("~/.local/share/nvim/mason/packages/sonarlint-language-server/sonarlint-language-server"),
+          '-stdio',
+          '-analyzers',
+          vim.fn.expand("~/.local/share/nvim/mason/share/sonarlint-analyzers/sonarjs.jar"),
+        },
+      },
+      filetypes = {
+        "typescript",
+        "javascript"
+      }
+    }
+  }
+end
+
 return {
   'neovim/nvim-lspconfig',
   init = init,
@@ -279,5 +307,6 @@ return {
       opts = {},
     },
     'saghen/blink.cmp',
+    sonarlint_config()
   }
 }
