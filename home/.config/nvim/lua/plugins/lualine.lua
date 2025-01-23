@@ -69,41 +69,96 @@ local config = function()
   local yellow = '#DCDCAA'
   local yellow_orange = '#D7BA7D'
   local background_color = "#282829"
-  local grey = "#797C91"
+  local grey = "#818398"
+  local dark_grey = "#676b7e"
+  local light_grey = "#b0b2bf"
   local light_blue = "#9CDCFE"
   vim.api.nvim_set_hl(0, "HarpoonInactive", { fg = grey, bg = background_color })
+  vim.api.nvim_set_hl(0, "HarpoonInactiveFolder", { fg = dark_grey, bg = background_color })
   vim.api.nvim_set_hl(0, "HarpoonActive", { fg = light_blue, bg = background_color })
+  vim.api.nvim_set_hl(0, "HarpoonActiveFolder", { fg = light_grey, bg = background_color })
   vim.api.nvim_set_hl(0, "HarpoonNumberActive", { fg = yellow, bg = background_color })
   vim.api.nvim_set_hl(0, "HarpoonNumberInactive", { fg = yellow_orange, bg = background_color })
   vim.api.nvim_set_hl(0, "TabLineFill", { fg = "white", bg = background_color })
 
   local harpoon = require('harpoon')
 
-  function Harpoon_files()
-    local contents = {}
-    local marks_length = harpoon:list():length()
-    local current_file_path = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":.")
-    for index = 1, marks_length do
-      local harpoon_file_path = harpoon:list():get(index).value
+  ---@class MyHarpoonItem
+  ---@field path string
+  ---@field file_name string
+  ---@field is_oil boolean
 
-      local label = ""
-      if vim.startswith(harpoon_file_path, "oil") then
-        local dir_path = string.sub(harpoon_file_path, 7)
-        dir_path = vim.fn.fnamemodify(dir_path, ":.")
-        label = '[' .. dir_path .. ']'
-      elseif harpoon_file_path ~= "" then
-        label = vim.fn.fnamemodify(harpoon_file_path, ":t")
+  local function get_harpoon_list()
+    ---@type MyHarpoonItem[]
+    local my_items = {}
+    local dupe_checker = {}
+    local items = harpoon:list().items
+    for index = 1, #items do
+      local harpoon_path = items[index].value
+
+      local is_oil = vim.startswith(harpoon_path, "oil")
+      local file_name
+
+      if is_oil then
+        file_name = vim.fn.fnamemodify(string.sub(harpoon_path, 7), ":.")
+      else
+        file_name = vim.fn.fnamemodify(harpoon_path, ":t")
       end
 
-      label = label ~= "" and label or "(empty)"
-      if current_file_path == harpoon_file_path then
-        contents[index] = string.format("%%#HarpoonNumberActive# %s. %%#HarpoonActive#%s ", index, label)
+      my_items[index] = {
+        path = harpoon_path,
+        file_name = file_name,
+        is_oil = is_oil
+      }
+      dupe_checker[file_name] = (dupe_checker[file_name] or 0) + 1
+    end
+
+
+    local current_file_path = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":.")
+    local tabs = {}
+    for index = 1, #my_items do
+      local item = my_items[index]
+      local file_name = item.file_name
+
+      local label
+
+      if item.is_oil then
+        label = '[' .. file_name .. ']'
       else
-        contents[index] = string.format("%%#HarpoonNumberInactive# %s. %%#HarpoonInactive#%s ", index, label)
+        if dupe_checker[file_name] > 1 then
+          label = {
+            file_name = file_name,
+            folder_name = vim.fn.fnamemodify(item.path, ":h:t")
+          }
+        else
+          label = file_name
+        end
+      end
+
+      if type(label) == "string" and label == "" then
+        label = "(empty)"
+      end
+      if current_file_path == item.path then
+        if type(label) == "table" then
+          tabs[index] = string.format("%%#HarpoonNumberActive# %s. %%#HarpoonActiveFolder#%s/%%#HarpoonActive#%s ", index,
+            label.folder_name, label.file_name)
+        else
+          tabs[index] = string.format("%%#HarpoonNumberActive# %s. %%#HarpoonActive#%s ", index,
+            label)
+        end
+      else
+        if type(label) == "table" then
+          tabs[index] = string.format("%%#HarpoonNumberInactive# %s. %%#HarpoonInactiveFolder#%s/%%#HarpoonInactive#%s ",
+            index,
+            label.folder_name, label.file_name)
+        else
+          tabs[index] = string.format("%%#HarpoonNumberInactive# %s. %%#HarpoonInactive#%s ", index,
+            label)
+        end
       end
     end
 
-    return table.concat(contents)
+    return table.concat(tabs)
   end
 
   require('lualine').setup {
@@ -168,7 +223,7 @@ local config = function()
       lualine_z = {},
     },
     tabline = {
-      lualine_a = { { Harpoon_files } },
+      lualine_a = { { get_harpoon_list } },
     },
     extensions = {
       'oil',
