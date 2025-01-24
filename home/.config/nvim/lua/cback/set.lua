@@ -1,3 +1,5 @@
+vim.o.shortmess = vim.o.shortmess .. "I"
+
 -- Set highlight on search
 vim.o.hlsearch = true
 
