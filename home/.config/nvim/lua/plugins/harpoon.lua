@@ -30,8 +30,20 @@ return {
     "nvim-lua/plenary.nvim",
   },
   branch = "harpoon2",
-  config = function()
-    require('harpoon'):setup()
+  opts = {
+    default = {
+      display = function(list_item)
+        local is_oil = vim.startswith(list_item.value, "oil")
+        if is_oil then
+          return "[" .. vim.fn.fnamemodify(string.sub(list_item.value, 7), ":.") .. "]"
+        else
+          return list_item.value
+        end
+      end
+    }
+  },
+  config = function(_, opts)
+    require('harpoon'):setup(opts)
   end,
   init = init
 }
