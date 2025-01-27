@@ -1,4 +1,4 @@
-local wezterm = require 'wezterm'
+local wezterm = require 'wezterm' --[[@as Wezterm]]
 
 -- fonts
 Wez_Conf.font = wezterm.font_with_fallback({

@@ -1,4 +1,4 @@
-local wezterm = require 'wezterm'
+local wezterm = require 'wezterm' --[[@as Wezterm]]
 local actions = wezterm.action
 
 Wez_Conf.mouse_bindings = {
