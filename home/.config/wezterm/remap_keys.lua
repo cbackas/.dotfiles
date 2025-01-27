@@ -204,6 +204,13 @@ ConcatTables(Wez_Conf.keys, pane_maps)
 -- Mux tab creation
 --
 
+local label_remaps = {
+  ['%s%s%s.*'] = '',
+  ['acvs%-ses%-'] = "",
+  ['acvs%-osp%-'] = "",
+  ['partner%-portal%-'] = "pp-",
+}
+
 -- given a path, builds a list of choices for the input selector
 local function get_directory_choices(path, label_prefix)
   local prefix = (label_prefix and label_prefix .. ':') or ''
@@ -264,7 +271,10 @@ table.insert(Wez_Conf.keys, {
       return
     end
 
-    local title = label:gsub('%s%s%s.*', '')
+    local title = label
+    for k, v in pairs(label_remaps) do
+      title = title:gsub(k, v)
+    end
 
     local mux_window = window2:mux_window()
     for _, tab in pairs(mux_window:tabs()) do
@@ -293,7 +303,11 @@ table.insert(Wez_Conf.keys, {
       return
     end
 
-    local title = label:gsub('%s%s%s.*', '')
+    local title = label
+    for k, v in pairs(label_remaps) do
+      title = title:gsub(k, v)
+    end
+
     local current_tab_index = active_tab(window:mux_window()).index
 
     -- create new tab
