@@ -4,10 +4,9 @@ vim.o.shortmess = vim.o.shortmess .. "I"
 vim.o.hlsearch = true
 
 -- enable relative line numbers
-vim.wo.number = true
-vim.opt.nu = true
-vim.opt.relativenumber = true
-vim.opt.cursorline = true
+-- vim.wo.number = true
+-- vim.opt.nu = true
+-- vim.opt.relativenumber = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -23,10 +22,13 @@ vim.o.breakindent = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
--- status culumn is to the right of the line numbers
--- sign column is to the left of the line numbers
+vim.opt.cursorline = true
 vim.wo.signcolumn = 'yes'
--- vim.opt.statuscolumn = "%=%{v:relnum?v:relnum:v:lnum} %s"
+vim.opt.number = false
+vim.opt.relativenumber = false
+vim.opt.statuscolumn = '%s' ..
+    '%=%{printf("%4d", v:relnum?v:relnum:v:lnum)}' ..
+    '%{foldlevel(v:lnum)>0?(foldclosed(v:lnum)==-1?" ":"▸"):" "} '
 
 -- Decrease update time
 vim.o.updatetime = 300
