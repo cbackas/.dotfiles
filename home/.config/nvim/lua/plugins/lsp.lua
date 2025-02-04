@@ -157,10 +157,15 @@ local on_attach = function(client, bufnr)
 end
 
 local init = function()
+  ---@type lsp.ClientCapabilities
   local capabilities = vim.tbl_deep_extend("force",
     vim.lsp.protocol.make_client_capabilities(),
     require('blink.cmp').get_lsp_capabilities()
   )
+  capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+  }
 
   -- Ensure the servers above are installed
   local mason_lspconfig = require 'mason-lspconfig'
