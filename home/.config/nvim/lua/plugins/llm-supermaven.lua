@@ -1,14 +1,12 @@
 return {
   "supermaven-inc/supermaven-nvim",
-  config = function()
-    require("supermaven-nvim").setup({
-      ignore_filetypes = { dotenv = true },
-      keymaps = {
-        accept_suggestion = "<C-y>",
-      },
-      disable_keymaps = true,
-    })
-  end,
+  opts = {
+    ignore_filetypes = { dotenv = true },
+    keymaps = {
+      accept_suggestion = "<C-y>",
+    },
+    disable_keymaps = false,
+  },
   cond = function()
     -- if 'ENABLE_SUPERMAVEN' env var isn't true, don't load the plugin
     local enable_supermaven = os.getenv('ENABLE_SUPERMAVEN')
