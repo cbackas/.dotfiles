@@ -42,14 +42,15 @@ return {
     { "<leader>gr", function() Snacks.picker.lsp_references() end,                           desc = "LSP References" },
   },
   init = function()
-    local Snacks = require("snacks")
-    -- Open telescope find_files if no arguments are passed to nvim
+    -- Open find_files picker if no arguments are passed to nvim
     vim.api.nvim_create_autocmd("VimEnter", {
-      callback = function()
+      callback = vim.schedule_wrap(function()
         if vim.fn.argv(0) == "" then
-          Snacks.picker.files()
+          require("oil").open(nil, nil, function()
+            require("snacks").picker.files()
+          end)
         end
-      end,
+      end),
     })
   end
 }
