@@ -3,6 +3,9 @@ return {
   ---@param opts snacks.Config
   opts = function(_, opts)
     opts.picker = {
+      matcher = {
+        frecency = true
+      },
       layout = {
         reverse = false,
         layout = {
@@ -28,18 +31,18 @@ return {
     }
   end,
   keys = {
-    { "<leader>sf", function() Snacks.picker.files() end,                                    desc = "Find Files" },
+    { "<leader>sf", function() Snacks.picker.files({ hidden = true }) end,                   desc = "Find Files" },
     { "<leader>so", function() Snacks.picker.files({ search = vim.fn.expand("%:t:r") }) end, desc = "Find Files" },
-    { "<leader>sg", function() Snacks.picker.grep() end,                                     desc = "Grep" },
-    { "<leader>sw", function() Snacks.picker.grep_word() end,                                desc = "Visual selection or word", mode = { "n", "x" } },
-    { "<leader>fb", function() Snacks.picker.buffers() end,                                  desc = "Buffers" },
-    { "<leader>sd", function() Snacks.picker.diagnostics() end,                              desc = "Diagnostics" },
+    { "<leader>sg", function() Snacks.picker.grep({ hidden = true }) end,                    desc = "Grep" },
+    { "<leader>sw", function() Snacks.picker.grep_word({ hidden = true }) end,               desc = "Visual selection or word", mode = { "n", "x" } },
+    { "<leader>fb", function() Snacks.picker.buffers({ hidden = true }) end,                 desc = "Buffers" },
+    { "<leader>sd", function() Snacks.picker.diagnostics({ hidden = true }) end,             desc = "Diagnostics" },
     { "<leader>sc", function() Snacks.picker.command_history() end,                          desc = "Command History" },
     { "<leader>sC", function() Snacks.picker.commands() end,                                 desc = "Commands" },
     { "<leader>sh", function() Snacks.picker.help() end,                                     desc = "Help Pages" },
     { "<leader>sH", function() Snacks.picker.highlights() end,                               desc = "Highlights" },
-    { "<leader>s?", function() Snacks.picker.recent() end,                                   desc = "Recent" },
-    { "<leader>gr", function() Snacks.picker.lsp_references() end,                           desc = "LSP References" },
+    { "<leader>s?", function() Snacks.picker.recent({ hidden = true }) end,                  desc = "Recent" },
+    { "<leader>gr", function() Snacks.picker.lsp_references({ hidden = true }) end,          desc = "LSP References" },
   },
   init = function()
     -- Open find_files picker if no arguments are passed to nvim
@@ -47,7 +50,7 @@ return {
       callback = vim.schedule_wrap(function()
         if vim.fn.argv(0) == "" then
           require("oil").open(nil, nil, function()
-            require("snacks").picker.files()
+            require("snacks").picker.files({ hidden = true })
           end)
         end
       end),
