@@ -48,6 +48,10 @@ return {
     -- Open find_files picker if no arguments are passed to nvim
     vim.api.nvim_create_autocmd("VimEnter", {
       callback = vim.schedule_wrap(function()
+        if vim.v.argv[3] == '-c' then
+          return
+        end
+
         if vim.fn.argv(0) == "" then
           require("oil").open(nil, nil, function()
             require("snacks").picker.files({ hidden = true })
