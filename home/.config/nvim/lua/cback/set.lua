@@ -23,11 +23,10 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 vim.opt.cursorline = true
-vim.wo.signcolumn = 'yes'
-vim.opt.number = false
-vim.opt.relativenumber = false
-vim.opt.statuscolumn = '%s' ..
-    '%=%{printf("%4d", v:relnum?v:relnum:v:lnum)}' ..
+vim.wo.signcolumn = 'yes:1'
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.statuscolumn = '%s%l' ..
     '%{foldlevel(v:lnum)>0?(foldclosed(v:lnum)==-1?" ":"▸"):" "} '
 
 -- Decrease update time
