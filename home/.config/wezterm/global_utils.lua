@@ -40,3 +40,12 @@ end
 function PadLabel(label, path)
   return label .. string.rep(' ', 50 - #label) .. ReplaceHomeWithTilde(path)
 end
+
+---@param pane Pane
+---@return boolean
+function IsVimPane(pane)
+  local process_info = pane:get_foreground_process_info()
+  local process_name = process_info and process_info.name
+
+  return process_name == 'nvim' or process_name == 'vim' or process_name == 'nvim.exe' or process_name == 'vim.exe'
+end

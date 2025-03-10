@@ -15,6 +15,7 @@ require("remap_mouse")
 require("features/f_key_nav")
 require("features/project_picker")
 require("features/mux_pane_nav")
+require("features/toggle_term")
 
 --- uncomment to enable theme picker
 -- require("features/theme_picker")
