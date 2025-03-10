@@ -160,7 +160,7 @@ local init = function()
   ---@type lsp.ClientCapabilities
   local capabilities = vim.tbl_deep_extend("force",
     vim.lsp.protocol.make_client_capabilities(),
-    require('blink.cmp').get_lsp_capabilities()
+    require('cmp_nvim_lsp').default_capabilities()
   )
   capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
@@ -287,7 +287,6 @@ return {
       event = { 'BufRead', 'BufNewFile' },
       opts = {},
     },
-    'saghen/blink.cmp',
     {
       "https://gitlab.com/cbackas/sonarlint.nvim.git",
       opts = {
