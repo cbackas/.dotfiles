@@ -44,7 +44,8 @@ table.insert(Wez_Conf.keys, {
 
     -- Zoom to vim pane if it exists
     if vim_pane then
-      vim_pane:activate()
+      -- TODO fix the lua type for this - .pane is not an undefined field
+      vim_pane.pane:activate()
       tab:set_zoomed(true)
     end
   end),
