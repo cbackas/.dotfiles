@@ -36,10 +36,6 @@ return {
   event = "InsertEnter",
   config = config,
   cond = function()
-    local enable_supermaven = os.getenv('ENABLE_SUPERMAVEN')
-    local use_supermaven = enable_supermaven == '1' or enable_supermaven == 'yes' or enable_supermaven == 'true'
-    if use_supermaven then return false end
-
     -- if 'DISABLE_COPILOT' env var is set, don't load copilot
     local disable_copilot = os.getenv('DISABLE_COPILOT')
     local is_copilot_disabled = disable_copilot == '1' or disable_copilot == 'yes' or disable_copilot == 'true'
