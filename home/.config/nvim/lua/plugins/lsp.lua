@@ -35,6 +35,11 @@ local servers = {
         enumMemberValues = { enabled = true },
       }
     },
+    vtsls = {
+      experimental = {
+        maxInlayHintLength = 30
+      }
+    }
   },
   -- tsserver = {
   --   -- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
