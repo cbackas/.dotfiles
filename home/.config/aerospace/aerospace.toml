@@ -56,8 +56,8 @@ alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
 # comms workspace
-ctrl-alt-shift-1 = ['workspace comms', 'layout accordion']
-ctrl-alt-shift-a = ['workspace comms', 'layout accordion']
+ctrl-alt-shift-1 = ['workspace comms']
+ctrl-alt-shift-a = ['workspace comms']
 cmd-ctrl-alt-shift-1 = 'move-node-to-workspace comms'
 # browser workspace
 ctrl-alt-shift-2 = 'workspace browser'
