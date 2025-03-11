@@ -117,6 +117,7 @@ local servers = {
   gopls = {},
   csharp_ls = {},
   bicep = {},
+  jsonls = {},
 }
 
 --  This function gets run when an LSP connects to a particular buffer.
@@ -233,6 +234,7 @@ local init = function()
     htmldjango = { 'djlint' },
     workflow = { 'actionlint' },
     sh = { 'shellcheck' },
+    -- json = { 'jsonlint' },
   }
 
   -- auto lint on read/write of buffers so diagnostics are always up to date
