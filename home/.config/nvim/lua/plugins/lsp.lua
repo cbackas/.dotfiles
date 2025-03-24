@@ -120,20 +120,17 @@ local servers = {
   jsonls = {},
   tailwindcss = {},
   harper_ls = {
-    settings = {
-      ["harper-ls"] = {
-        userDictPath = "/Users/zac/.config/nvim/spell/en.utf-8.add",
-        linters = {
-          ToDoHyphen = false,
-          -- SentenceCapitalization = true,
-          -- SpellCheck = true,
-        },
-        isolateEnglish = true,
-        markdown = {
-          -- [ignores this part]()
-          -- [[ also ignores my marksman links ]]
-          IgnoreLinkTitle = true,
-        },
+    ["harper-ls"] = {
+      userDictPath = "/Users/zac/.config/nvim/spell/en.utf-8.add",
+      linters = {
+        ToDoHyphen = false,
+        SentenceCapitalization = false,
+      },
+      isolateEnglish = true,
+      markdown = {
+        -- [ignores this part]()
+        -- [[ also ignores my marksman links ]]
+        IgnoreLinkTitle = true,
       },
     },
   },
