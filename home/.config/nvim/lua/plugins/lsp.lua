@@ -118,6 +118,25 @@ local servers = {
   csharp_ls = {},
   bicep = {},
   jsonls = {},
+  tailwindcss = {},
+  harper_ls = {
+    settings = {
+      ["harper-ls"] = {
+        userDictPath = "/Users/zac/.config/nvim/spell/en.utf-8.add",
+        linters = {
+          ToDoHyphen = false,
+          -- SentenceCapitalization = true,
+          -- SpellCheck = true,
+        },
+        isolateEnglish = true,
+        markdown = {
+          -- [ignores this part]()
+          -- [[ also ignores my marksman links ]]
+          IgnoreLinkTitle = true,
+        },
+      },
+    },
+  },
 }
 
 --  This function gets run when an LSP connects to a particular buffer.
