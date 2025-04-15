@@ -66,20 +66,21 @@ local config = function()
   }
 
   -- define visual settings for harpoon tabline
-  local yellow = '#DCDCAA'
-  local yellow_orange = '#D7BA7D'
-  local background_color = "#282829"
-  local grey = "#818398"
-  local dark_grey = "#676b7e"
-  local light_grey = "#b0b2bf"
-  local light_blue = "#9CDCFE"
-  vim.api.nvim_set_hl(0, "HarpoonInactive", { fg = grey, bg = background_color })
-  vim.api.nvim_set_hl(0, "HarpoonInactiveFolder", { fg = dark_grey, bg = background_color })
-  vim.api.nvim_set_hl(0, "HarpoonActive", { fg = light_blue, bg = background_color })
-  vim.api.nvim_set_hl(0, "HarpoonActiveFolder", { fg = light_grey, bg = background_color })
-  vim.api.nvim_set_hl(0, "HarpoonNumberActive", { fg = yellow, bg = background_color })
-  vim.api.nvim_set_hl(0, "HarpoonNumberInactive", { fg = yellow_orange, bg = background_color })
-  vim.api.nvim_set_hl(0, "TabLineFill", { fg = "white", bg = background_color })
+  -- local yellow = '#DCDCAA'
+  -- local yellow_orange = '#D7BA7D'
+  -- local background_color = "#181818"
+  -- local background_color_active = "#292929"
+  -- local grey = "#818398"
+  -- local dark_grey = "#676b7e"
+  -- local light_grey = "#b0b2bf"
+  -- local light_blue = "#9CDCFE"
+  -- vim.api.nvim_set_hl(0, "HarpoonInactive", { fg = grey, bg = background_color })
+  -- vim.api.nvim_set_hl(0, "HarpoonInactiveFolder", { fg = dark_grey, bg = background_color })
+  -- vim.api.nvim_set_hl(0, "HarpoonActive", { fg = light_blue, bg = background_color_active })
+  -- vim.api.nvim_set_hl(0, "HarpoonActiveFolder", { fg = light_grey, bg = background_color_active })
+  -- vim.api.nvim_set_hl(0, "HarpoonNumberActive", { fg = yellow, bg = background_color_active })
+  -- vim.api.nvim_set_hl(0, "HarpoonNumberInactive", { fg = yellow_orange, bg = background_color })
+  -- vim.api.nvim_set_hl(0, "TabLineFill", { fg = "white", bg = background_color })
 
   local harpoon = require('harpoon')
 
