@@ -23,6 +23,7 @@ local config = function()
     sources = {
       { name = 'nvim_lsp', keyword_length = 2 },
       { name = 'path',     keyword_length = 2 },
+      { name = 'lazydev',  group_index = 0 },
     },
     formatting = {
       format = lspkind.cmp_format {

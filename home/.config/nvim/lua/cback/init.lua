@@ -1,6 +1,7 @@
 require('cback.set')
 require('cback.remap')
 require('cback.lazy')
+require('cback.lsp')
 require('cback.filetypes')
 require('cback.autotest')
 require('cback.right-click')
