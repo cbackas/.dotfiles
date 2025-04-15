@@ -18,6 +18,7 @@ local spec = lush.extends({ arctic }).with(function()
     Todo { fg = new_bg, bg = arctic.Todo.bg, gui = arctic.Todo.gui },
     Pmenu { fg = arctic.Pmenu.fg, bg = popup_bg },
     SnacksPicker { fg = arctic.Pmenu.fg, bg = new_bg },
+    NormalFloat { fg = arctic.Normal.fg, bg = new_bg }
   }
 end)
 
