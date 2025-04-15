@@ -5,7 +5,7 @@ These are my dotfiles
 ### Stow
 Use stow to symlink files to home dir
 
-```
+```sh
 cd ~/.dotfiles
 stow home
 ```
