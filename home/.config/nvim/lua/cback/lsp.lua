@@ -36,7 +36,7 @@ vim.lsp.config("rust_analyzer", {
     },
   }
 })
-vim.lsp.config("my-denols", {
+vim.lsp.config("denols", {
   workspace_required = true,
   settings = {
     deno = {
@@ -51,7 +51,7 @@ vim.lsp.config("my-denols", {
     }
   }
 })
-vim.lsp.config("my-vtsls", {
+vim.lsp.config("vtsls", {
   workspace_required = true,
   settings = {
     typescript = {
@@ -75,7 +75,7 @@ vim.lsp.config("my-vtsls", {
   }
 })
 vim.lsp.config("yamlls", {
-  filetypes = { 'yaml', 'cfn-yaml', 'group_vars', 'workflow' },
+  filetypes = { 'cfn-yaml', 'group_vars', 'workflow' },
   settings = {
     yaml = {
       format = {
@@ -128,8 +128,8 @@ vim.lsp.config("harper_ls", {
 vim.lsp.enable({
   "lua_ls",
   "rust_analyzer",
-  "my-vtsls",
-  "my-denols",
+  "vtsls",
+  "denols",
   "harper_ls",
   "yamlls",
   "pyright",

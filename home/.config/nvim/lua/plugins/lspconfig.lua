@@ -1,3 +1,3 @@
 return {
-  "neovim/nvim-lspconfig"
+  "cbackas/nvim-lspconfig"
 }
