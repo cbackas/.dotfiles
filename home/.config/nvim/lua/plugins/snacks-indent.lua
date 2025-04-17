@@ -1,5 +1,7 @@
 return {
   "folke/snacks.nvim",
+  lazy = false,
+  priority = 1000,
   ---@param opts snacks.Config
   opts = function(_, opts)
     opts.indent = {
