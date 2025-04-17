@@ -144,9 +144,9 @@ vim.lsp.enable({
   "csharp_ls",
   "bicep",
   "jsonls",
+  "astro"
 })
 
 -- these rely on on_new_config so they gotta use the old setup
 require('lspconfig').tailwindcss.setup {}
-require('lspconfig').astro.setup {}
 require('lspconfig').eslint.setup {}
