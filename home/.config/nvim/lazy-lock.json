@@ -48,5 +48,5 @@
   "vim-fugitive": { "branch": "master", "commit": "4a745ea72fa93bb15dd077109afbb3d1809383f2" },
   "vim-rhubarb": { "branch": "master", "commit": "386daa2e9d98e23e27ad089afcbe5c5a903e488d" },
   "vim-sleuth": { "branch": "master", "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080" },
-  "wezterm-types": { "branch": "main", "commit": "bdf3ef8985b8eef7eb6460088b3088374d7c903e" }
+  "wezterm-types": { "branch": "main", "commit": "3d59d9ed537ec4b935be3d48e06689ed02adace7" }
 }
