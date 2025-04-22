@@ -130,6 +130,7 @@ vim.lsp.enable({
   "rust_analyzer",
   "vtsls",
   "denols",
+  "eslint",
   "harper_ls",
   "yamlls",
   "pyright",
@@ -144,9 +145,6 @@ vim.lsp.enable({
   "csharp_ls",
   "bicep",
   "jsonls",
-  "astro"
+  "astro",
+  "tailwindcss"
 })
-
--- these rely on on_new_config so they gotta use the old setup
-require('lspconfig').tailwindcss.setup {}
-require('lspconfig').eslint.setup {}
