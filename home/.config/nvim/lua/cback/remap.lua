@@ -29,3 +29,5 @@ vim.keymap.set('n', 'Q', '@qj')
 vim.keymap.set('x', 'Q', ':norm @q<CR>')
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
+vim.keymap.set("n", "ycc", function() return 'yy' .. vim.v.count1 .. "gcc']p" end, { remap = true, expr = true })
