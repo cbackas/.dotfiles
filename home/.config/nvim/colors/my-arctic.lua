@@ -28,6 +28,8 @@ local spec = lush.extends({ arctic }).with(function()
     HarpoonInactiveFolder { fg = arctic.LineNr.fg, bg = arctic.TabLine.bg },
     HarpoonNumberInactive { fg = arctic.Special.fg, bg = arctic.TabLine.bg },
     TabLineFill { fg = "white", bg = arctic.TabLineFill.bg, sp = arctic.TabLineFill.sp },
+    -- faastaction
+    MoreMsg { fg = arctic.Identifier.fg },
   }
 end)
 

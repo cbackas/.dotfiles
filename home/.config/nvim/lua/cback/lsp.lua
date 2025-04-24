@@ -1,6 +1,7 @@
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspAttach", { clear = true }),
   callback = function(ev)
+    vim.keymap.set('n', 'gra', require('fastaction').code_action, { buffer = ev.buf, desc = 'Code Actions' })
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = ev.buf, desc = '[G]oto [D]efinition' })
     vim.keymap.set('n', '<leader>tih', function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
