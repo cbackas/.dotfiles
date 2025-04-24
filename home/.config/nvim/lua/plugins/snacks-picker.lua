@@ -8,25 +8,26 @@ return {
       matcher = {
         frecency = true
       },
+      ui_select = true,
       layout = {
         reverse = false,
         layout = {
           box = "horizontal",
-          backdrop = false,
+          backdrop = { transparent = true, blend = 87 },
           width = 0.90,
           height = 0.85,
           border = "none",
           {
             box = "vertical",
-            { win = "input", height = 1,          border = "rounded",   title = "{source} {live}", title_pos = "center" },
-            { win = "list",  title = " Results ", title_pos = "center", border = "rounded" },
+            { win = "input", height = 1,        border = "rounded", title = "{source} {live}", title_pos = "left" },
+            { win = "list",  title = "Results", title_pos = "left", border = "rounded" },
           },
           {
             win = "preview",
             width = 0.60,
             border = "rounded",
-            title = " Preview ",
-            title_pos = "center",
+            title = "Preview",
+            title_pos = "left",
           },
         }
       },
