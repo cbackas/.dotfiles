@@ -96,6 +96,9 @@ vim.lsp.config("vtsls", {
     }
   }
 })
+vim.lsp.config("eslint", {
+  workspace_required = true
+})
 vim.lsp.config("yamlls", {
   filetypes = { 'cfn-yaml', 'group_vars', 'workflow' },
   settings = {
