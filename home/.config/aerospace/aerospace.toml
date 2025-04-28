@@ -56,14 +56,14 @@ alt-shift-l = 'move right'
 alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
-# comms workspace
-ctrl-alt-shift-1 = ['workspace comms']
-ctrl-alt-shift-a = ['workspace comms']
-cmd-ctrl-alt-shift-1 = 'move-node-to-workspace comms'
+# communications workspace
+ctrl-alt-shift-1 = ['workspace 1']
+ctrl-alt-shift-a = ['workspace 1']
+cmd-ctrl-alt-shift-1 = 'move-node-to-workspace 1'
 # browser workspace
-ctrl-alt-shift-2 = 'workspace browser'
-ctrl-alt-shift-s = 'workspace browser'
-cmd-ctrl-alt-shift-2 = 'move-node-to-workspace browser'
+ctrl-alt-shift-2 = 'workspace 2'
+ctrl-alt-shift-s = 'workspace 2'
+cmd-ctrl-alt-shift-2 = 'move-node-to-workspace 2'
 
 # numbered workspaces and homerow aliesses
 ctrl-alt-shift-3 = 'workspace 3'
@@ -76,9 +76,9 @@ ctrl-alt-shift-5 = 'workspace 5'
 ctrl-alt-shift-g = 'workspace 5'
 cmd-ctrl-alt-shift-5 = 'move-node-to-workspace 5'
 
-# plex workspace
-ctrl-alt-shift-v = 'workspace plex'
-cmd-ctrl-alt-shift-v = 'move-node-to-workspace plex'
+# video workspace
+ctrl-alt-shift-v = 'workspace v'
+cmd-ctrl-alt-shift-v = 'move-node-to-workspace v'
 
 # f1 workspaces
 ctrl-alt-shift-r = ['workspace f1Main', 'workspace f1Secondary']
@@ -92,7 +92,7 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 alt-shift-backspace = 'mode service'
 
 [workspace-to-monitor-force-assignment]
-comms = 'DELL U2723QE'
+1 = 'DELL U2723QE'
 f1Main = 'main'
 f1Secondary = 'DELL U2723QE'
 
@@ -104,41 +104,41 @@ run = ['layout floating']
 check-further-callbacks = false
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
-run = ['move-node-to-workspace browser']
+run = ['move-node-to-workspace 2']
 [[on-window-detected]]
 if.app-id = "company.thebrowser.Browser"
-run = ['move-node-to-workspace browser']
+run = ['move-node-to-workspace 2']
 [[on-window-detected]]
 if.app-id = "com.google.Chrome"
-run = ['move-node-to-workspace browser']
+run = ['move-node-to-workspace 2']
 [[on-window-detected]]
 if.app-id = "com.apple.Safari"
-run = ['move-node-to-workspace browser']
+run = ['move-node-to-workspace 2']
 [[on-window-detected]]
 if.app-id = "com.microsoft.edgemac"
-run = ['move-node-to-workspace browser']
+run = ['move-node-to-workspace 2']
 
-# comms
+# communications
 [[on-window-detected]]
 if.app-id = "com.hnc.Discord"
-run = ['move-node-to-workspace comms']
+run = ['move-node-to-workspace 1']
 [[on-window-detected]]
 if.app-id = "com.apple.MobileSMS"
-run = ['move-node-to-workspace comms']
+run = ['move-node-to-workspace 1']
 [[on-window-detected]]
 if.app-id = "com.tinyspeck.slackmacgap"
-run = ['move-node-to-workspace comms']
+run = ['move-node-to-workspace 1']
 [[on-window-detected]]
 if.app-id = "com.apple.mail"
-run = ['move-node-to-workspace comms']
+run = ['move-node-to-workspace 1']
 [[on-window-detected]]
 if.app-id = "com.microsoft.Outlook"
-run = ['move-node-to-workspace comms']
+run = ['move-node-to-workspace 1']
 
-# plex
+# video
 [[on-window-detected]]
 if.app-id = "tv.plex.desktop"
-run = ['move-node-to-workspace plex']
+run = ['move-node-to-workspace v']
 
 [[on-window-detected]]
 if.window-title-regex-substring = "wezterm Configuration Error"
