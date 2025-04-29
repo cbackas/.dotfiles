@@ -39,7 +39,7 @@
   "oil.nvim": { "branch": "master", "commit": "685cdb4ffa74473d75a1b97451f8654ceeab0f4a" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "promise-async": { "branch": "main", "commit": "119e8961014c9bfaf1487bf3c2a393d254f337e2" },
-  "reactive.nvim": { "branch": "main", "commit": "228386e8437470b01f3edda2988f7165f0b7bc5f" },
+  "reactive.nvim": { "branch": "master", "commit": "228386e8437470b01f3edda2988f7165f0b7bc5f" },
   "smart-splits.nvim": { "branch": "master", "commit": "d287d643afd928400aced3c7fa712e7ef3c3f96d" },
   "smartyank.nvim": { "branch": "master", "commit": "0a4554a4ea4cad73dab0a15e559f2128ca03c7b2" },
   "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
