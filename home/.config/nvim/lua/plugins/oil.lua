@@ -14,5 +14,17 @@ return {
   },
   init = function()
     vim.api.nvim_set_keymap('n', '<leader>be', ':Oil<CR>', { noremap = true, silent = true, desc = 'Open file explorer' })
+
+    vim.api.nvim_create_autocmd("VimEnter", {
+      callback = vim.schedule_wrap(function()
+        if vim.v.argv[3] == '-c' then
+          return
+        end
+
+        if vim.fn.argv(0) == "" then
+          require("oil").open(nil, nil, nil)
+        end
+      end),
+    })
   end,
 }
