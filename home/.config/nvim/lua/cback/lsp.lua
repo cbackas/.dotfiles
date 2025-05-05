@@ -171,5 +171,6 @@ vim.lsp.enable({
   "bicep",
   "jsonls",
   "astro",
-  "tailwindcss"
+  "tailwindcss",
+  "phpactor",
 })
