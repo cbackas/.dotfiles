@@ -9,7 +9,7 @@ accordion-padding = 60
 after-startup-command = [
     'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
 ]
-exec-on-workspace-change = ['/Users/zac/.dotfiles/home/.config/aerospace/pip-follow.sh']
+exec-on-workspace-change = ['/Users/zac/.dotfiles/home/.config/aerospace/on-workspace-change.sh']
 
 [gaps]
 inner.horizontal = 10
