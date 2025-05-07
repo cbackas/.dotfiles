@@ -17,3 +17,5 @@ require("lazy").setup("plugins", {
     notify = false
   }
 })
+
+require('cback.PCDSync').setup()
