@@ -7,7 +7,7 @@ local remote_root = "/var/www/html/phoenixphpclient6.0/packages/"
 
 local function get_diff_cmd()
   local rsync_cmd = string.format(
-    "rsync -rc --ignore-times --out-format='%%n' --exclude-from='.gitignore' --exclude='template_editor/resources/' %s %s:%s",
+    "rsync -rc --ignore-times --dry-run --out-format='%%n' --exclude-from='.gitignore' --exclude='template_editor/resources/' %s %s:%s",
     vim.fn.shellescape(local_root),
     ssh_host,
     vim.fn.shellescape(remote_root)
