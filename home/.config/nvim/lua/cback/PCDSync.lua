@@ -3,21 +3,21 @@ local M = {}
 -- idk make these configurable
 local ssh_host = "root@172.16.1.65"
 local local_root = "./packages/"
-local remote_root = "/var/www/html/phoenixphpclient6.0/packages/"
+local remote_root = "/var/www/html/phoenixphpclient6.0/"
 
 local function get_diff_cmd()
   local rsync_cmd = string.format(
     "rsync -rc --ignore-times --dry-run --out-format='%%n' --exclude-from='.gitignore' --exclude='template_editor/resources/' %s %s:%s",
     vim.fn.shellescape(local_root),
     ssh_host,
-    vim.fn.shellescape(remote_root)
+    vim.fn.shellescape(remote_root .. "packages/")
   )
   return rsync_cmd
 end
 
 ---@param files string[]
 local function get_sync_cmd(files)
-  local rsync_cmd = { "rsync", "-avc", "--relative" }
+  local rsync_cmd = { "rsync", "-vc", "--relative" }
 
   for _, file in ipairs(files) do
     table.insert(rsync_cmd, vim.fn.shellescape(local_root .. file))
