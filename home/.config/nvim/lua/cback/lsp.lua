@@ -100,7 +100,7 @@ vim.lsp.config("eslint", {
   workspace_required = true
 })
 vim.lsp.config("yamlls", {
-  filetypes = { 'cfn-yaml', 'group_vars', 'workflow' },
+  filetypes = { 'yaml', 'cfn-yaml', 'group_vars', 'workflow' },
   settings = {
     yaml = {
       format = {
@@ -173,4 +173,6 @@ vim.lsp.enable({
   "astro",
   "tailwindcss",
   "phpactor",
+  "shellcheck",
+  "bashls"
 })
