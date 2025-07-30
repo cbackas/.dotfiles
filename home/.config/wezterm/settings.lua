@@ -6,7 +6,7 @@ Wez_Conf.freetype_load_target = "HorizontalLcd"
 Wez_Conf.animation_fps = 60
 Wez_Conf.max_fps = 120
 
-Wez_Conf.scrollback_lines = 10000
+Wez_Conf.scrollback_lines = 50000
 
 -- use a unix domain so sessions outlast wezterm
 Wez_Conf.unix_domains = {
