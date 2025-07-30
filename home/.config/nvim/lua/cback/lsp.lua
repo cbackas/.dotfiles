@@ -186,7 +186,7 @@ vim.lsp.enable({
   "eslint",
   "harper_ls",
   "yamlls",
-  "pyright",
+  "basedpyright",
   "biome",
   "html",
   "dockerls",
