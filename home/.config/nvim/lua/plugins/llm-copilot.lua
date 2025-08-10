@@ -31,14 +31,34 @@ local config = function()
 end
 
 return {
-  "zbirenbaum/copilot.lua",
-  cmd = "Copilot",
-  event = "InsertEnter",
-  config = config,
-  cond = function()
-    -- if 'DISABLE_COPILOT' env var is set, don't load copilot
-    local disable_copilot = os.getenv('DISABLE_COPILOT')
-    local is_copilot_disabled = disable_copilot == '1' or disable_copilot == 'yes' or disable_copilot == 'true'
-    return not is_copilot_disabled
-  end
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = config,
+    cond = function()
+      -- if 'DISABLE_COPILOT' env var is set, don't load copilot
+      local disable_copilot = os.getenv('DISABLE_COPILOT')
+      local is_copilot_disabled = disable_copilot == '1' or disable_copilot == 'yes' or disable_copilot == 'true'
+      return not is_copilot_disabled
+    end
+  },
+  {
+    {
+      "CopilotC-Nvim/CopilotChat.nvim",
+      dependencies = {
+        { "nvim-lua/plenary.nvim", branch = "master" },
+      },
+      build = "make tiktoken",
+      cond = function()
+        -- if 'DISABLE_COPILOT' env var is set, don't load copilot
+        local disable_copilot = os.getenv('DISABLE_COPILOT')
+        local is_copilot_disabled = disable_copilot == '1' or disable_copilot == 'yes' or disable_copilot == 'true'
+        return not is_copilot_disabled
+      end,
+      opts = {
+        -- See Configuration section for options
+      },
+    },
+  }
 }
