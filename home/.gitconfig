@@ -1,6 +1,6 @@
 [user]
-	name = cbackas
-	email = git@zac.gg
+	name = Zac Gibson
+	email = zac.gibson@lge.com
 	signingkey = B0CB0665047745BF
 [init]
 	defaultBranch = main
@@ -10,4 +10,4 @@
 [push]
 	autoSetupRemote = true
 [commit]
-	gpgsign = true
+	gpgsign = false
