@@ -92,9 +92,11 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 alt-shift-backspace = 'mode service'
 
 [workspace-to-monitor-force-assignment]
-1 = 'DELL U2723QE'
-f1Main = 'main'
-f1Secondary = 'DELL U2723QE'
+    1 = 'DELL U2723QE'
+    2 = 'LG ULTRAWIDE \(2\)'
+    3 = 'LG ULTRAWIDE \(1\)'
+    f1Main = 'main'
+    f1Secondary = 'DELL U2723QE'
 
 # browsers to browser workspace
 [[on-window-detected]]
@@ -143,6 +145,10 @@ run = ['move-node-to-workspace v']
 [[on-window-detected]]
 if.window-title-regex-substring = "wezterm Configuration Error"
 run = ['layout floating']
+check-further-callbacks = false
+[[on-window-detected]]
+if.app-id = "com.github.wez.wezterm"
+run = ["move-node-to-workspace 3"]
 
 # f1
 # [[on-window-detected]]
