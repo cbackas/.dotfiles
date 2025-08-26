@@ -1,10 +1,14 @@
+local function not_vtsls(client)
+  return client.name ~= "vtsls"
+end
+
 return {
   'stevearc/conform.nvim',
   event = { 'BufRead', 'BufNewFile' },
   opts = {
     formatters_by_ft = {
-      javascript = { 'eslint' },
-      typescript = { 'eslint' },
+      javascript = { 'eslint', lsp_format = 'first', stop_after_first = true, filter = not_vtsls },
+      typescript = { 'eslint', lsp_format = 'first', stop_after_first = true, filter = not_vtsls },
       -- html = { 'eslint_d' },
       ['jinja.html'] = { 'djlint' },
       htmldjango = { 'djlint' },
