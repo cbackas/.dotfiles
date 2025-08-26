@@ -15,9 +15,9 @@ exec-on-workspace-change = ['/Users/zac/.dotfiles/home/.config/aerospace/on-work
 inner.horizontal = 10
 inner.vertical =   10
 outer.bottom =     10
-outer.top = [{ monitor."AORUS FO48U" = 500 }, 10]
-outer.left = [{ monitor."AORUS FO48U" = 400 }, 10]
-outer.right = [{ monitor."AORUS FO48U" = 400 }, 10]
+outer.top = [{ monitor."AORUS FO48U" = 470 }, 10]
+outer.left = [{ monitor."AORUS FO48U" = 300 }, 10]
+outer.right = [{ monitor."AORUS FO48U" = 300 }, 10]
 
 # See https://nikitabobko.github.io/AeroSpace/guide#exec-env-vars
 [exec]                   # Again, you don't need to copy all config sections to your config.
