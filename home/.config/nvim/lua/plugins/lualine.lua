@@ -124,7 +124,12 @@ local config = function()
       local label
 
       if item.is_oil then
-        label = '[' .. file_name .. ']'
+        -- check if it starts with h:// (remote oil)
+        if vim.startswith(file_name, "h://") then
+          label = file_name:gsub("^h://[^/]+//", "/")
+        else
+          label = '[' .. file_name .. ']'
+        end
       else
         if dupe_checker[file_name] > 1 then
           label = {
