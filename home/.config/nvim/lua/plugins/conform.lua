@@ -1,5 +1,5 @@
 local function not_vtsls(client)
-  return client.name ~= "vtsls"
+  return client.name ~= "vtsls" and client.name ~= "vue_ls"
 end
 
 return {
@@ -9,6 +9,7 @@ return {
     formatters_by_ft = {
       javascript = { 'eslint', lsp_format = 'first', stop_after_first = true, filter = not_vtsls },
       typescript = { 'eslint', lsp_format = 'first', stop_after_first = true, filter = not_vtsls },
+      vue = { 'eslint', lsp_format = 'first', stop_after_first = true, filter = not_vtsls },
       -- html = { 'eslint_d' },
       ['jinja.html'] = { 'djlint' },
       htmldjango = { 'djlint' },
