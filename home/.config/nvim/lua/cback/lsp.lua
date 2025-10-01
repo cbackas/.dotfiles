@@ -182,6 +182,7 @@ vim.lsp.enable({
   "lua_ls",
   "rust_analyzer",
   "vtsls",
+  "vue_ls",
   "denols",
   "eslint",
   "harper_ls",
