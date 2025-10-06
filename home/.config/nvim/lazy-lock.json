@@ -11,6 +11,7 @@
   "coverage.vim": { "branch": "master", "commit": "adecdc605ed187ca47dbc6ddd2f3d73dac786356" },
   "fastaction.nvim": { "branch": "main", "commit": "9bf0c368565023914c120562473dc5a5c179ee8c" },
   "fidget.nvim": { "branch": "main", "commit": "dafd592c7bdbb6cd6d17d3c9a1a8abf3930138c1" },
+  "fugitive-delta.nvim": { "branch": "master", "commit": "08aa115f0f1c40dbec64c479f470104adb9f78c9" },
   "gitsigns.nvim": { "branch": "main", "commit": "c7d37ca22b461f64e26f8f6701b2586128ed0bef" },
   "harpoon": { "branch": "harpoon2", "commit": "ed1f853847ffd04b2b61c314865665e1dadf22c7" },
   "helpview.nvim": { "branch": "main", "commit": "10a4fc23876c879bcd364b7d21564e905ff49d36" },

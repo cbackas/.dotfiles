@@ -36,5 +36,6 @@ return {
   dependencies = {
     -- github stuff for fugitive
     "tpope/vim-rhubarb",
+    "farhanmustar/fugitive-delta.nvim"
   }
 }
