@@ -32,7 +32,7 @@ for i = 1, 9 do
   })
 end
 
-for i = 1, 8 do
+for i = 1, 9 do
   -- CTRL+ALT + number to move to that position
   table.insert(Wez_Conf.keys, {
     key = tostring(i),
