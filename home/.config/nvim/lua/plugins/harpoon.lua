@@ -14,7 +14,7 @@ local init = function()
     { desc = "Harpoon List" })
 
   -- define keybindings for navigation
-  for i = 1, 8 do
+  for i = 1, 9 do
     vim.keymap.set("n", string.format("<M-%s>", i),
       function()
         harpoon:list():select(i)
@@ -22,6 +22,11 @@ local init = function()
       { silent = true, noremap = true, desc = "Harpoon mark " .. i }
     )
   end
+
+  vim.keymap.set("n", "<M-`>", function()
+    vim.print("ya motha")
+    require("oil").open(vim.fn.getcwd())
+  end, { silent = true, noremap = true, desc = "Open project CWD with oil" })
 end
 
 return {
