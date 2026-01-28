@@ -75,12 +75,6 @@ vim.lsp.config("denols", {
 })
 vim.lsp.config("vtsls", {
   filetypes = {
-    'javascript',
-    'javascriptreact',
-    'javascript.jsx',
-    'typescript',
-    'typescriptreact',
-    'typescript.tsx',
     'vue'
   },
   workspace_required = true,
@@ -123,6 +117,32 @@ vim.lsp.config("vtsls", {
       table.insert(config.settings.vtsls.tsserver.globalPlugins, vuePluginConfig)
     end
   end
+})
+vim.lsp.config("tsgo", {
+  filetypes = {
+    'javascript',
+    'javascriptreact',
+    'javascript.jsx',
+    'typescript',
+    'typescriptreact',
+    'typescript.tsx',
+  },
+  workspace_required = true,
+  settings = {
+    typescript = {
+      format = {
+        enable = false
+      },
+      inlayHints = {
+        parameterNames = { enabled = "literals" },
+        parameterTypes = { enabled = true },
+        variableTypes = { enabled = true },
+        propertyDeclarationTypes = { enabled = true },
+        functionLikeReturnTypes = { enabled = true },
+        enumMemberValues = { enabled = true },
+      }
+    }
+  }
 })
 vim.lsp.config("eslint", {
   workspace_required = true
@@ -181,7 +201,8 @@ vim.lsp.config("harper_ls", {
 vim.lsp.enable({
   "lua_ls",
   "rust_analyzer",
-  "vtsls",
+  -- "vtsls",
+  "tsgo",
   "vue_ls",
   "denols",
   "eslint",
