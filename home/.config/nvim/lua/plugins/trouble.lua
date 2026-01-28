@@ -18,7 +18,7 @@ local init = function()
     })
 
     -- Open the quickfix list to show the results
-    require("trouble").open({ mode = "qflist" })
+    vim.cmd([[Trouble qflist open]])
   end, { nargs = '?', complete = "file" })
 end
 
