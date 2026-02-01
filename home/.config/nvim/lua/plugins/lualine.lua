@@ -241,5 +241,6 @@ end
 
 return {
   'nvim-lualine/lualine.nvim',
+  event = "VeryLazy",
   config = config
 }

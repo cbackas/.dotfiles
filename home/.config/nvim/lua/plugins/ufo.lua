@@ -4,6 +4,7 @@ vim.o.foldenable = true
 
 return {
   'kevinhwang91/nvim-ufo',
+  event = "BufReadPost",
   dependencies = {
     'kevinhwang91/promise-async',
   },
@@ -12,8 +13,8 @@ return {
       return { 'lsp', 'indent' }
     end
   },
-  init = function(_)
-    vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-    vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
-  end
+  keys = {
+    { 'zR', function() require('ufo').openAllFolds() end, desc = 'Open all folds' },
+    { 'zM', function() require('ufo').closeAllFolds() end, desc = 'Close all folds' },
+  },
 }

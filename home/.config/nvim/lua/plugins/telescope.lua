@@ -89,35 +89,30 @@ local config = function()
   pcall(require('telescope').load_extension, 'ui-select')
 end
 
-local init = function()
-  -- See `:help telescope.builtin`
-  vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = 'Find recently opened files' })
-  -- vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-  vim.keymap.set('n', '<leader>/', function()
-    require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-      winblend = 10,
-      previewer = true,
-    })
-  end, { desc = 'Fuzzily search in current buffer' })
-
-  -- Set telescope keybinds
-  vim.keymap.set('n', '<leader>sG', require('telescope.builtin').git_files, { desc = '[S]earch [G]it Files' })
-  vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-  vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-  vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-  vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-  vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-  vim.keymap.set('n', '<leader>so', function()
-    require('telescope.builtin').find_files({ default_text = vim.fn.expand("%:t:r") })
-  end, { desc = '[S]earch [O]ther]' })
-  vim.keymap.set('n', '<leader>gr', require('telescope.builtin').lsp_references, { desc = '[G]oto [R]eferences' })
-end
-
 return {
   'nvim-telescope/telescope.nvim',
   branch = '0.1.x',
+  cmd = "Telescope",
+  keys = {
+    { '<leader>?', function() require('telescope.builtin').oldfiles() end, desc = 'Find recently opened files' },
+    { '<leader>/', function()
+        require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+          winblend = 10,
+          previewer = true,
+        })
+      end, desc = 'Fuzzily search in current buffer' },
+    { '<leader>sG', function() require('telescope.builtin').git_files() end, desc = '[S]earch [G]it Files' },
+    { '<leader>sh', function() require('telescope.builtin').help_tags() end, desc = '[S]earch [H]elp' },
+    { '<leader>sw', function() require('telescope.builtin').grep_string() end, desc = '[S]earch current [W]ord' },
+    { '<leader>sg', function() require('telescope.builtin').live_grep() end, desc = '[S]earch by [G]rep' },
+    { '<leader>sd', function() require('telescope.builtin').diagnostics() end, desc = '[S]earch [D]iagnostics' },
+    { '<leader>sf', function() require('telescope.builtin').find_files() end, desc = '[S]earch [F]iles' },
+    { '<leader>so', function()
+        require('telescope.builtin').find_files({ default_text = vim.fn.expand("%:t:r") })
+      end, desc = '[S]earch [O]ther]' },
+    { '<leader>gr', function() require('telescope.builtin').lsp_references() end, desc = '[G]oto [R]eferences' },
+  },
   config = config,
-  init = init,
   dependencies = {
     'nvim-lua/plenary.nvim',
 
