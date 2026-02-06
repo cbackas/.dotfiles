@@ -1,5 +1,5 @@
 local function not_vtsls(client)
-  return client.name ~= "vtsls" and client.name ~= "vue_ls"
+  return client.name ~= "vtsls" and client.name ~= "vue_ls" and client.name ~= "tsgo"
 end
 
 return {
