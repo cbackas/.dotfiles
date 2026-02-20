@@ -14,6 +14,7 @@ return {
       javascript = { 'eslint', lsp_format = 'first', stop_after_first = true, filter = not_vtsls },
       typescript = { 'eslint', lsp_format = 'first', stop_after_first = true, filter = not_vtsls },
       json = { filter = not_jsonls },
+      typescriptreact = { 'eslint', lsp_format = 'first', stop_after_first = true, filter = not_vtsls },
       vue = { 'eslint', lsp_format = 'first', stop_after_first = true, filter = not_vtsls },
       -- html = { 'eslint_d' },
       ['jinja.html'] = { 'djlint' },
