@@ -154,8 +154,23 @@ vim.lsp.config("yamlls", {
       format = {
         enable = false,
       },
+      schemas = {
+        ['https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json'] = {
+          ".gitlab-ci.yml",
+          ".gitlab-ci.yaml",
+          "**/.gitlab-ci.yml",
+          "**/.gitlab-ci.yaml",
+
+          -- your split files:
+          "**/.gitlab-ci-*.yml",
+          "**/.gitlab-ci-*.yaml",
+          "**/.gitlab-ci.*.yml",
+          "**/.gitlab-ci.*.yaml",
+        },
+      },
       hover = true,
       completion = true,
+      validate = true,
       customTags = {
         "!Base64 scalar",
         "!Cidr scalar",
@@ -178,6 +193,7 @@ vim.lsp.config("yamlls", {
         "!Sub sequence",
         "!Transform mapping",
         "!Ref scalar",
+        "!reference sequence",
       },
     },
   }
