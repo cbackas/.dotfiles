@@ -18,4 +18,9 @@
 	autoSetupRemote = true
 [commit]
 	gpgsign = true
+[alias]
+	# checkout gitlab MR
+	mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
+	# [s]witch [b]ranch - stash, create branch, pop stash
+	sb = "!f() { git stash && git checkout -b $1 && git stash pop; }; f"
 
