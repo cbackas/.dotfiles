@@ -24,7 +24,6 @@ local init = function()
   end
 
   vim.keymap.set("n", "<M-`>", function()
-    vim.print("ya motha")
     require("oil").open(vim.fn.getcwd())
   end, { silent = true, noremap = true, desc = "Open project CWD with oil" })
 end

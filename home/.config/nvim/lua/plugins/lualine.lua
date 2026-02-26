@@ -115,8 +115,17 @@ local config = function()
     end
 
 
+    local current_working_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ":.")
     local current_file_path = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":.")
+
     local tabs = {}
+
+    if current_file_path == "oil://" .. current_working_dir .. "/" then
+      table.insert(tabs, string.format("%%#HarpoonActive#%s ", "☱"))
+    else
+      table.insert(tabs, string.format("%%#HarpoonInactive#%s ", "☱"))
+    end
+
     for index = 1, #my_items do
       local item = my_items[index]
       local file_name = item.file_name
@@ -146,20 +155,22 @@ local config = function()
       end
       if current_file_path == item.path then
         if type(label) == "table" then
-          tabs[index] = string.format("%%#HarpoonNumberActive# %s. %%#HarpoonActiveFolder#%s/%%#HarpoonActive#%s ", index,
-            label.folder_name, label.file_name)
+          table.insert(tabs,
+            string.format("%%#HarpoonNumberActive# %s. %%#HarpoonActiveFolder#%s/%%#HarpoonActive#%s ", index,
+              label.folder_name, label.file_name))
         else
-          tabs[index] = string.format("%%#HarpoonNumberActive# %s. %%#HarpoonActive#%s ", index,
-            label)
+          table.insert(tabs, string.format("%%#HarpoonNumberActive# %s. %%#HarpoonActive#%s ", index,
+            label))
         end
       else
         if type(label) == "table" then
-          tabs[index] = string.format("%%#HarpoonNumberInactive# %s. %%#HarpoonInactiveFolder#%s/%%#HarpoonInactive#%s ",
-            index,
-            label.folder_name, label.file_name)
+          table.insert(tabs,
+            string.format("%%#HarpoonNumberInactive# %s. %%#HarpoonInactiveFolder#%s/%%#HarpoonInactive#%s ",
+              index,
+              label.folder_name, label.file_name))
         else
-          tabs[index] = string.format("%%#HarpoonNumberInactive# %s. %%#HarpoonInactive#%s ", index,
-            label)
+          table.insert(tabs, string.format("%%#HarpoonNumberInactive# %s. %%#HarpoonInactive#%s ", index,
+            label))
         end
       end
     end
