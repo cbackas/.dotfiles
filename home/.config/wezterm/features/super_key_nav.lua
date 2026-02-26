@@ -24,6 +24,7 @@ local function add_super_nav_key(key)
 end
 
 -- Super key nav
+add_super_nav_key('`')
 for i = 1, 9 do
   add_super_nav_key(tostring(i))
 end
