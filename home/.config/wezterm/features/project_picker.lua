@@ -40,6 +40,25 @@ local function active_tab(mux_win)
   end
 end
 
+-- Builds a 3-pane project layout. Bottom split goes first so the shell spans
+-- the full width; the right split then divides only the top region.
+--   claude (35% w) | nvim (65% w)
+--   -----------------------------
+--          shell (25% h)
+local function build_project_layout(top_pane, id)
+  top_pane:split { direction = 'Bottom', size = 0.25, cwd = id }
+  local nvim_pane = top_pane:split { direction = 'Right', size = 0.65, cwd = id }
+
+  -- Defer: freshly-spawned shells need a beat to attach their ptys, else the
+  -- send_text lands before anything is listening and is dropped.
+  wezterm.time.call_after(0.5, function()
+    top_pane:send_text 'claude\n'
+    nvim_pane:send_text 'nvim\n'
+  end)
+
+  nvim_pane:activate()
+end
+
 ---wrapper function for project picking keybinds
 ---@param callback fun(win: Window, pane: Pane, id: string, label: string)
 ---@return Action
@@ -88,8 +107,9 @@ table.insert(Wez_Conf.keys, {
     end
 
     wezterm.log_info('spawning new tab: ' .. title)
-    local tab, _, _ = mux_window:spawn_tab({ cwd = id })
+    local tab, first_pane, _ = mux_window:spawn_tab({ cwd = id })
     tab:set_title(title)
+    build_project_layout(first_pane, id)
   end),
 })
 
@@ -114,6 +134,7 @@ table.insert(Wez_Conf.keys, {
     -- create new tab
     local new_tab, new_pane, _ = window:mux_window():spawn_tab { cwd = id }
     new_tab:set_title(title)
+    build_project_layout(new_pane, id)
     window:perform_action(actions.MoveTab(current_tab_index), new_pane)
 
     -- close old tab
