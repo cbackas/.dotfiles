@@ -118,7 +118,7 @@ vim.lsp.config("vtsls", {
     end
   end
 })
-vim.lsp.config("tsgo", {
+vim.lsp.config("tsc", {
   filetypes = {
     'javascript',
     'javascriptreact',
@@ -218,7 +218,7 @@ vim.lsp.enable({
   "lua_ls",
   "rust_analyzer",
   -- "vtsls",
-  "tsgo",
+  "tsc",
   "vue_ls",
   "denols",
   "eslint",
