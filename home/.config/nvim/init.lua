@@ -6,6 +6,7 @@ require('cback.lsp')
 require('cback.filetypes')
 require('cback.autotest')
 require('cback.right-click')
+require('cback.RedactJSON')
 
 -- highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
