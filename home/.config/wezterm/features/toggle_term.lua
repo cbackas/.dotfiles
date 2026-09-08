@@ -13,6 +13,18 @@ local function find_vim_pane(tab)
 end
 
 
+---@param tab MuxTabObj
+---@return boolean
+local function tab_is_zoomed(tab)
+  for _, pane in ipairs(tab:panes_with_info()) do
+    if pane.is_zoomed then
+      return true
+    end
+  end
+  return false
+end
+
+
 table.insert(Wez_Conf.keys, {
   key = 'j',
   mods = 'CMD',
@@ -30,11 +42,14 @@ table.insert(Wez_Conf.keys, {
           size = 0.333,
         }
       else -- if there are multiple panes, toggle zooming/switching between them
-        local is_zoomed = tab:panes_with_info()[1].is_zoomed
+        local is_zoomed = tab_is_zoomed(tab)
         if is_zoomed then
           tab:set_zoomed(false)
           -- activate the non-vim pane
-          tab:get_pane_direction('Down'):activate()
+          local down = tab:get_pane_direction('Down')
+          if down then
+            down:activate()
+          end
         else
           tab:set_zoomed(true)
         end
