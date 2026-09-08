@@ -24,3 +24,5 @@
 	# [s]witch [b]ranch - stash, create branch, pop stash
 	sb = "!f() { git stash && git checkout -b $1 && git stash pop; }; f"
 
+[pull]
+	rebase = true
