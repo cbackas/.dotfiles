@@ -364,14 +364,6 @@
                     },
                     "ignore": false,
                     "ignore_vendor_events": true
-                },
-                {
-                    "identifiers": {
-                        "device_address": "cd-88-94-82-81-23",
-                        "is_keyboard": true,
-                        "is_pointing_device": true
-                    },
-                    "ignore": false
                 }
             ],
             "fn_function_keys": [
