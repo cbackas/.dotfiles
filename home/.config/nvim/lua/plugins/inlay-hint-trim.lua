@@ -9,6 +9,7 @@ return {
         ["tsserver"] = true,
         ["ts_ls"] = true,
         ["tsgo"] = true,
+        ["tsc"] = true,
       },
     })
   end,
