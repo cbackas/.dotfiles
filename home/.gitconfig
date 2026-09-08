@@ -23,6 +23,8 @@
 	mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
 	# [s]witch [b]ranch - stash, create branch, pop stash
 	sb = "!f() { git stash && git checkout -b $1 && git stash pop; }; f"
+	# bump services, switches to main, pulls origin, deletes chore/bump-services branch locally if it exists, creates chore/bump-services branch, done
+	bumps = "!f() { git checkout main && git pull origin main && git branch -D chore/bump-services || true && git checkout -b chore/bump-services && ./scripts/check-versions.sh && git add environment-config.ts && git commit -m '[chore]: bump services'; }; f"
 
 [pull]
 	rebase = true
