@@ -2,10 +2,11 @@ local wezterm = require 'wezterm' --[[@as Wezterm]]
 
 
 ---@param tab MuxTabObj
+---@param is_target fun(pane: Pane): boolean
 ---@return Pane | nil
-local function find_vim_pane(tab)
+local function find_pane(tab, is_target)
   for _, pane in ipairs(tab:panes_with_info()) do
-    if IsVimPane(pane.pane) then
+    if is_target(pane.pane) then
       return pane
     end
   end
@@ -25,17 +26,22 @@ local function tab_is_zoomed(tab)
 end
 
 
-table.insert(Wez_Conf.keys, {
-  key = 'j',
-  mods = 'CMD',
-  action = wezterm.action_callback(function(window, pane)
+--- Build a toggle callback for a given "target" pane (e.g. vim, claude).
+--- Pressing the key:
+---   * from the target pane, when it is the only pane -> split a shell below it
+---   * from the target pane, when other panes exist   -> toggle zoom, and when
+---     unzooming drop focus to the pane below
+---   * from any other pane -> jump to the target pane and zoom it (no-op if the
+---     target pane does not exist)
+---@param is_target fun(pane: Pane): boolean
+local function make_toggle(is_target)
+  return wezterm.action_callback(function(window, pane)
     local tab = window:active_tab()
-    local vim_pane = find_vim_pane(tab)
+    local target_pane = find_pane(tab, is_target)
 
-    if IsVimPane(pane) then
-      -- if only 1 pane exists and it is vim, split below
+    if is_target(pane) then
+      -- if only 1 pane exists and it is the target, split below
       if (#tab:panes()) == 1 then
-        -- Open pane below if when there is only one pane and it is vim
         tab:set_zoomed(false)
         pane:split {
           direction = 'Bottom',
@@ -45,7 +51,7 @@ table.insert(Wez_Conf.keys, {
         local is_zoomed = tab_is_zoomed(tab)
         if is_zoomed then
           tab:set_zoomed(false)
-          -- activate the non-vim pane
+          -- activate the non-target pane
           local down = tab:get_pane_direction('Down')
           if down then
             down:activate()
@@ -57,11 +63,24 @@ table.insert(Wez_Conf.keys, {
       return
     end
 
-    -- Zoom to vim pane if it exists
-    if vim_pane then
+    -- Zoom to the target pane if it exists
+    if target_pane then
       -- TODO fix the lua type for this - .pane is not an undefined field
-      vim_pane.pane:activate()
+      target_pane.pane:activate()
       tab:set_zoomed(true)
     end
-  end),
+  end)
+end
+
+
+table.insert(Wez_Conf.keys, {
+  key = 'j',
+  mods = 'CMD',
+  action = make_toggle(IsVimPane),
+})
+
+table.insert(Wez_Conf.keys, {
+  key = 'k',
+  mods = 'CMD',
+  action = make_toggle(IsClaudePane),
 })
