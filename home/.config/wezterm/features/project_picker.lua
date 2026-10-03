@@ -29,8 +29,8 @@ local code_layout = {
   focus = 'nvim',
   panes = {
     { name = 'claude', command = 'claude' },
-    { name = 'shell', from = 'claude', direction = 'Bottom', size = 0.25, command = 'npm run dev' },
-    { name = 'nvim', from = 'claude', direction = 'Right', size = 0.65, command = 'nvim' },
+    { name = 'shell',  from = 'claude',   direction = 'Bottom', size = 0.25, command = 'npm run dev' },
+    { name = 'nvim',   from = 'claude',   direction = 'Right',  size = 0.65, command = 'nvim' },
   },
 }
 
@@ -40,35 +40,35 @@ local code_layout_no_server = {
   focus = 'nvim',
   panes = {
     { name = 'claude', command = 'claude' },
-    { name = 'shell', from = 'claude', direction = 'Bottom', size = 0.25 },
-    { name = 'nvim', from = 'claude', direction = 'Right', size = 0.65, command = 'nvim' },
+    { name = 'shell',  from = 'claude',   direction = 'Bottom', size = 0.25 },
+    { name = 'nvim',   from = 'claude',   direction = 'Right',  size = 0.65, command = 'nvim' },
   },
 }
 
 -- the layout used when the "auto layout" modifier is held, unless a
 -- project-specific override exists in `project_layouts`
-local default_layout = code_layout
+local default_layout = code_layout_no_server
 
 -- named groups of projects that should all open together (left to right) as
 -- separate tabs, e.g. after a reboot to restore a whole workspace at once
 local workspaces = {
-  {
-    name = 'z-cloud',
-    projects = {
-      'zenith-cloud-ui',
-      'sso-login',
-      'org-service',
-      'device-service',
-      'channel-map-service',
-      'cms-service',
-      'cdk-infra',
-    },
-  },
+  -- {
+  --   name = 'z-cloud',
+  --   projects = {
+  --     'zenith-cloud-ui',
+  --     'sso-login',
+  --     'org-service',
+  --     'device-service',
+  --     'channel-map-service',
+  --     'cms-service',
+  --     'cdk-infra',
+  --   },
+  -- },
 }
 
 -- per-project overrides for the auto layout, keyed by project folder name
 local project_layouts = {
-  ['cdk-infra'] = code_layout_no_server,
+  -- ['cdk-infra'] = code_layout_no_server,
 }
 
 local workspace_id_prefix = '__workspace__:'
