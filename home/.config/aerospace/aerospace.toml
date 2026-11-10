@@ -1,4 +1,8 @@
+config-version = 2
 start-at-login = true
+
+persistent-workspaces = ['1', '2', '3', '4', '5', 'v', 'f1Main', 'f1Secondary']
+
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 default-root-container-layout = 'tiles'
