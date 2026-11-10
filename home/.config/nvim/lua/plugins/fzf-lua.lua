@@ -31,75 +31,61 @@ local function init()
   map('n', '<leader>gr', fzf.lsp_references, { desc = 'LSP References' })
 end
 
--- rg can't ref a hl group, so read the group's fg at load time -> "r,g,b"
-local function rg_rgb(group)
-  local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
-  if not hl or not hl.fg then return nil end
-  return ("%d,%d,%d"):format(
-    math.floor(hl.fg / 65536) % 256,
-    math.floor(hl.fg / 256) % 256,
-    hl.fg % 256
-  )
-end
-
 return {
   "ibhagwan/fzf-lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   init = init,
-  -- function so it runs after the colorscheme is loaded (needs `Special`)
-  opts = function()
-    local match_rgb = rg_rgb("Special") or "215,186,125" -- #D7BA7D fallback
-    return {
-      keymap = {
-        fzf = {
-          ["ctrl-q"] = "select-all+accept", -- select all -> quickfix
-        },
+  opts = {
+    keymap = {
+      fzf = {
+        ["ctrl-q"] = "select-all+accept", -- select all -> quickfix
       },
-      winopts = {
-        height   = 0.85,
-        width    = 0.90,
-        row      = 0.35,
-        col      = 0.55,
-        border   = "rounded",
-        backdrop = false, -- no dimming behind the window
-        preview  = {
-          border     = "rounded",
-          layout     = "horizontal",
-          horizontal = "right:60%",
-        },
+    },
+    winopts = {
+      height   = 0.85,
+      width    = 0.90,
+      row      = 0.35,
+      col      = 0.55,
+      border   = "rounded",
+      backdrop = false, -- no dimming behind the window
+      preview  = {
+        border     = "rounded",
+        layout     = "horizontal",
+        horizontal = "right:60%",
       },
-      fzf_colors = {
-        true,
-        ["fg"]      = { "fg", "Normal" },
-        ["fg+"]     = { "fg", "Normal" },
-        ["bg+"]     = { "bg", "CursorLine" },
-        ["hl"]      = { "fg", "Special" }, -- match accent (Snacks orange)
-        ["hl+"]     = { "fg", "Special" },
-        ["query"]   = { "fg", "Normal" },
-        ["prompt"]  = { "fg", "Comment" },
-        ["pointer"] = { "fg", "Type" },
-        ["marker"]  = { "fg", "Type" },
-      },
-      -- honor .gitignore, show dotfiles, drop .git/.jj and *.test.ts
-      files = {
-        cwd_prompt = false,
-        prompt     = 'fzf❯ ',
-        fd_opts    = [[--color=never --type f --type l --exclude .git --exclude .jj --exclude '*.test.ts']],
-      },
-      -- --hidden to search dotfolders; match color from `Special` (see rg_rgb)
-      grep = {
-        rg_opts = table.concat({
-          "--column --line-number --no-heading --color=always --smart-case --max-columns=4096",
-          "--hidden -g '!.git' -g '!.jj' -g '!*.test.ts'",
-          "--colors 'path:fg:176,178,191'",
-          "--colors 'line:fg:110,118,129'",
-          "--colors 'column:fg:110,118,129'",
-          "--colors 'match:fg:" .. match_rgb .. "'",
-          "--colors 'match:style:bold'",
-          "-e",
-        }, " "),
-        file_ignore_patterns = { ".-package%-lock%.json$", "Cargo%.lock$", ".-LICENSE$" },
-      },
-    }
-  end,
+    },
+    fzf_colors = {
+      true,
+      ["fg"]      = { "fg", "Normal" },
+      ["fg+"]     = { "fg", "Normal" },
+      ["bg+"]     = { "bg", "CursorLine" },
+      ["hl"]      = { "fg", "Special" }, -- match accent (Snacks orange)
+      ["hl+"]     = { "fg", "Special" },
+      ["query"]   = { "fg", "Normal" },
+      ["prompt"]  = { "fg", "Comment" },
+      ["pointer"] = { "fg", "Type" },
+      ["marker"]  = { "fg", "Type" },
+    },
+    -- honor .gitignore, show dotfiles, drop .git/.jj and *.test.ts
+    files = {
+      cwd_prompt = false,
+      prompt     = 'fd> ',
+      fd_opts    = [[--color=never --type f --type l --exclude .git --exclude .jj --exclude '*.test.ts']],
+    },
+    -- --hidden to search dotfolders; match color baked into rg output below
+    grep = {
+      prompt = 'rg> ',
+      rg_opts = table.concat({
+        "--column --line-number --no-heading --color=always --smart-case --max-columns=4096",
+        "--hidden -g '!.git' -g '!.jj' -g '!*.test.ts'",
+        "--colors 'path:fg:176,178,191'",
+        "--colors 'line:fg:110,118,129'",
+        "--colors 'column:fg:110,118,129'",
+        "--colors 'match:fg:215,186,125'", -- #D7BA7D (Snacks match orange)
+        "--colors 'match:style:bold'",
+        "-e",
+      }, " "),
+      file_ignore_patterns = { ".-package%-lock%.json$", "Cargo%.lock$", ".-LICENSE$" },
+    },
+  },
 }
