@@ -9,6 +9,7 @@
   "conform.nvim": { "branch": "master", "commit": "086a40dc7ed8242c03be9f47fbcee68699cc2395" },
   "copilot.lua": { "branch": "master", "commit": "ad7e729e9a6348f7da482be0271d452dbc4c8e2c" },
   "coverage.vim": { "branch": "master", "commit": "adecdc605ed187ca47dbc6ddd2f3d73dac786356" },
+  "draven.nvim": { "branch": "main", "commit": "a48baae26ed9d21d4723e0615ca47ce8feeadc1b" },
   "fastaction.nvim": { "branch": "main", "commit": "b147d91727cb35be4f722f17e7d4ed5b4a5801d8" },
   "fidget.nvim": { "branch": "main", "commit": "889e2e96edef4e144965571d46f7a77bcc4d0ddf" },
   "fugitive-delta.nvim": { "branch": "master", "commit": "406cec4173c18ce1d5dc617a0cea2d8c5507e354" },
