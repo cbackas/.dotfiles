@@ -1,7 +1,7 @@
 config-version = 2
 start-at-login = true
 
-persistent-workspaces = ['1', '2', '3', '4', '5', 'v', 'r']
+persistent-workspaces = ['1', '2', '3', '4', '5', '6', '7', '8', 'v', 'r']
 
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
@@ -79,6 +79,12 @@ cmd-ctrl-alt-shift-4 = 'move-node-to-workspace 4'
 ctrl-alt-shift-5 = 'workspace 5'
 ctrl-alt-shift-g = 'workspace 5'
 cmd-ctrl-alt-shift-5 = 'move-node-to-workspace 5'
+ctrl-alt-shift-6 = 'workspace 6'
+cmd-ctrl-alt-shift-6 = 'move-node-to-workspace 6'
+ctrl-alt-shift-7 = 'workspace 7'
+cmd-ctrl-alt-shift-7 = 'move-node-to-workspace 7'
+ctrl-alt-shift-8 = 'workspace 8'
+cmd-ctrl-alt-shift-8 = 'move-node-to-workspace 8'
 
 # video workspace
 ctrl-alt-shift-v = 'workspace v'
