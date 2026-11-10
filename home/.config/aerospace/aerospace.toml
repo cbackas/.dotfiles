@@ -1,7 +1,7 @@
 config-version = 2
 start-at-login = true
 
-persistent-workspaces = ['1', '2', '3', '4', '5', 'v', 'f1Main', 'f1Secondary']
+persistent-workspaces = ['1', '2', '3', '4', '5', 'v', 'r']
 
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
@@ -84,9 +84,9 @@ cmd-ctrl-alt-shift-5 = 'move-node-to-workspace 5'
 ctrl-alt-shift-v = 'workspace v'
 cmd-ctrl-alt-shift-v = 'move-node-to-workspace v'
 
-# f1 workspaces
-ctrl-alt-shift-r = ['workspace f1Main', 'workspace f1Secondary']
-cmd-ctrl-alt-shift-r = ['move-node-to-workspace f1Secondary']
+# r workspace
+ctrl-alt-shift-r = ['workspace r']
+cmd-ctrl-alt-shift-r = ['move-node-to-workspace r']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -99,8 +99,7 @@ alt-shift-backspace = 'mode service'
     1 = 'DELL U2723QE'
     2 = 'LG ULTRAWIDE \(2\)'
     3 = 'LG ULTRAWIDE \(1\)'
-    f1Main = 'main'
-    f1Secondary = 'DELL U2723QE'
+    4 = 'LG ULTRAWIDE \(1\)'
 
 # browsers to browser workspace
 [[on-window-detected]]
@@ -157,23 +156,6 @@ check-further-callbacks = false
 [[on-window-detected]]
 if.app-id = "com.github.wez.wezterm"
 run = ["move-node-to-workspace 3"]
-
-# f1
-# [[on-window-detected]]
-# if.app-id = 'com.electron.multiviewer-for-f1'
-# if.window-title-regex-substring = "tracker"
-# run = 'move-node-to-workspace f1Secondary'
-# [[on-window-detected]]
-# if.app-id = 'com.electron.multiviewer-for-f1'
-# if.window-title-regex-substring = "(Driver Tracker|Live Timing) — MultiViewer"
-# run = ['layout floating', 'move-node-to-workspace f1Secondary']
-# [[on-window-detected]]
-# if.app-id = 'com.electron.multiviewer-for-f1'
-# run = ['move-node-to-workspace f1Main']
-[[on-window-detected]]
-if.app-id = 'com.electron.multiviewer-for-f1'
-check-further-callbacks = true
-run = ['layout floating']
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
