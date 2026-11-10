@@ -104,6 +104,10 @@ alt-shift-backspace = 'mode service'
 
 # browsers to browser workspace
 [[on-window-detected]]
+if.window-title-regex-substring = 'Extension: \(Bitwarden Password Manager\) - Bitwarden'
+run = ['layout floating']
+check-further-callbacks = false
+[[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
 if.window-title-regex-substring = 'Picture-in-Picture'
 run = ['layout floating']
