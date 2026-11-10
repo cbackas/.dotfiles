@@ -1,0 +1,39 @@
+return {
+  'https://gitlab.com/gitlab-org/editor-extensions/gitlab.vim.git',
+  event = { 'InsertEnter', 'BufReadPre', 'BufNewFile' },
+  init = function()
+    vim.g.gitlab_plugin_loaded = true -- prevent plugin/gitlab.lua from running
+  end,
+  config = function()
+    require('gitlab').setup({
+      gitlab_url = "https://gitlab.zenith.net",
+      statusline = {
+        enabled = false
+      },
+      code_suggestions = {
+        -- https://gitlab.com/gitlab-org/editor-extensions/gitlab.vim/-/blob/main/lua/gitlab/config/defaults.lua
+        enabled = true,
+        auto_filetypes = { 'lua', 'javascript', 'typescript', 'typescriptreact', 'yaml' },
+        -- lsp_binary_path = "/opt/gitlab-lsp",
+        lsp_binary_path = "/Users/zac/.volta/bin/gitlab-lsp",
+        ghost_text = {
+          enabled = true, -- ghost text is an experimental feature
+          toggle_enabled = "<C-h>",
+          accept_suggestion = "<C-y>",
+          -- I DONT NEED THIS, MAKE IT SOME HARD TO PRESS THING
+          clear_suggestions = "<C-e>",
+          stream = true,
+        },
+      },
+      workspace_settings = {
+        codeCompletion = {
+          additionalLanguages = { 'lua' },
+        },
+        telemetry = {
+          enabled = false,
+        }
+      }
+    })
+    require('gitlab.commands').create()
+  end,
+}
