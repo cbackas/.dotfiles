@@ -7,6 +7,7 @@ local arctic = require('lush_theme.arctic')
 local dark_blueish_grey = '#1b1f25'
 local blueish_grey = '#2E2E33'
 local light_blueish_grey = "#b0b2bf"
+local border_grey = '#45484f'
 
 local spec = lush.extends({ arctic }).with(function()
   -- basically replaced all instances of the background var being used with new_bg
@@ -20,6 +21,22 @@ local spec = lush.extends({ arctic }).with(function()
     Pmenu { fg = arctic.Pmenu.fg, bg = blueish_grey },
     SnacksPicker { fg = arctic.Pmenu.fg, bg = dark_blueish_grey },
     NormalFloat { fg = arctic.Normal.fg, bg = dark_blueish_grey },
+    -- fzf-lua: greyer borders + retheme accents off `Special` (pink by default)
+    FzfLuaBorder { fg = border_grey },
+    FzfLuaPreviewBorder { fg = border_grey },
+    FzfLuaPreviewTitle { fg = border_grey },
+    FzfLuaPathLineNr { fg = light_blueish_grey },
+    FzfLuaPathColNr { fg = light_blueish_grey },
+    FzfLuaBufName { fg = arctic.Identifier.fg },
+    FzfLuaBufNr { fg = light_blueish_grey },
+    FzfLuaBufLineNr { fg = light_blueish_grey },
+    FzfLuaDirPart { fg = arctic.LineNr.fg },
+    FzfLuaFilePart { fg = arctic.Normal.fg },
+    FzfLuaSearch { fg = arctic.Function.fg, gui = "bold" },
+    FzfLuaHeaderText { fg = arctic.Identifier.fg },
+    FzfLuaHeaderBind { fg = light_blueish_grey },
+    FzfLuaLiveSym { fg = arctic.Function.fg },
+    FzfLuaLivePrompt { fg = arctic.Normal.fg },
     -- harpoon
     HarpoonActive { fg = arctic.Identifier.fg, bg = blueish_grey },
     HarpoonActiveFolder { fg = light_blueish_grey, bg = blueish_grey },
