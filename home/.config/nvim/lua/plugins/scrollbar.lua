@@ -1,12 +1,15 @@
 return {
   "petertriho/nvim-scrollbar",
+  branch = "refactor/v2", -- drop after 2026-11-16 when v2 lands on main
   opts = {
-    show = true,
-    show_in_active_only = false,
-    set_highlights = true,
-    handle = {
-      blend = 50,
-      color = "#F0F0F0"
-    }
-  }
+    scrollbar = {
+      thumb = {
+        blend = 50,
+        highlight = { bg = "#F0F0F0" },
+      },
+      layout = {
+        columns = { { "thumb", "marks" } }, -- drop "track" -> no dark background bar
+      },
+    },
+  },
 }
