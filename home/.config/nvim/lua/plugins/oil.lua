@@ -5,6 +5,11 @@ return {
   opts = {
     default_file_explorer = true,
     delete_to_trash = true,
+    -- merged over oil's defaults: free <C-l> for pane nav, refresh on <C-r>
+    keymaps = {
+      ["<C-l>"] = false,
+      ["<C-r>"] = "actions.refresh",
+    },
     view_options = {
       show_hidden = true,
       is_hidden_file = function(name, bufnr)
